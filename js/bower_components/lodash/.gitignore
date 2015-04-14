@@ -1,0 +1,10 @@
+.coveralls.yml
+.DS_Store
+*.custom.*
+*.template.*
+*.log
+*.map
+/*.min.*
+coverage
+modularize
+node_modules

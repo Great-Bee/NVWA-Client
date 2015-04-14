@@ -1,0 +1,21 @@
+{
+  "name": "uuid-js",
+  "version": "0.7.5",
+  "main": "lib/uuid.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "homepage": "https://github.com/aurigadl/uuid-js",
+  "_release": "0.7.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.5",
+    "commit": "b91aae8ba1f3a251bcf1d0d1fcecba828e7a26de"
+  },
+  "_source": "git://github.com/aurigadl/uuid-js.git",
+  "_target": "~0.7.5",
+  "_originalSource": "uuid-js",
+  "_direct": true
+}

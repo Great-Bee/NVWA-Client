@@ -1,0 +1,10 @@
+{
+  "name": "uuid-js",
+  "version": "0.7.5",
+  "main": "lib/uuid.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}

@@ -1,0 +1,6 @@
+
+lib/main.js
+----------------
+/opt/lufax/projects/nvwa/nvwa-client/requirejs-tpl-master/tpl.js
+tpl!hello.tpl
+lib/main.js

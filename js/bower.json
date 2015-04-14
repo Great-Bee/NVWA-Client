@@ -1,0 +1,26 @@
+{
+  "name": "nvwa",
+  "version": "1.0.0",
+  "dependencies": {
+    "marionette": "~2.0.1"
+  },
+  "main": "index.js",
+  "authors": [
+    "CarlChen <iamcarlchen@gmail.com>"
+  ],
+  "description": "nvwa for greatbee",
+  "keywords": [
+    "nvwa",
+    "f2e"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.greatbee.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

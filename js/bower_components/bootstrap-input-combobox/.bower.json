@@ -1,0 +1,14 @@
+{
+  "name": "bootstrap-input-combobox",
+  "homepage": "https://github.com/PayteR/bootstrap-input-combobox",
+  "_release": "6bca9d4cad",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6bca9d4cad165d363c47337bfb242ebc1debd584"
+  },
+  "_source": "git://github.com/PayteR/bootstrap-input-combobox.git",
+  "_target": "*",
+  "_originalSource": "bootstrap-input-combobox",
+  "_direct": true
+}
