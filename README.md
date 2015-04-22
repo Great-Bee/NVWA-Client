@@ -2,13 +2,13 @@
 
 ## 一分钟建立NVWA客户端
 
-1. 安装[Nginx](http://nginx.org/en/download.html)
+a. 安装[Nginx](http://nginx.org/en/download.html)
 
-2. 下载源代码
+b. 下载源代码
 ```bash
 git clone git://github.com/Great-Bee/NVWA-Client
 ```
-3. 配置nginx.conf
+c. 配置nginx.conf
 ```bash
 server {
   listen 80;
