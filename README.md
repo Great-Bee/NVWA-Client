@@ -1,6 +1,11 @@
-# NVWA-Client
-NVWA的客户端代码库
+# NVWA-Client NVWA的客户端代码库
 
-NVWA-Client 主要作用是进行客户端配置..
+## 一分钟建立NVWA客户端
+
+下载源代码
+--------------------------------------
+```bash
+git clone git://github.com/Great-Bee/NVWA-Client
+```
 
 
