@@ -87,6 +87,18 @@ define(['js/util/http'], function(http) {
                     handler(response);
                 }
             }, false, 'POST', false);
+        },
+        producerPasswordEdit: function(old_pwd,new_pwd,handler) {
+            var url = '/nvwaSecurity/passwordEdit';
+            var data = {
+                oldPassword: old_pwd,
+                newPassword: new_pwd
+            };
+            http.request(url, data, function(response) {
+                if (handler && handler != null) {
+                    handler(response);
+                }
+            }, false, 'POST', false);
         }
     };
     return Producer;

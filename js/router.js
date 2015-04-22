@@ -101,9 +101,9 @@ define(["js/producer/view/producer",
         passwordEdit: function() {
             var t = this;
             t._init();
-            require(["js/producer/view/passwordEdit"], function(passwordView) {
+            require(["js/producer/view/passwordEdit"], function(PasswordView) {
                 var container = $("#content");
-                var passwordView = new passwordView({
+                var passwordView = new PasswordView({
                     el: container,
                     routes: t
                 }, {}, {}, null, false);
