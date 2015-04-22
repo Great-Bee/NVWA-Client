@@ -33,3 +33,7 @@ server {
   }
 }
 ```
+
+其它
+-如果要搭建NVWA服务端，可以去[NVWA-Server](https://github.com/Great-Bee/NVWA-Server)
+-如果要测试NVWA的内核，可以去[NVWA-Test](https://github.com/Great-Bee/NVWA-Test)
