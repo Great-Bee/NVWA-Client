@@ -176,6 +176,7 @@ define(['js/util/http', 'js/util/api/producer'], function(http, Producer) {
             }, false, 'POST', false);
         },
         readContainerByAlias: function(alias, handler) {
+
             var url = '/nvwa/container/readColumn/alias/' + alias;
             var data = {};
             http.request(url, data, function(response) {
@@ -2028,6 +2029,22 @@ define(['js/util/http', 'js/util/api/producer'], function(http, Producer) {
                     }
                 }, false, 'POST', false);
             }
+        },
+        /**
+         *读取contrainer 的api 接口
+         */
+        readContrainerAPI: function(methodN,pageAlias,contrainerAlias, handler) {
+            var url = '/nvwa/container/crudApi';
+            var data = {
+                pageAlias: pageAlias,
+                containerAlias: contrainerAlias,
+                methodName: methodN
+            };
+            http.request(url, data, function(response) {
+                if (handler && handler != null) {
+                    handler(response);
+                }
+            }, false, 'POST', false);
         }
     };
     return MC;

@@ -7,10 +7,12 @@ define([
 	'js/util/api/mc',
 	'js/producer/view/editorContainerAttribute',
 	'js/core/element/view/multipleContainerSelect',
-], function(_, EditorPageAttributeTpl, StringUtil, Modal, Message, MC, EditorContainerAttribute, MultipleContainerSelectView) {
+	'js/util/ui/view/ContainerReadAPI',
+], function(_, EditorPageAttributeTpl, StringUtil, Modal, Message, MC, EditorContainerAttribute, MultipleContainerSelectView,ContainerReadAPIView) {
 	var PageAttributeView = EditorContainerAttribute.extend({
 		events: $.extend(EditorContainerAttribute.prototype.events, {
 			'click .btn-remove': '_delete',
+			'click .btn-read': 'readApi',
 			'click [debug="setValue"]': '_debugSet',
 			'click [debug="getValue"]': '_debugGet',
 		}),
@@ -99,6 +101,50 @@ define([
 					t.$el.find('[fieldName="' + fieldName + '"]').val(value);
 					break;
 			}
+		},
+		readApi: function(){
+			var t = this;
+			var contrainerAlias = $(event.target).parent().attr("value");
+			var pageAlias = t.config.pageBean.alias;
+			//根据别名获取容器
+			var __getContrainer = function(contrainerAlias,pageAlias,success,error){
+				MC.readContainerByAlias(contrainerAlias,function(data){
+					if (data) {
+						if(success){
+							success(data,pageAlias);
+						}
+					} else {
+						//error
+						if(error){
+							error(data);
+						}
+					}
+				});
+			}
+			//显示模态对话框
+			var __showAPIModel = function (t,pageAlias,contrainerBean){
+				t.selectionView = [];
+				t.selectionView.container = $('<div></div>');
+				t.selectionView.dialog = new Modal({
+					title: '选择接口',
+					content: t.selectionView.container
+				});
+				new ContainerReadAPIView({
+					el: t.selectionView.container
+				}, {
+					pageAlias:pageAlias,
+					contrainerBean:contrainerBean
+				});
+			}
+
+			__getContrainer(contrainerAlias,pageAlias,function(data,page){
+				if(data){
+					__showAPIModel(t,page,data);
+				}
+			},function(error){
+				alert(error);
+			});
+			
 		}
 	});
 	return PageAttributeView;
