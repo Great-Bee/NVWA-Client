@@ -101,7 +101,7 @@ define([
                 var url = apiBean.url;
                 var params = apiBean.params;
                 var result = JSON.stringify(apiBean.result);
-                $('<br/><br/><table class="table table-hover api-table"></table>').appendTo(el);
+                $('<br/><br/><table class="table api-table"></table>').appendTo(el);
                 var table = el.find('.api-table');
                 table.html("");
                 $('<tr class=""><td class="" width="10%">接口名称</td><td class="">'+title+'</td></tr>').appendTo(table);
@@ -109,13 +109,17 @@ define([
                 for(var i in params){
                     $('<tr class=""><td class="">请求参数</td><td class="text-justify">'+params[i]+'</td></tr>').appendTo(table);
                 }
+                
+                result=result.replace(/\"{/g,'{');
+                result=result.replace(/\}\"/g,'}');
+                result=result.replace(/\\\"/g,'"');
                 $('<tr class=""><td class="">返回参数</td><td class="">'+result+'</td></tr>').appendTo(table);
             },
             /**    
              *    构建tab，并请求后台，返回接口数据
              */
             buildTab: function(el,methodName,pageAlias,contrainerAlias){
-                var t = this;
+                var t =this;
                 var table = el.find('.api-table');
                 //table.html()有值 说明已经请求过了，不再请求
                 if(table && table.html() && table.html().length>1){
