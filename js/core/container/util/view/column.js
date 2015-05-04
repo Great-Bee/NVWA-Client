@@ -415,6 +415,7 @@ define([
 			var t = this;
 			//get support attribute
 			var __getSupportAttribute = function() {
+				debugger;
 				if (t.componentView && t.componentView.supportAttribute &&
 					t.componentView.supportAttribute()) {
 					return t.componentView.supportAttribute();
@@ -424,6 +425,7 @@ define([
 			};
 			//get defaule datasource schema list
 			var __getDatasourceSchemaList = function() {
+				debugger;
 				if (t.componentView && t.componentView.getDatasourceSchemaList &&
 					t.componentView.getDatasourceSchemaList()) {
 					return t.componentView.getDatasourceSchemaList();
@@ -432,6 +434,7 @@ define([
 				}
 			};
 			var __getDatasourceConfig = function() {
+				debugger;
 				if (t.componentView && t.componentView.getDatasourceConfig &&
 					t.componentView.getDatasourceConfig()) {
 					return t.componentView.getDatasourceConfig();

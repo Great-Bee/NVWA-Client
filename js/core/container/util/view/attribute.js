@@ -16,6 +16,7 @@
 	'js/util/ui/view/fieldSelection',
 	'js/util/ui/view/editorEvent',
 	'js/util/ui/control',
+	'js/util/ui/view/columnFormat',
 	'datetimepicker', 'datetimepicker_lang', 'css!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min'
 ], function(
 	Backbone,
@@ -35,7 +36,8 @@
 	ThumbnailConfigView,
 	FieldSelectionView,
 	EventView,
-	ControlUtil
+	ControlUtil,
+	ColumnFormatView
 ) {
 	var AttributeView = Backbone.View.extend({
 		events: {
@@ -371,6 +373,10 @@
 			t.thumbnailConfig = new ThumbnailConfigView({
 				el: t.$el.find(".thumbnailConfigContainer")
 			}, {}, {}, [], false);
+			//Init columnFormat config
+			t.columnFormat = new ColumnFormatView({
+				el: t.$el.find(".columnFormatContainer")
+			}, {}, {}, [], false);
 		},
 		initListener: function() {
 			var t = this;
@@ -544,6 +550,14 @@
 				}
 			});
 
+			//columeFormat Config change
+			t.$el.find(".columnFormatContainer").on("change", function() {
+				var v = t.columnFormat.getValue();
+				if (v) {
+					saveClientAttr('columnConfig', v);
+				}
+			});
+
 			//Video Config change
 			t.$el.find(".videoConfigContainer").on("change", function() {
 				var v = t.videoConfig.getValue();
@@ -697,6 +711,9 @@
 				case 'validateConfig':
 					return t.validateConfig.getValue();
 					break;
+				case 'columnFormat':
+					return t.columnFormat.getValue();
+					break;
 				case 'textAlign':
 					return t.textAlign.getValue();
 					break;
@@ -794,6 +811,11 @@
 				case 'validateConfig':
 					if (attributeValue && typeof(attributeValue) == 'string') {
 						t.validateConfig.setValue(attributeValue);
+					}
+					break;
+				case 'columnFormat':
+					if (attributeValue && typeof(attributeValue) == 'string') {
+						t.columnFormat.setValue(attributeValue);
 					}
 					break;
 				case 'videoConfig':

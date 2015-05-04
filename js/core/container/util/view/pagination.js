@@ -5,14 +5,17 @@ define([
     'achy/widget/ui/message',
     'js/util/ui/view/modal',
     'js/util/api/mc',
+    'js/core/container/util/view/attribute',
     'text!js/core/container/util/template/pagination.html'
-], function(Backbone, _, StringUtil, NvwaUser, Message, Modal, MC, PaginationTpl) {
+], function(Backbone, _, StringUtil, NvwaUser, Message, Modal, MC, AttributeView, PaginationTpl) {
     var GridView = Backbone.View.extend({
         events: {
             'click .removeable': 'removeField',
-            'deleteElement': '_deleteElement'
+            'deleteElement': '_deleteElement',
+            'click .item': '_showColumnAttribute'
         },
         initialize: function(options, eleBean, attributes, eves, elements, layouts, editAble) {
+
             var t = this;
             this.$el = options;
             var serialNumber = eleBean['serialNumber'];
@@ -139,6 +142,9 @@ define([
             var t = this;
             _log(t.elements);
             _log(t.data);
+             // 格式化data 单独写一个转换方法
+            t._columnFormat();
+           
             this.$el.html(_.template(PaginationTpl, {
                 eleBean: t.eleBean, //containerBean
                 attributes: t.attributes, //客户端属性
@@ -395,6 +401,195 @@ define([
                     _log(t.layouts.unfixed);
                 }
             });
+        },
+        //格式化列表
+        _columnFormat: function(){
+            var t = this;
+            $.each(t.elements,function(i,elem){
+                if(elem){
+                    var element = elem.element;
+                    var data = t.data.currentRecords;
+                    var clientAttribute = eval('('+elem.elementClientAttribute.columnConfig+')');//{"format":"number","digitNum":"1","isCoin":false}
+                    var title =  elem.elementClientAttribute.text;
+                    //设置title
+                    if(title){
+                        $.each(t.elements,function(index,ele){
+                            if(element.id == ele.element.id){
+                                t.elements[index].element.name = title;
+                            }
+                        });
+                    }
+                    $.each(data,function(index,column){
+                        var columnValue = column[element.serialNumber];
+                        
+                        if(columnValue && clientAttribute){
+                            //选中设置属性的那列
+                            var format = clientAttribute.format;
+                            if(format && format == 'number'){
+                                var digitNum = clientAttribute['digitNum'];
+                                var isCoin = clientAttribute['isCoin'];
+                                columnValue=Number(columnValue).toFixed(digitNum);
+                                if(isCoin){
+                                    //货币模式
+                                    var columnvalues = columnValue.split('.');
+                                    var num = columnvalues[0];
+                                    var temp = 0;
+                                    var tempValue = '';
+                                    for(var i=num.length-1;i>=0;i--){
+                                        tempValue = tempValue + num[i];
+                                        temp++;
+                                        if(temp>=3 && i!=0){
+                                            tempValue = tempValue + ',';
+                                            temp = 0;
+                                        }
+                                    }
+                                    //倒叙
+                                    var resultValue = '';
+                                    var tempLen = tempValue.length;
+                                    for(var i = 0;i<tempLen;i++){
+                                        resultValue = resultValue + tempValue[tempLen-1-i];
+                                    }
+                                    if(columnvalues.length>1){
+                                        resultValue = resultValue + '.'+ columnvalues[1];
+                                    }
+                                    column[element.serialNumber] = resultValue;
+                                }else{
+                                    column[element.serialNumber] = columnValue;
+                                }
+                            }else if(format && format == 'datetime'){//{"format":"datetime","datetime":"yyyy-mm-dd"}
+                                var format = clientAttribute['datetime'];
+                                var formatDate = new Date(columnValue).format(format);
+                                column[element.serialNumber] = formatDate;
+                            }
+                        }
+                    });
+                    
+                }
+            });
+            
+        },
+        _getClientAttributeIndexByEleId: function(elementId){
+            var t = this;
+            var eles = t.elements;
+            var index=0;
+            for(var i=0;i<eles.length;i++){
+                if(eles[i].element.id == elementId){
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        },
+        //保存客户端属性
+        _saveClientAttributes: function(saveData){
+            var t = this;
+            var clientAttr = {
+                elementId: t['element']['id']
+            }
+            var index = t._getClientAttributeIndexByEleId(t['element']['id']);
+            clientAttr = $.extend(clientAttr,t.elements[index].elementClientAttribute, saveData);
+            t.elements[index].elementClientAttribute = clientAttr;
+            MC.updateElementClientAttribute(clientAttr);
+        },
+        
+        /**
+         * 设置cloumn客户端属性
+         */
+        _showColumnAttribute: function(e){
+            var t = this;
+            var elementid = $(e.originalEvent.srcElement).attr("elementid");
+            
+            var index = t._getClientAttributeIndexByEleId(elementid);
+            //读取element
+            MC.readElement(elementid,function(elementBean){
+                //get support attribute
+                var __getSupportAttribute = function() {
+                    return ['text','columnFormat'];
+                };
+                //get defaule datasource schema list
+                var __getDatasourceSchemaList = function() {
+                    return [{
+                        name: "名称",
+                        schema: "name"
+                    }, {
+                        name: "值",
+                        schema: "value"
+                    }];
+                };
+                var __getDatasourceConfig = function() {
+                    return {
+                        staticEnble: true,
+                        dynamicEnble: true,
+                        dynamicFieldEnble: true
+                    };
+                };
+                var __getSupportServerAttribute = function() {
+                    return [];
+                };
+                var __getSupportEventNames = function() {
+                    return [];
+                };
+                var __getSupportServerEventNames = function() {
+                    return [];
+                }
+
+                //hidden掉所有的右边面板
+                $('[data-collapse]').hide();
+                //显示属性面板
+                $('#elementSettings').html('');
+                //将element保存到t里面
+                t.element = elementBean;
+                t.elementSettings = new AttributeView({
+                    el: $('#elementSettings')
+                }, {
+                    clientAtttributes: t.elements[index].elementClientAttribute || {}, //server attribute
+                    datasourceSchemaList: __getDatasourceSchemaList(),
+                    datasourceConfig: __getDatasourceConfig(),
+                    supportAttribute: __getSupportAttribute() //support client attribute
+                //    supportServerAttribute: __getSupportServerAttribute(), //support server attribute
+                //    supportEventNames: __getSupportEventNames(), //support client event name
+                //    supportServerEventNames: __getSupportServerEventNames() //support server event name
+                }, t.eleBean, elementBean, {
+                    callbackEvent: function() {
+                        //销毁窗口          
+                        $('#' + t.serialNumber + '-settings').removeClass('btn-select');
+                        $('#' + t.serialNumber + '-settings').addClass('btn-primary');
+                    },
+                    setClientAttribute: function(attributeName, attributeValue) {
+                        t.refreshCurrentPage();
+                    },
+                    setClientAttributes: function(saveData) {
+                        //将客户端属性保存到数据库
+                        t._saveClientAttributes(saveData);
+                    },
+                    setServerAttributes: function(saveData) {
+                       //没有服务端属性
+                    },
+                    rollbackClientAttr: function(clientAttr) {
+                        //TODO回滚数据
+                        $.each(clientAttr, function(k, attr) {
+                            t.componentView.setAttribute(k, attr);
+                        });
+                        new Message({
+                            type: 'info',
+                            msg: '回滚当前元素客户端属性设置',
+                            timeout: 1500
+                        });
+                    }
+                });
+                //激活控件
+                t.collapse = new jQueryCollapse($("#elementSettings"));
+                //默认打开第一和第二个tab
+                if (__getSupportAttribute() && __getSupportAttribute().length > 0) {
+                    //说明当前元素上已经有组件,默认打开客户端属性和服务器属性这两个标签
+                    t.collapse.open(0);
+                    t.collapse.open(1);
+                }
+                //显示
+                $('#elementSettings').show();
+
+            });
+
         }
     });
     return GridView;

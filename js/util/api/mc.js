@@ -1083,6 +1083,7 @@ define(['js/util/http', 'js/util/api/producer'], function(http, Producer) {
         readElement: function(id, handler) {
             var url = '/nvwa/element/read/' + id;
             var data = {};
+
             http.request(url, data, function(response) {
                 //返回的http请求数据
                 if (response.ok) {
