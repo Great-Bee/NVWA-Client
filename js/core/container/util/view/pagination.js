@@ -409,61 +409,64 @@ define([
                 if(elem){
                     var element = elem.element;
                     var data = t.data.currentRecords;
-                    var clientAttribute = eval('('+elem.elementClientAttribute.columnConfig+')');//{"format":"number","digitNum":"1","isCoin":false}
-                    var title =  elem.elementClientAttribute.text;
-                    //设置title
-                    if(title){
-                        $.each(t.elements,function(index,ele){
-                            if(element.id == ele.element.id){
-                                t.elements[index].element.name = title;
+                    if(elem.elementClientAttribute){
+                        var title =  elem.elementClientAttribute.text;
+                        //设置title
+                        if(title){
+                            $.each(t.elements,function(index,ele){
+                                if(element.id == ele.element.id){
+                                    t.elements[index].element.name = title;
+                                }
+                            });
+                        }
+                    }
+                    if(elem.elementClientAttribute && elem.elementClientAttribute.columnConfig){
+                        var clientAttribute = eval('('+elem.elementClientAttribute.columnConfig+')');//{"format":"number","digitNum":"1","isCoin":false}
+                        $.each(data,function(index,column){
+                            var columnValue = column[element.serialNumber];
+                            
+                            if(columnValue && clientAttribute){
+                                //选中设置属性的那列
+                                var format = clientAttribute.format;
+                                if(format && format == 'number'){
+                                    var digitNum = clientAttribute['digitNum'];
+                                    var isCoin = clientAttribute['isCoin'];
+                                    columnValue=Number(columnValue).toFixed(digitNum);
+                                    if(isCoin){
+                                        //货币模式
+                                        var columnvalues = columnValue.split('.');
+                                        var num = columnvalues[0];
+                                        var temp = 0;
+                                        var tempValue = '';
+                                        for(var i=num.length-1;i>=0;i--){
+                                            tempValue = tempValue + num[i];
+                                            temp++;
+                                            if(temp>=3 && i!=0){
+                                                tempValue = tempValue + ',';
+                                                temp = 0;
+                                            }
+                                        }
+                                        //倒叙
+                                        var resultValue = '';
+                                        var tempLen = tempValue.length;
+                                        for(var i = 0;i<tempLen;i++){
+                                            resultValue = resultValue + tempValue[tempLen-1-i];
+                                        }
+                                        if(columnvalues.length>1){
+                                            resultValue = resultValue + '.'+ columnvalues[1];
+                                        }
+                                        column[element.serialNumber] = resultValue;
+                                    }else{
+                                        column[element.serialNumber] = columnValue;
+                                    }
+                                }else if(format && format == 'datetime'){//{"format":"datetime","datetime":"yyyy-mm-dd"}
+                                    var format = clientAttribute['datetime'];
+                                    var formatDate = new Date(columnValue).format(format);
+                                    column[element.serialNumber] = formatDate;
+                                }
                             }
                         });
                     }
-                    $.each(data,function(index,column){
-                        var columnValue = column[element.serialNumber];
-                        
-                        if(columnValue && clientAttribute){
-                            //选中设置属性的那列
-                            var format = clientAttribute.format;
-                            if(format && format == 'number'){
-                                var digitNum = clientAttribute['digitNum'];
-                                var isCoin = clientAttribute['isCoin'];
-                                columnValue=Number(columnValue).toFixed(digitNum);
-                                if(isCoin){
-                                    //货币模式
-                                    var columnvalues = columnValue.split('.');
-                                    var num = columnvalues[0];
-                                    var temp = 0;
-                                    var tempValue = '';
-                                    for(var i=num.length-1;i>=0;i--){
-                                        tempValue = tempValue + num[i];
-                                        temp++;
-                                        if(temp>=3 && i!=0){
-                                            tempValue = tempValue + ',';
-                                            temp = 0;
-                                        }
-                                    }
-                                    //倒叙
-                                    var resultValue = '';
-                                    var tempLen = tempValue.length;
-                                    for(var i = 0;i<tempLen;i++){
-                                        resultValue = resultValue + tempValue[tempLen-1-i];
-                                    }
-                                    if(columnvalues.length>1){
-                                        resultValue = resultValue + '.'+ columnvalues[1];
-                                    }
-                                    column[element.serialNumber] = resultValue;
-                                }else{
-                                    column[element.serialNumber] = columnValue;
-                                }
-                            }else if(format && format == 'datetime'){//{"format":"datetime","datetime":"yyyy-mm-dd"}
-                                var format = clientAttribute['datetime'];
-                                var formatDate = new Date(columnValue).format(format);
-                                column[element.serialNumber] = formatDate;
-                            }
-                        }
-                    });
-                    
                 }
             });
             
