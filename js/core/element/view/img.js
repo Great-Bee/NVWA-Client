@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/img.html'
-], function(_, BaseElementView, StringUtil, ImageTpl) {
+    'text!js/core/element/template/img.tpl'
+], function(BaseElementView, StringUtil, ImageTpl) {
     var ImageView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -20,7 +20,7 @@ define([
             BaseElementView.prototype.bindEvents.apply(this, arguments);
         },
         render: function() {
-            this.$el.html(_.template(ImageTpl, {
+            this.$el.html(tpl(ImageTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

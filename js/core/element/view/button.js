@@ -1,10 +1,9 @@
 //普通按钮
 define([
-    'underscore',
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/button.html'
-], function(_, BaseElementView, StringUtil, ButtonTpl) {
+    'text!js/core/element/template/button.tpl'
+], function(BaseElementView, StringUtil, ButtonTpl) {
 
     var ButtonView = BaseElementView.extend({
         events: {},
@@ -25,7 +24,7 @@ define([
         },
         //渲染
         render: function() {
-            this.$el.html(_.template(ButtonTpl, {
+            this.$el.html(tpl(ButtonTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

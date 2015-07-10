@@ -1,13 +1,13 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/appResourceForm.html',
+
+    'text!js/producer/template/appResourceForm.tpl',
     'js/util/api/producer',
     'js/util/ui/view/modal',
     'js/util/api/mc',
     'achy/widget/ui/message',
     'js/util/string'
-], function(Backbone, _, formTpl, Producer, Modal, MC, Message, StringUtil) {
+], function(Backbone, formTpl, Producer, Modal, MC, Message, StringUtil) {
     var AppResourceFormView = Backbone.View.extend({
         events: {
             // 'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -73,7 +73,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(formTpl, {
+            t.$el.html(tpl(formTpl, {
                 options: t.options,
                 config: t.config
             }));

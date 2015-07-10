@@ -3,11 +3,11 @@
  **/
 define([
         'backbone',
-        'underscore',
-        'text!js/util/ui/template/search.html',
+
+        'text!js/util/ui/template/search.tpl',
         'achy/widget/ui/message'
     ],
-    function(Backbone, _, SearchTpl, Message) {
+    function(Backbone, SearchTpl, Message) {
         var SearchBarView = Backbone.View.extend({
             events: {},
             /**
@@ -43,7 +43,7 @@ define([
             render: function() {
                 var t = this;
                 // t.$el.append();
-                var element = $(_.template(SearchTpl, {
+                var element = $(tpl(SearchTpl, {
                     options: t.options,
                     config: t.config
                 })).appendTo(t.$el);

@@ -1,8 +1,8 @@
 define([
-	'backbone', 'underscore', 'js/core/element/view/text',
+	'backbone', 'js/core/element/view/text',
 	'tags_input',
 	'css!bower_components/bootstrap-tagsinput/build/bootstrap-tagsinput'
-], function(Backbone, _, TextView) {
+], function(Backbone, TextView) {
 	var TagsView = TextView.extend({
 		events: {},
 		initialize: function(options, eleBean, attributes, eves, editAble) {

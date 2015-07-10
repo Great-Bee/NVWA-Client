@@ -1,11 +1,11 @@
 define([
-	'underscore',
+
 	'js/util/string',
 	'js/util/ui/view/modal',
 	'js/util/api/mc',
 	'js/core/element/view/pageSelectButton',
 	'js/util/ui/view/scriptPaginationSelection'
-], function(_, StringUtil, Modal, MC, PageSelectButtonView, ScriptPaginationSelection) {
+], function(StringUtil, Modal, MC, PageSelectButtonView, ScriptPaginationSelection) {
 	var ScriptSelectButtonView = PageSelectButtonView.extend({
 		events: PageSelectButtonView.prototype.events,
 		initialize: function(options, eleBean, attributes, eves, editAble) {

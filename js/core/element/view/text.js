@@ -1,8 +1,8 @@
 define([
-	'underscore',
+
 	'js/core/element/view/base_element',
-	'text!js/core/element/template/text.html'
-], function(_, BaseElementView, TextTpl) {
+	'text!js/core/element/template/text.tpl'
+], function(BaseElementView, TextTpl) {
 	var TextView = BaseElementView.extend({
 		events: {},
 		initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -71,7 +71,7 @@ define([
 		},
 		render: function() {
 			var t = this;
-			this.$el.html(_.template(TextTpl, {
+			this.$el.html(tpl(TextTpl, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

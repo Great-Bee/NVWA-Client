@@ -1,13 +1,13 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
     'js/util/ui/view/button',
     'achy/widget/ui/message',
     'js/util/ui/view/modal',
     'js/util/ui/view/list',
     'js/producer/view/editorConditionForm'
-], function(Backbone, _, MCModel, ButtonView, Message, Modal, ListGridView, ConditionForm) {
+], function(Backbone, MCModel, ButtonView, Message, Modal, ListGridView, ConditionForm) {
     var EditorCondition = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {

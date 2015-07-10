@@ -1,11 +1,11 @@
 define([
-	'underscore',
+
 	'js/core/element/view/base_element',
-	'text!js/core/element/template/tree.html',
+	'text!js/core/element/template/tree.tpl',
 	'js/core/module/nvwaUser',
 	'js/bower_components/bootstrap-treeview/src/js/bootstrap-treeview',
 	'css!bower_components/bootstrap-treeview/src/css/bootstrap-treeview'
-], function(_, BaseElementView, TreeTpl, NvwaUserAPI, TreeGridView) {
+], function(BaseElementView, TreeTpl, NvwaUserAPI, TreeGridView) {
 	var TreeView = BaseElementView.extend({
 		events: {
 			'afterLoadData': 'render'
@@ -26,7 +26,7 @@ define([
 		},
 		render: function() {
 			var t = this;
-			this.$el.html(_.template(TreeTpl, {
+			this.$el.html(tpl(TreeTpl, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

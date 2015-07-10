@@ -1,6 +1,6 @@
 ﻿define([
-	'backbone', 'underscore',
-	'text!js/core/container/util/template/attribute.html',
+	'backbone',
+	'text!js/core/container/util/template/attribute.tpl',
 	'js/util/api/mc',
 	'js/util/dictionary',
 	'js/util/ui/view/modal',
@@ -20,7 +20,6 @@
 	'datetimepicker', 'datetimepicker_lang', 'css!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min'
 ], function(
 	Backbone,
-	_,
 	AttributeTpl,
 	MC,
 	Dictionary,
@@ -89,7 +88,7 @@
 			t.initListener();
 		},
 		render: function() {
-			$(_.template(AttributeTpl, {
+			$(tpl(AttributeTpl, {
 				attributes: this.attributes,
 				serialNumber: this.serialNumber,
 				eleId: this.element.id

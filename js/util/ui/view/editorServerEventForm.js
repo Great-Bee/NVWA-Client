@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/util/ui/view/editorClientEventForm',
     'js/util/ui/view/dropButton',
     'js/util/dictionary'
-], function(_, EditorClientEventFormView, DropButtonView, Dictionary) {
+], function(EditorClientEventFormView, DropButtonView, Dictionary) {
     var ServerEventFormView = EditorClientEventFormView.extend({
         events: EditorClientEventFormView.prototype.events,
         initialize: function(options, config) {

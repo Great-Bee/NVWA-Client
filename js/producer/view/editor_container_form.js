@@ -1,16 +1,16 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
     'js/util/dictionary',
     'achy/widget/ui/message',
     'js/util/string',
     'js/util/businessUtil',
-    'text!js/producer/template/editorContainerForm.html',
+    'text!js/producer/template/editorContainerForm.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
     'css!bower_components/Slidebars/distribution/0.10.2/slidebars',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
-], function(Backbone, _, MCModel, Dictionary, Message, StringUtil, BusinessUtil, formEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
+], function(Backbone, MCModel, Dictionary, Message, StringUtil, BusinessUtil, formEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
     var EditorContainerFormView = Backbone.View.extend({
         events: {
             'click .btnCreateSimplePage': '_createSimplePage'
@@ -46,7 +46,7 @@ define([
         render: function() {
             var t = this;
 
-            t.$el.html(_.template(formEditorTpl, {
+            t.$el.html(tpl(formEditorTpl, {
                 options: t.options,
                 config: t.config
             }));

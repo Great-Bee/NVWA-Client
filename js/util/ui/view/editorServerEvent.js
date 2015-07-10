@@ -1,13 +1,13 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
     'js/util/ui/view/button',
     'achy/widget/ui/message',
     'js/util/ui/view/modal',
     'js/util/ui/view/list',
     'js/util/ui/view/editorServerEventForm',
-], function(Backbone, _, MCModel, ButtonView, Message, Modal, ListGridView, ServerEventFormView) {
+], function(Backbone, MCModel, ButtonView, Message, Modal, ListGridView, ServerEventFormView) {
     //服务器事件
     var EditorServerEventView = Backbone.View.extend({
         events: {},

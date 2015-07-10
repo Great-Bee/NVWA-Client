@@ -1,6 +1,6 @@
 define([
         'backbone',
-        'text!js/producer/template/systemConfig.html',
+        'text!js/producer/template/systemConfig.tpl',
         'js/util/ui/view/button',
         'js/util/ui/view/list',
         'js/util/ui/view/search',

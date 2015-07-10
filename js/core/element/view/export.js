@@ -1,7 +1,7 @@
 define([
-		'underscore', 'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message', 'js/util/ui/view/cover',
+		'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message', 'js/util/ui/view/cover',
 	],
-	function(_, ButtonView, FileAPI, Message, Cover) {
+	function(ButtonView, FileAPI, Message, Cover) {
 		var ExportBtnView = ButtonView.extend({
 			events: {
 				'click button': '_click'

@@ -1,10 +1,10 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
-    'text!js/producer/template/editorComponent.html',
+    'text!js/producer/template/editorComponent.tpl',
     'jqueryui'
-], function(Backbone, _, MCModel, editorComponentTpl) {
+], function(Backbone, MCModel, editorComponentTpl) {
     var EditorComponentView = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {
@@ -29,7 +29,7 @@ define([
          */
         render: function(callback) {
             var t = this;
-            t.$el.html(_.template(editorComponentTpl, {
+            t.$el.html(tpl(editorComponentTpl, {
                 options: t.options,
                 config: t.config,
                 data: t.config['data']

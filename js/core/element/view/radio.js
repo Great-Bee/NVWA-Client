@@ -1,12 +1,12 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
     'js/util/dictionary',
-    'text!js/core/element/template/radio.html',
+    'text!js/core/element/template/radio.tpl',
     'radio',
     'css!bower_components/iCheck/skins/all'
-], function(_, BaseElementView, StringUtil, Dictionary, RadioTpl, RadioControl) {
+], function(BaseElementView, StringUtil, Dictionary, RadioTpl, RadioControl) {
     var RadioView = BaseElementView.extend({
         events: {
             'ifChecked input': 'onSelect'
@@ -49,7 +49,7 @@ define([
             setTimeout(t.initDefaultValue(), 100);
         },
         render: function() {
-            this.$el.html(_.template(RadioTpl, {
+            this.$el.html(tpl(RadioTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/video.html'
-], function(_, BaseElementView, StringUtil, Tpl) {
+    'text!js/core/element/template/video.tpl'
+], function(BaseElementView, StringUtil, Tpl) {
     var ImageView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -21,7 +21,7 @@ define([
         },
         render: function() {
             this._initConfig();
-            this.$el.html(_.template(Tpl, {
+            this.$el.html(tpl(Tpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 videoConfig: this.attributes.videoConfig,

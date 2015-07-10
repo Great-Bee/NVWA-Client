@@ -1,10 +1,10 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
     'js/util/dictionary',
-    'text!js/producer/template/previewPage.html',
-], function(Backbone, _, MCModel, Dictionary, pagePreviewTpl) {
+    'text!js/producer/template/previewPage.tpl',
+], function(Backbone, MCModel, Dictionary, pagePreviewTpl) {
     var PreviewPageView = Backbone.View.extend({
         events: {
 
@@ -45,7 +45,7 @@ define([
         render: function() {
             var t = this;
 
-            t.$el.html(_.template(pagePreviewTpl, {
+            t.$el.html(tpl(pagePreviewTpl, {
                 options: t.options,
                 config: t.config
             }));

@@ -3,13 +3,13 @@
  **/
 define([
         'backbone',
-        'underscore',
-        'text!js/util/ui/template/iconSelection.html',
-        'text!js/util/ui/template/iconSelectionBody.html',
+
+        'text!js/util/ui/template/iconSelection.tpl',
+        'text!js/util/ui/template/iconSelectionBody.tpl',
         'achy/widget/ui/message',
         'js/util/ui/view/modal'
     ],
-    function(Backbone, _, IconSelectionTpl, IconSelectionBodyTpl, Message, Modal) {
+    function(Backbone, IconSelectionTpl, IconSelectionBodyTpl, Message, Modal) {
         var IconSelectionView = Backbone.View.extend({
             events: {
                 'click .btn-iconSelection': 'onSelect',
@@ -54,7 +54,7 @@ define([
             render: function() {
                 var t = this;
                 // t.$el.append();
-                var element = $(_.template(IconSelectionTpl, {
+                var element = $(tpl(IconSelectionTpl, {
                     options: t.options,
                     config: t.config,
                     data: t.config.data
@@ -93,7 +93,7 @@ define([
                 if (t.config['data']) {
                     t.viewDialog = {};
                     t.viewDialog.container = $('<div></div>');
-                    t.selectionTreeView = $(_.template(IconSelectionBodyTpl, {
+                    t.selectionTreeView = $(tpl(IconSelectionBodyTpl, {
                         options: t.options,
                         config: t.config,
                         data: t.config.data

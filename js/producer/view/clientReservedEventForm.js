@@ -1,7 +1,7 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/clientReservedEventForm.html',
+
+    'text!js/producer/template/clientReservedEventForm.tpl',
     'js/util/api/producer',
     'js/util/ui/view/modal',
     'js/util/dictionary',
@@ -10,7 +10,7 @@ define([
     'js/util/api/mc',
     'js/util/string',
     'js/util/convert'
-], function(Backbone, _, formTpl, Producer, Modal, Dictionary, DropButtonView, Message, MC, StringUtil, ConvertUtil) {
+], function(Backbone, formTpl, Producer, Modal, Dictionary, DropButtonView, Message, MC, StringUtil, ConvertUtil) {
     var ClientReservedEventFormView = Backbone.View.extend({
         events: {
             'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -77,7 +77,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(formTpl, {
+            t.$el.html(tpl(formTpl, {
                 options: t.options,
                 config: t.config
             }));

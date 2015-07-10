@@ -1,9 +1,9 @@
 define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/util/string',
 	'js/core/element/view/base_element',
-	'text!js/core/element/template/location.html'
-], function(Backbone, _, StringUtil, BaseElementView, LocationTpl) {
+	'text!js/core/element/template/location.tpl'
+], function(Backbone, StringUtil, BaseElementView, LocationTpl) {
 	var LocationView = BaseElementView.extend({
 		events: {
 			"click .btn_open_location_panel": "openLocationPanel",
@@ -80,7 +80,7 @@ define([
 
 		render: function() {
 			var t = this;
-			this.$el.html(_.template(LocationTpl, {
+			this.$el.html(tpl(LocationTpl, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

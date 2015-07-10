@@ -1,6 +1,6 @@
 define([
-    'backbone', 'underscore'
-], function(Backbone, _) {
+    'backbone'
+], function(Backbone) {
     var BasePageView = Backbone.View.extend({
         initialize: function(options, pageBean, pageClientAttribute, pageclientEvents, pageElementViews, editAble) {
             var t = this;

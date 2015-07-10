@@ -1,6 +1,7 @@
 define([
-    'backbone','achy/widget/ui/message',
-    'text!js/producer/template/index.html',],
+        'backbone', 'achy/widget/ui/message',
+        'text!js/producer/template/index.tpl',
+    ],
     function(Backbone, Message, IndexTpl) {
         var IndexView = Backbone.View.extend({
             initialize: function(options, config) {
@@ -10,9 +11,9 @@ define([
             },
 
             //render
-            render:function(){
+            render: function() {
                 var t = this;
-                t.$el.html(_.template(IndexTpl, {
+                t.$el.html(tpl(IndexTpl, {
                     options: t.options,
                     config: t.config
                 }));

@@ -1,7 +1,7 @@
 define([
-    'text!js/producer/template/customScriptsForm.html',
+    'text!js/producer/template/customScriptsForm.tpl',
     'js/producer/view/base_producer_form',
-    'text!js/producer/template/amdTpl.html',
+    'text!js/producer/template/amdTpl.tpl',
     'js/util/api/mc',
     'js/util/ui/view/modal',
     'achy/widget/ui/message',
@@ -158,7 +158,7 @@ define([
             if (formData && formData['code']) {
                 t.codeEditor.setValue(formData['code']);
             } else {
-                t.codeEditor.setValue(AMDTpl);
+                t.codeEditor.setValue(tpl(AMDTpl));
             }
         },
         createSuccess: function(saveData) {

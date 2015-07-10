@@ -1,13 +1,13 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
     'js/util/dictionary',
-    'text!js/producer/template/previewContainerGrid.html',
+    'text!js/producer/template/previewContainerGrid.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
     'css!bower_components/Slidebars/distribution/0.10.2/slidebars',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
-], function(Backbone, _, MCModel, Dictionary, gridEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
+], function(Backbone, MCModel, Dictionary, gridEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
     var EditorContainerGridView = Backbone.View.extend({
         events: {
             'click #openPanelLeft': 'openPanelLeft',
@@ -45,7 +45,7 @@ define([
         render: function() {
             var t = this;
 
-            t.$el.html(_.template(gridEditorTpl, {
+            t.$el.html(tpl(gridEditorTpl, {
                 options: t.options,
                 config: t.config
             }));

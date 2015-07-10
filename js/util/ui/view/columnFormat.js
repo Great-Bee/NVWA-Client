@@ -2,11 +2,11 @@
  * grid 组件
  **/
 define([
-    'backbone', 'underscore',
+    'backbone',
     'js/core/element/view/base_element',
-    'text!js/util/ui/template/columnFormat.html',
+    'text!js/util/ui/template/columnFormat.tpl',
     'js/core/element/view/checkbox'
-], function(Backbone, _, BaseElementView, tpl, CheckboxView) {
+], function(Backbone, BaseElementView, Tpl, CheckboxView) {
     var HtmlView = BaseElementView.extend({
         events: {
             "change .format": "_typeChoose",
@@ -20,7 +20,7 @@ define([
         },
         render: function() {
             var t = this;
-            this.$el.html(_.template(tpl, {
+            this.$el.html(tpl(Tpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble
@@ -31,7 +31,7 @@ define([
             return this;
         },
         supportAttribute: function() {
-            return ['title','columnFormat'];
+            return ['title', 'columnFormat'];
         },
         supportEventNames: function() {
             return [];
@@ -46,11 +46,11 @@ define([
                 t.$el.find(".datetimeContainer").addClass("hidden");
                 t.$el.find(".digitNumContainer").removeClass("hidden");
                 t.$el.find(".isCoinContainer").removeClass("hidden");
-            } else if(format == 'datetime'){
+            } else if (format == 'datetime') {
                 t.$el.find(".digitNumContainer").addClass("hidden");
                 t.$el.find(".isCoinContainer").addClass("hidden");
-                 t.$el.find(".datetimeContainer").removeClass("hidden");
-            }else {
+                t.$el.find(".datetimeContainer").removeClass("hidden");
+            } else {
                 t.$el.find(".digitNumContainer").addClass("hidden");
                 t.$el.find(".isCoinContainer").addClass("hidden");
                 t.$el.find(".datetimeContainer").addClass("hidden");
@@ -73,8 +73,8 @@ define([
                     t.$el.find(".digitNum").val(value['digitNum']);
                     //TODO checkbox 这里需要测试一下
                     t.isCoin.setValue(value['isCoin']);
-                }else if(format == 'datetime'){
-                     t.$el.find(".datetime").val(value['datetime']);
+                } else if (format == 'datetime') {
+                    t.$el.find(".datetime").val(value['datetime']);
                 }
                 t._typeChoose();
             }
@@ -86,8 +86,8 @@ define([
             value['format'] = format;
             if (format == 'number') {
                 value['digitNum'] = t.$el.find(".digitNum").val();
-                value['isCoin'] =  t.isCoin.getValue();
-            }else if(format == 'datetime'){
+                value['isCoin'] = t.isCoin.getValue();
+            } else if (format == 'datetime') {
                 value['datetime'] = t.$el.find(".datetime").val();
             }
             return JSON.stringify(value);

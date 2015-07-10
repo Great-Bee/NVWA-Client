@@ -1,8 +1,8 @@
 define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/core/element/view/base_element',
-	'text!js/core/element/template/validate_config.html'
-], function(Backbone, _, BaseElementView, tpl) {
+	'text!js/core/element/template/validate_config.tpl'
+], function(Backbone, BaseElementView, Tpl) {
 	var HtmlView = BaseElementView.extend({
 		events: {
 			"change .type": "_typeChoose",
@@ -16,7 +16,7 @@ define([
 		},
 		render: function() {
 			var t = this;
-			this.$el.html(_.template(tpl, {
+			this.$el.html(tpl(Tpl, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

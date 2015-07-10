@@ -1,6 +1,6 @@
 define([
-	'underscore',
-	'text!js/producer/template/editorPageAttribute.html',
+
+	'text!js/producer/template/editorPageAttribute.tpl',
 	'js/util/string',
 	'js/util/ui/view/modal',
 	'achy/widget/ui/message',
@@ -8,7 +8,7 @@ define([
 	'js/producer/view/editorContainerAttribute',
 	'js/core/element/view/multipleContainerSelect',
 	'js/util/ui/view/ContainerReadAPI',
-], function(_, EditorPageAttributeTpl, StringUtil, Modal, Message, MC, EditorContainerAttribute, MultipleContainerSelectView,ContainerReadAPIView) {
+], function(EditorPageAttributeTpl, StringUtil, Modal, Message, MC, EditorContainerAttribute, MultipleContainerSelectView, ContainerReadAPIView) {
 	var PageAttributeView = EditorContainerAttribute.extend({
 		events: $.extend(EditorContainerAttribute.prototype.events, {
 			'click .btn-remove': '_delete',
@@ -21,7 +21,7 @@ define([
 		},
 		render: function() {
 			var t = this;
-			t.$el.html(_.template(EditorPageAttributeTpl, {
+			t.$el.html(tpl(EditorPageAttributeTpl, {
 				options: t.options
 			}));
 			t.initControl();
@@ -107,22 +107,22 @@ define([
 			var contrainerAlias = $(event.target).parent().attr("value");
 			var pageAlias = t.config.pageBean.alias;
 			//根据别名获取容器
-			var __getContrainer = function(contrainerAlias,pageAlias,success,error){
-				MC.readContainerByAlias(contrainerAlias,function(data){
-					if (data) {
-						if(success){
-							success(data,pageAlias);
+			var __getContrainer = function(contrainerAlias, pageAlias, success, error) {
+					MC.readContainerByAlias(contrainerAlias, function(data) {
+						if (data) {
+							if (success) {
+								success(data, pageAlias);
+							}
+						} else {
+							//error
+							if (error) {
+								error(data);
+							}
 						}
-					} else {
-						//error
-						if(error){
-							error(data);
-						}
-					}
-				});
-			}
-			//显示模态对话框
-			var __showAPIModel = function (t,pageAlias,contrainerBean){
+					});
+				}
+				//显示模态对话框
+			var __showAPIModel = function(t, pageAlias, contrainerBean) {
 				t.selectionView = [];
 				t.selectionView.container = $('<div></div>');
 				t.selectionView.dialog = new Modal({
@@ -132,19 +132,19 @@ define([
 				new ContainerReadAPIView({
 					el: t.selectionView.container
 				}, {
-					pageAlias:pageAlias,
-					contrainerBean:contrainerBean
+					pageAlias: pageAlias,
+					contrainerBean: contrainerBean
 				});
 			}
 
-			__getContrainer(contrainerAlias,pageAlias,function(data,page){
-				if(data){
-					__showAPIModel(t,page,data);
+			__getContrainer(contrainerAlias, pageAlias, function(data, page) {
+				if (data) {
+					__showAPIModel(t, page, data);
 				}
-			},function(error){
+			}, function(error) {
 				alert(error);
 			});
-			
+
 		}
 	});
 	return PageAttributeView;

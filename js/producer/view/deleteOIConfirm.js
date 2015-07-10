@@ -1,9 +1,9 @@
 define([
         'backbone',
-        'underscore',
-        'text!js/producer/template/deleteOIConfirm.html'
+
+        'text!js/producer/template/deleteOIConfirm.tpl'
     ],
-    function(Backbone, _, ConfrimTpl) {
+    function(Backbone, ConfrimTpl) {
         var DeleteOIConfirm = Backbone.View.extend({
             events: {},
             /**
@@ -27,7 +27,7 @@ define([
              */
             render: function() {
                 var t = this;
-                t.$el.html(_.template(ConfrimTpl, {
+                t.$el.html(tpl(ConfrimTpl, {
                     options: t.options,
                     config: t.config
                 }));

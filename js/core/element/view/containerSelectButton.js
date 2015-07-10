@@ -1,11 +1,10 @@
 define([
-	'underscore',
 	'js/util/string',
 	'js/util/ui/view/modal',
 	'js/util/api/mc',
 	'js/core/element/view/button',
 	'js/util/ui/view/containerPaginationSelection'
-], function(_, StringUtil, Modal, MC, ButtonView, ContainerPaginationSelectionView) {
+], function(StringUtil, Modal, MC, ButtonView, ContainerPaginationSelectionView) {
 	var ContainerSelectButtonView = ButtonView.extend({
 		events: {
 			'click button': '_click',

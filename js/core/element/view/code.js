@@ -1,13 +1,12 @@
 define([
-    'underscore',
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/code.html',
+    'text!js/core/element/template/code.tpl',
     'js/bower_components/codemirror/lib/codemirror',
     'js/bower_components/codemirror/mode/javascript/javascript',
     'css!bower_components/codemirror/lib/codemirror'
 
-], function(_, BaseElementView, StringUtil, Tpl, CodeMirror) {
+], function(BaseElementView, StringUtil, Tpl, CodeMirror) {
     var CodeEditorView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {

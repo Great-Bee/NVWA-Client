@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/textarea.html'
-], function(_, BaseElementView, StringUtil, TextAreaTpl) {
+    'text!js/core/element/template/textarea.tpl'
+], function(BaseElementView, StringUtil, TextAreaTpl) {
     var TextAreaView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -30,7 +30,7 @@ define([
             BaseElementView.prototype.bindEvents.apply(this, arguments);
         },
         render: function() {
-            this.$el.html(_.template(TextAreaTpl, {
+            this.$el.html(tpl(TextAreaTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

@@ -1,11 +1,11 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
     'js/util/api/producer',
     'js/util/ui/view/cover',
-    'text!js/core/element/template/login.html'
-], function(_, BaseElementView, StringUtil, Producer, Cover, TextTpl) {
+    'text!js/core/element/template/login.tpl'
+], function(BaseElementView, StringUtil, Producer, Cover, TextTpl) {
     var LoginView = BaseElementView.extend({
         events: {
             "click .btn-login": "login"
@@ -88,7 +88,7 @@ define([
             }
         },
         render: function() {
-            this.$el.html(_.template(TextTpl, {
+            this.$el.html(tpl(TextTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

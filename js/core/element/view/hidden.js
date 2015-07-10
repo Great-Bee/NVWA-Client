@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/hidden.html'
-], function(_, BaseElementView, StringUtil, HiddenTpl) {
+    'text!js/core/element/template/hidden.tpl'
+], function(BaseElementView, StringUtil, HiddenTpl) {
     var HiddenView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -17,7 +17,7 @@ define([
             this.render();
         },
         render: function() {
-            this.$el.html(_.template(HiddenTpl, {
+            this.$el.html(tpl(HiddenTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

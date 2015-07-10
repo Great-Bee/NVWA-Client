@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/link.html'
-], function(_, BaseElementView, StringUtil, LinkTpl) {
+    'text!js/core/element/template/link.tpl'
+], function(BaseElementView, StringUtil, LinkTpl) {
     var LinkView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -25,7 +25,7 @@ define([
             BaseElementView.prototype.bindEvents.apply(this, arguments);
         },
         render: function() {
-            this.$el.html(_.template(LinkTpl, {
+            this.$el.html(tpl(LinkTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

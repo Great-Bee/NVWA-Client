@@ -1,7 +1,6 @@
 define([
-    'underscore',
     'js/core/container/view/base_container',
-    'text!js/core/container/template/grid.html',
+    'text!js/core/container/template/grid.tpl',
     'js/util/api/mc',
     'js/util/dictionary',
     'js/util/string',
@@ -10,7 +9,7 @@ define([
     'js/util/ui/view/modal',
     'js/core/module/nvwaUser',
     'achy/widget/ui/message',
-], function(_, BaseContainerView, FormTpl, MC, Dictionary, StringUtil, PaginationView, FieldSelectionView, Modal, NVWAUserAPI, Message) {
+], function(BaseContainerView, FormTpl, MC, Dictionary, StringUtil, PaginationView, FieldSelectionView, Modal, NVWAUserAPI, Message) {
     var GridView = BaseContainerView.extend({
         events: {
             "update": "__updateEvent",
@@ -351,7 +350,7 @@ define([
         },
         //render grid
         render: function() {
-            this.$el.html(_.template(FormTpl, {
+            this.$el.html(tpl(FormTpl, {
                 formBean: this.formBean,
                 attributes: this.attributes,
                 editAble: this.editAble

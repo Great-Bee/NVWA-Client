@@ -1,7 +1,7 @@
 //highcharts图表控件
 define([
-	'underscore', 'js/core/element/view/base_element', 'highcharts'
-], function(_, BaseElementView) {
+	'js/core/element/view/base_element', 'highcharts'
+], function(BaseElementView) {
 	var ChartView = BaseElementView.extend({
 		events: {},
 		//初始化

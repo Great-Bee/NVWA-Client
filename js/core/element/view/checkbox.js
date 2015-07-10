@@ -1,10 +1,9 @@
 define([
-    'underscore',
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/checkbox.html',
+    'text!js/core/element/template/checkbox.tpl',
     'bootstrap-checkbox'
-], function(_, BaseElementView, StringUtil, CheckboxTpl, CheckboxControl) {
+], function(BaseElementView, StringUtil, CheckboxTpl, CheckboxControl) {
     var CheckboxView = BaseElementView.extend({
         events: {
             'click a': 'onSelect'
@@ -38,7 +37,7 @@ define([
         },
         //渲染
         render: function() {
-            this.$el.html(_.template(CheckboxTpl, {
+            this.$el.html(tpl(CheckboxTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

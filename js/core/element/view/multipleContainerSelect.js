@@ -1,12 +1,12 @@
 define([
-	'underscore',
+
 	'js/util/string',
 	'js/util/ui/view/modal',
 	'js/util/api/mc',
 	'js/core/element/view/containerSelectButton',
-	'text!js/core/element/template/multipleContainerSelect.html',
-	'text!js/core/element/template/multipleContainerSelectRow.html'
-], function(_, StringUtil, Modal, MC, ContainerSelectButtonView, MultipleContainerSelectTpl, MultipleContainerSelectRowTpl) {
+	'text!js/core/element/template/multipleContainerSelect.tpl',
+	'text!js/core/element/template/multipleContainerSelectRow.tpl'
+], function(StringUtil, Modal, MC, ContainerSelectButtonView, MultipleContainerSelectTpl, MultipleContainerSelectRowTpl) {
 	var MultipleContainerSelectView = ContainerSelectButtonView.extend({
 		events: $.extend(ContainerSelectButtonView.prototype.events, {
 			'click .btn-remove': '_delete',
@@ -20,7 +20,7 @@ define([
 		},
 		_render: function() {
 			var t = this;
-			$(_.template(MultipleContainerSelectTpl, {
+			$(tpl(MultipleContainerSelectTpl, {
 				eleBean: t.eleBean,
 				attributes: t.attributes,
 				editAble: t.editAble
@@ -42,7 +42,7 @@ define([
 			var body = t.$el.find('tbody');
 			var tr = t.$el.find('tbody').find('tr') || [];
 			var index = tr.length;
-			$(_.template(MultipleContainerSelectRowTpl, {
+			$(tpl(MultipleContainerSelectRowTpl, {
 				alias: alias
 			})).appendTo(body);
 		},

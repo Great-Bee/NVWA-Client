@@ -1,7 +1,7 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/connectorForm.html',
+
+    'text!js/producer/template/connectorForm.tpl',
     'js/util/api/producer',
     'js/util/api/oi',
     'js/util/ui/view/modal',
@@ -10,7 +10,7 @@ define([
     'js/util/dictionary',
     'js/util/string',
     'js/util/convert'
-], function(Backbone, _, formTpl, Producer, OI, Modal, DropButtonView, Message, Dictionary, StringUtil, ConvertUtil) {
+], function(Backbone, formTpl, Producer, OI, Modal, DropButtonView, Message, Dictionary, StringUtil, ConvertUtil) {
     var ConnectorFormView = Backbone.View.extend({
         events: {
             'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -74,7 +74,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(formTpl, {
+            t.$el.html(tpl(formTpl, {
                 options: t.options,
                 config: t.config
             }));

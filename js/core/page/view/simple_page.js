@@ -1,13 +1,13 @@
 define([
-    'underscore',
+
     'js/core/page/view/base_page',
-    'text!js/core/page/template/simple_page.html',
+    'text!js/core/page/template/simple_page.tpl',
     'js/util/api/mc',
     'js/util/ui/view/button',
     'js/util/ui/view/containerPaginationSelection',
     'js/util/ui/view/modal',
     'achy/widget/ui/message',
-], function(_, BasePageView, PageTpl, MC, ButtonView, ContainerSelection, Modal, Message) {
+], function(BasePageView, PageTpl, MC, ButtonView, ContainerSelection, Modal, Message) {
     var PageView = BasePageView.extend({
         events: {},
         initialize: function(options, pageBean, pageClientAttribute, pageclientEvents, pageElementViews, editAble) {
@@ -175,7 +175,7 @@ define([
         },
         render: function() {
             var t = this;
-            this.$el.html(_.template(PageTpl, {
+            this.$el.html(tpl(PageTpl, {
                 pageBean: this.pageBean,
                 attributes: this.pageClientAttribute,
                 editAble: this.editAble

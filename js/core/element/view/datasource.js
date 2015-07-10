@@ -1,12 +1,12 @@
 define([
-    'backbone', 'underscore', 'js/util/api/mc',
+    'backbone', 'js/util/api/mc',
     'js/core/element/view/base_element',
     'js/util/ui/view/modal',
     'achy/widget/ui/message',
     'js/util/ui/view/containerPaginationSelection',
-    'text!js/core/element/template/datasource.html',
+    'text!js/core/element/template/datasource.tpl',
     'js/core/element/view/pageSelectButton',
-], function(Backbone, _, MC, BaseElementView, Modal, Message, ContainerSelection, DatasourceTpl, PageSelectButtonView) {
+], function(Backbone, MC, BaseElementView, Modal, Message, ContainerSelection, DatasourceTpl, PageSelectButtonView) {
     var DatasourceView = BaseElementView.extend({
         events: {
             "change .datasource": "_datasourceChoose",
@@ -161,14 +161,14 @@ define([
             _tpl2.push('<%}%>');
             var tbodyEle = $(t.$el.find(".dynamic table tbody"));
             tbodyEle.empty();
-            tbodyEle.append(_.template(_tpl2.join(''), {
+            tbodyEle.append(tpl(_tpl2.join(''), {
                 attributes: t.attributes
             }));
         },
 
         render: function() {
             var t = this;
-            this.$el.html(_.template(DatasourceTpl, {
+            this.$el.html(tpl(DatasourceTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

@@ -1,14 +1,13 @@
 define([
-	'underscore',
 	'js/core/container/view/base_container',
-	'text!js/core/container/template/form.html',
+	'text!js/core/container/template/form.tpl',
 	'js/util/api/mc',
 	'js/core/module/nvwaUser',
 	'js/util/dictionary',
 	'js/util/string',
 	'js/util/ui/view/modal',
 	'js/core/container/util/view/layout'
-], function(_, BaseContainerView, FormTpl, MC, NVWAUserAPI, Dictionary, StringUtil, Modal, LayoutView) {
+], function(BaseContainerView, FormTpl, MC, NVWAUserAPI, Dictionary, StringUtil, Modal, LayoutView) {
 	var FormView = BaseContainerView.extend({
 		events: {
 			"click .btnAddRow": "_addRow",
@@ -43,7 +42,7 @@ define([
 				}
 			}
 
-			this.$el.html(_.template(FormTpl, {
+			this.$el.html(tpl(FormTpl, {
 				formBean: t.containerBean,
 				attributes: t.attributes,
 				editAble: t.editAble,

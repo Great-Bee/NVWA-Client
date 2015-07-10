@@ -1,11 +1,11 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/ueditor.html',
+    'text!js/core/element/template/ueditor.tpl',
     'js/bower_components/ueditor/ueditor.config',
     'js/bower_components/ueditor/ueditor.all.min',
-], function(_, BaseElementView, StringUtil, UEditorTpl, UEditorConfig, UEditorALL) {
+], function(BaseElementView, StringUtil, UEditorTpl, UEditorConfig, UEditorALL) {
     var UEditorView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -20,7 +20,7 @@ define([
             this.inidUEditor();
         },
         render: function() {
-            this.$el.html(_.template(UEditorTpl, {
+            this.$el.html(tpl(UEditorTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

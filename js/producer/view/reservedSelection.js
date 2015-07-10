@@ -1,11 +1,11 @@
 define([
         'backbone',
-        'underscore',
-        'text!js/producer/template/reservedSelection.html',
+
+        'text!js/producer/template/reservedSelection.tpl',
         'js/util/ui/view/modal',
         'achy/widget/ui/message',
     ],
-    function(Backbone, _, ReservedSelectionTpl, Modal, Message) {
+    function(Backbone, ReservedSelectionTpl, Modal, Message) {
         var reservedSelectionView = Backbone.View.extend({
             events: {
                 'click button': 'buttonClickEvent'
@@ -33,7 +33,7 @@ define([
              */
             render: function() {
                 var t = this;
-                t.$el.html(_.template(ReservedSelectionTpl, {
+                t.$el.html(tpl(ReservedSelectionTpl, {
                     options: t.options,
                     config: t.config
                 }));

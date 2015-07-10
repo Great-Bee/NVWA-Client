@@ -3,10 +3,10 @@
  */
 define([
     'backbone',
-    'underscore',
-    'text!js/util/ui/template/grid.html',
+
+    'text!js/util/ui/template/grid.tpl',
     'achy/widget/ui/message'
-], function(Backbone, _, gridTpl, Message) {
+], function(Backbone, gridTpl, Message) {
     var GridView = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {
@@ -195,7 +195,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(gridTpl, {
+            t.$el.html(tpl(gridTpl, {
                 options: this.options,
                 config: t.config
             }));

@@ -1,9 +1,9 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
-    'text!js/producer/template/previewContainerForm.html'
-], function(Backbone, _, MCModel, previewFormTpl) {
+    'text!js/producer/template/previewContainerForm.tpl'
+], function(Backbone, MCModel, previewFormTpl) {
     var PreviewContainerFormView = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {
@@ -36,7 +36,7 @@ define([
         render: function() {
             var t = this;
 
-            t.$el.html(_.template(previewFormTpl, {
+            t.$el.html(tpl(previewFormTpl, {
                 options: t.options,
                 config: t.config
             }));

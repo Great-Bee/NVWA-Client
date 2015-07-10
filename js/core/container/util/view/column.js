@@ -1,7 +1,7 @@
 define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/util/string',
-	'text!js/core/container/util/template/column.html',
+	'text!js/core/container/util/template/column.tpl',
 	'js/util/api/mc',
 	'js/util/ui/view/modal',
 	'achy/widget/ui/message',
@@ -9,7 +9,7 @@ define([
 	'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 	'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
 	'css!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
-], function(Backbone, _, StringUtil, ColumnTpl, MC, Modal, Message, AttributeView, CollapseView) {
+], function(Backbone, StringUtil, ColumnTpl, MC, Modal, Message, AttributeView, CollapseView) {
 	var ColumnView = Backbone.View.extend({
 		events: {
 			"click .hiddenClean": "_resetAttr",
@@ -394,7 +394,7 @@ define([
 		},
 		render: function() {
 			var t = this;
-			$(_.template(ColumnTpl, {
+			$(tpl(ColumnTpl, {
 				formBean: this.formBean,
 				attributes: this.attributes,
 				editAble: this.containerObject.editAble,

@@ -1,9 +1,9 @@
 define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/util/string',
 	'js/core/element/view/base_element',
-	'text!js/core/element/template/namevaluepair.html'
-], function(Backbone, _, StringUtil, BaseElementView, NamevaluepairTpl) {
+	'text!js/core/element/template/namevaluepair.tpl'
+], function(Backbone, StringUtil, BaseElementView, NamevaluepairTpl) {
 	var NamevaluepairView = BaseElementView.extend({
 		events: {
 			"click .add": "_add",
@@ -68,7 +68,7 @@ define([
 
 		render: function() {
 			var t = this;
-			this.$el.html(_.template(NamevaluepairTpl, {
+			this.$el.html(tpl(NamevaluepairTpl, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

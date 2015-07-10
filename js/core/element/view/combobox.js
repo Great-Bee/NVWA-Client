@@ -1,12 +1,11 @@
 define([
-    'underscore',
     'js/core/module/nvwaUser',
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/combobox.html',
+    'text!js/core/element/template/combobox.tpl',
     'bootstrap-combobox',
     'achy/widget/ui/message'
-], function(_, NvwaUserAPI, BaseElementView, StringUtil, ComboboxTpl, Combobox, Message) {
+], function(NvwaUserAPI, BaseElementView, StringUtil, ComboboxTpl, Combobox, Message) {
     var ComboboxView = BaseElementView.extend({
         events: {
             'change': '_onChange',
@@ -30,7 +29,7 @@ define([
 
         },
         render: function() {
-            this.$el.html(_.template(ComboboxTpl, {
+            this.$el.html(tpl(ComboboxTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 data: this.data, //选择框的数据

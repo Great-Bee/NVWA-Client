@@ -1,10 +1,10 @@
 ﻿define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/util/api/mc',
 	'js/util/dictionary',
 	'js/util/string',
 	'js/core/container/util/view/row'
-], function(Backbone, _, MC, Dictionary, StringUtil, RowView) {
+], function(Backbone, MC, Dictionary, StringUtil, RowView) {
 	var LayoutView = Backbone.View.extend({
 		events: {},
 		initialize: function(options, containerBean, containerObject, layoutType) {

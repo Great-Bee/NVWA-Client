@@ -1,7 +1,7 @@
 define([
-		'underscore', 'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message'
+		'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message'
 	],
-	function(_, ButtonView, FileAPI, Message) {
+	function(ButtonView, FileAPI, Message) {
 		var DownloadImportTemploadBtnView = ButtonView.extend({
 			events: {
 				'click button': '_click'

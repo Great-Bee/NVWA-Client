@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/imageBar.html'
-], function(_, BaseElementView, StringUtil, Tpl) {
+    'text!js/core/element/template/imageBar.tpl'
+], function(BaseElementView, StringUtil, Tpl) {
     var ImageBarView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -25,7 +25,7 @@ define([
             this.loadData();
         },
         render: function() {
-            this.$el.html(_.template(Tpl, {
+            this.$el.html(tpl(Tpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble,

@@ -1,7 +1,7 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/test/template/testView.html',
+
+    'text!js/test/template/testView.tpl',
     'js/util/api/mc',
     'js/core/element/view/select',
     'js/core/element/view/checkbox',
@@ -10,7 +10,7 @@ define([
     'js/core/element/view/umeditor',
     'js/util/ui/view/iconSelection',
     'js/core/element/view/code',
-], function(Backbone, _, TestTpl, MC, SelectView, CheckboxView, RadioView, ComboboxView, UEditorView, IconSelectionView, CodeEditorView) {
+], function(Backbone, TestTpl, MC, SelectView, CheckboxView, RadioView, ComboboxView, UEditorView, IconSelectionView, CodeEditorView) {
     var TestView = Backbone.View.extend({
         events: {
             'click .btn-save': 'onSave'
@@ -36,7 +36,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(TestTpl, {
+            t.$el.html(tpl(TestTpl, {
                 options: t.options,
                 config: t.config
             }));

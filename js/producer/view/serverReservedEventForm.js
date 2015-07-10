@@ -1,7 +1,7 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/serverReservedEventForm.html',
+
+    'text!js/producer/template/serverReservedEventForm.tpl',
     'js/util/api/producer',
     'js/util/ui/view/modal',
     'js/util/dictionary',
@@ -9,7 +9,7 @@ define([
     'achy/widget/ui/message',
     'js/util/api/mc',
     'js/util/string'
-], function(Backbone, _, formTpl, Producer, Modal, Dictionary, DropButtonView, Message, MC, StringUtil) {
+], function(Backbone, formTpl, Producer, Modal, Dictionary, DropButtonView, Message, MC, StringUtil) {
     var ServerReservedEventFormView = Backbone.View.extend({
         events: {
             'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -78,7 +78,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(formTpl, {
+            t.$el.html(tpl(formTpl, {
                 options: t.options,
                 config: t.config
             }));

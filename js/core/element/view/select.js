@@ -1,11 +1,11 @@
 define([
-    'underscore',
+
     'js/core/module/nvwaUser',
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/select.html',
+    'text!js/core/element/template/select.tpl',
     'bootstrap-select'
-], function(_, NvwaUserAPI, BaseElementView, StringUtil, SelectTpl, SelectControl) {
+], function(NvwaUserAPI, BaseElementView, StringUtil, SelectTpl, SelectControl) {
     var SelectView = BaseElementView.extend({
         events: {
             'click a[value]': 'onSelect',
@@ -36,7 +36,7 @@ define([
         },
         render: function() {
             var t = this;
-            this.$el.html(_.template(SelectTpl, {
+            this.$el.html(tpl(SelectTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

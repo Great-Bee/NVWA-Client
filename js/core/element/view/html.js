@@ -1,7 +1,7 @@
 define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/core/element/view/base_element'
-], function(Backbone, _, BaseElementView) {
+], function(Backbone, BaseElementView) {
 	var HtmlView = BaseElementView.extend({
 		events: {},
 		initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -19,7 +19,7 @@ define([
 			if (!(html && html.length > 0) && this.editAble) {
 				html = "请设置HTML";
 			}
-			this.$el.html(_.template(html, {
+			this.$el.html(tpl(html, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

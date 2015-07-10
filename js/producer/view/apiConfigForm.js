@@ -1,7 +1,6 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/apiConfigForm.html',
+    'text!js/producer/template/apiConfigForm.tpl',
     'js/util/api/mc',
     'js/util/ui/view/modal',
     'achy/widget/ui/message',
@@ -9,7 +8,7 @@ define([
     'js/util/dictionary',
     'js/util/string',
     'js/util/convert'
-], function(Backbone, _, formTpl, MC, Modal, Message, DropButtonView, Dictionary, StringUtil, ConvertUtil) {
+], function(Backbone, formTpl, MC, Modal, Message, DropButtonView, Dictionary, StringUtil, ConvertUtil) {
     var ApiConfigFormView = Backbone.View.extend({
         events: {
             'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -75,7 +74,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(formTpl, {
+            t.$el.html(tpl(formTpl, {
                 options: t.options,
                 config: t.config
             }));

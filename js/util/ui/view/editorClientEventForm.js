@@ -1,8 +1,8 @@
 define([
         'backbone',
-        'underscore',
-        'text!js/util/ui/template/clientEventForm.html',
-        'text!js/util/ui/template/parametersRow.html',
+
+        'text!js/util/ui/template/clientEventForm.tpl',
+        'text!js/util/ui/template/parametersRow.tpl',
         'js/util/api/producer',
         'js/util/api/oi',
         'js/util/api/mc',
@@ -14,7 +14,7 @@ define([
         'js/util/map',
         'js/core/element/view/scriptSelectButton'
     ],
-    function(Backbone, _, formTpl, ParametersRowTpl, Producer, OI, MC, Modal, Message, DropButtonView, Dictionary, StringUtil, MapUtil, ScriptSelectButtonView) {
+    function(Backbone, formTpl, ParametersRowTpl, Producer, OI, MC, Modal, Message, DropButtonView, Dictionary, StringUtil, MapUtil, ScriptSelectButtonView) {
         var ClientEventFormView = Backbone.View.extend({
             events: {
                 'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -90,7 +90,7 @@ define([
              */
             render: function() {
                 var t = this;
-                t.$el.html(_.template(formTpl, {
+                t.$el.html(tpl(formTpl, {
                     options: t.options,
                     config: t.config
                 }));
@@ -185,7 +185,7 @@ define([
             },
             _appendParameter: function(data) {
                 var t = this;
-                $(_.template(ParametersRowTpl, {
+                $(tpl(ParametersRowTpl, {
                     name: data.name,
                     alias: data.alias
                 })).appendTo(t.$el.find('.table-parameters').find('tbody'));

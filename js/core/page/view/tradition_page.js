@@ -1,7 +1,7 @@
 define([
-    'underscore',
+
     'js/core/page/view/base_page',
-    'text!js/core/page/template/tradition_page.html',
+    'text!js/core/page/template/tradition_page.tpl',
     'js/util/api/mc',
     'js/util/dictionary',
     'achy/widget/ui/message',
@@ -12,7 +12,7 @@ define([
     'js/core/container/util/view/attribute',
     'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
     'css!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
-], function(_, BasePageView, PageTpl, MC, DictionaryUtil, Message, StringUtil, ButtonView, ContainerSelection, Modal, AttributeView) {
+], function(BasePageView, PageTpl, MC, DictionaryUtil, Message, StringUtil, ButtonView, ContainerSelection, Modal, AttributeView) {
     var PageView = BasePageView.extend({
         events: {
             "container.form.search": "__searchEvent",
@@ -600,7 +600,7 @@ define([
             });
         },
         render: function() {
-            this.$el.html(_.template(PageTpl, {
+            this.$el.html(tpl(PageTpl, {
                 pageBean: this.pageBean,
                 attributes: this.pageClientAttribute,
                 editAble: this.editAble

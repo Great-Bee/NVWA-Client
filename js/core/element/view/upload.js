@@ -1,11 +1,11 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
-    'text!js/core/element/template/upload.html',
-    'text!js/core/element/template/uploadItem.html',
+    'text!js/core/element/template/upload.tpl',
+    'text!js/core/element/template/uploadItem.tpl',
     'js/bower_components/jQuery-File-Upload/js/jquery.fileupload',
     'css!bower_components/jQuery-File-Upload/css/jquery.fileupload'
-], function(_, BaseElementView, UploadTpl, UploadItemTpl) {
+], function(BaseElementView, UploadTpl, UploadItemTpl) {
     var UploadView = BaseElementView.extend({
         events: {
             "click .btn-danger": "_delete"
@@ -19,7 +19,7 @@ define([
             this.render();
         },
         render: function() {
-            this.$el.html(_.template(UploadTpl, {
+            this.$el.html(tpl(UploadTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble
@@ -53,7 +53,7 @@ define([
             var t = this;
             if ($nvwa.array.isVerify(data)) {
                 $.each(data, function(i, item) {
-                    $(_.template(UploadItemTpl, {
+                    $(tpl(UploadItemTpl, {
                         url: _nvwaAPI + window.nvwaClientApi.download() + '/' + item.storeName,
                         text: item.storeName
                     })).appendTo(t.$el.find('.upload-files'));

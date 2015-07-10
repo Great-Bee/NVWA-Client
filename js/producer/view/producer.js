@@ -3,14 +3,13 @@
  */
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/producerLayout.html',
+    'text!js/producer/template/producerLayout.tpl',
     'js/util/api/producer'
-], function(Backbone, _, ProducerTpl, Producer) {
+], function(Backbone, ProducerTpl, Producer) {
     var ProducerView = Backbone.View.extend({
         initialize: function(options, config) {},
         render: function() {
-            this.$el.html(_.template(ProducerTpl));
+            this.$el.html(tpl(ProducerTpl));
             return this;
         },
         setBarActive: function(module) {

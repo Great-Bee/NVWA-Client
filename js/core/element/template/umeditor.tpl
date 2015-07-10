@@ -1,0 +1,1 @@
+<script id="<#=eleBean.serialNumber#>" type="text/plain" style="height:<#=attributes.height#>px;width:100%;"></script>

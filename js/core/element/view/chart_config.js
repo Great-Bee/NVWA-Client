@@ -1,8 +1,8 @@
 define([
-    'backbone', 'underscore',
+    'backbone',
     'js/core/element/view/base_element',
-    'text!js/core/element/template/chart_config.html'
-], function(Backbone, _, BaseElementView, ChartConfigTpl) {
+    'text!js/core/element/template/chart_config.tpl'
+], function(Backbone, BaseElementView, ChartConfigTpl) {
     var ChartConfigView = BaseElementView.extend({
         events: {},
         //初始化
@@ -17,7 +17,7 @@ define([
         //渲染
         render: function() {
             var t = this;
-            this.$el.html(_.template(ChartConfigTpl, {
+            this.$el.html(tpl(ChartConfigTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

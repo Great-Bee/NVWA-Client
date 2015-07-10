@@ -1,5 +1,5 @@
 define([
-    'text!js/producer/template/oiForm.html',
+    'text!js/producer/template/oiForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/producer',
     'js/util/api/oi',

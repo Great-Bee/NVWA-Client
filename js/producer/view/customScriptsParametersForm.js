@@ -1,5 +1,5 @@
 define([
-    'text!js/producer/template/customScriptsParametersForm.html',
+    'text!js/producer/template/customScriptsParametersForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/mc',
     'js/util/ui/view/modal',

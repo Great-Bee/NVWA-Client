@@ -1,7 +1,7 @@
 define([
-		'underscore', 'js/core/element/view/upload', 'js/util/api/file', 'achy/widget/ui/message'
+		'js/core/element/view/upload', 'js/util/api/file', 'achy/widget/ui/message'
 	],
-	function(_, UploadView, FileAPI, Message) {
+	function(UploadView, FileAPI, Message) {
 		var ImportView = UploadView.extend({
 			events: {},
 			initialize: function(options, eleBean, attributes, eves, editAble) {

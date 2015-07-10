@@ -1,6 +1,6 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/oi',
     'js/util/api/mc',
     'js/util/ui/view/modal',
@@ -9,7 +9,7 @@ define([
     'js/util/dictionary',
     'js/util/string',
     'js/util/convert'
-], function(Backbone, _, OI, MC, Modal, Message, DropButtonView, Dictionary, StringUtil, ConvertUtil) {
+], function(Backbone, OI, MC, Modal, Message, DropButtonView, Dictionary, StringUtil, ConvertUtil) {
     var BaseFormView = Backbone.View.extend({
         events: {
             'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -75,7 +75,7 @@ define([
         render: function() {
             var t = this;
             if (t.config.formTpl) {
-                t.$el.html(_.template(t.config.formTpl, {
+                t.$el.html(tpl(t.config.formTpl, {
                     options: t.options,
                     config: t.config
                 }));

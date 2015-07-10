@@ -1,10 +1,9 @@
 define([
-	'underscore',
 	'js/util/string',
 	'js/core/element/view/text',
 	'js/bower_components/colpick/js/colpick',
 	'css!bower_components/colpick/css/colpick'
-], function(_, StringUtil, TextView) {
+], function(StringUtil, TextView) {
 	var ColorPickerView = TextView.extend({
 		events: {},
 		initialize: function(options, eleBean, attributes, eves, editAble) {

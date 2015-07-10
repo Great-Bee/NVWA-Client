@@ -1,6 +1,6 @@
 define([
-	'backbone', 'underscore'
-], function(Backbone, _) {
+	'backbone'
+], function(Backbone) {
 	var BaseContainerView = Backbone.View.extend({
 		initialize: function(options, containerBean, attributes, eves, elements, elementLayout, editAble) {
 			var t = this;

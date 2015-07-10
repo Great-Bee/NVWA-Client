@@ -1,10 +1,10 @@
 //普通按钮
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/selectButton.html'
-], function(_, BaseElementView, StringUtil, ButtonTpl) {
+    'text!js/core/element/template/selectButton.tpl'
+], function(BaseElementView, StringUtil, ButtonTpl) {
 
     var ButtonView = BaseElementView.extend({
         events: {},
@@ -26,30 +26,30 @@ define([
         //渲染
         render: function() {
             this._buildData();
-            this.$el.html(_.template(ButtonTpl, {
+            this.$el.html(tpl(ButtonTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble,
-                data : this.data
+                data: this.data
             }));
             this.afterRender();
             return this;
         },
         //构造data
-        _buildData: function(){
+        _buildData: function() {
             var t = this;
-            if(t.attributes.datasource){
-                var datasourceObject = eval('('+t.attributes.datasource+')');
-                if(datasourceObject.datasource == 'static'){
+            if (t.attributes.datasource) {
+                var datasourceObject = eval('(' + t.attributes.datasource + ')');
+                if (datasourceObject.datasource == 'static') {
                     t.data = datasourceObject.data;
-                }else{
+                } else {
                     t.data = datasourceObject.schema;
                 }
             }
         },
         //支持的客户端属性
         supportAttribute: function() {
-            return ['text', 'size','datasource'];
+            return ['text', 'size', 'datasource'];
         },
         //支持的客户端事件
         supportEventNames: function() {

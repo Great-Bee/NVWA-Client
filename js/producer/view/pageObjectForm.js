@@ -1,5 +1,5 @@
 define([
-    'text!js/producer/template/pageObjectForm.html',
+    'text!js/producer/template/pageObjectForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/producer',
     'js/util/ui/view/modal',

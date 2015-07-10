@@ -3,15 +3,15 @@
  **/
 define([
         'backbone',
-        'underscore',
-        'text!js/util/ui/template/fieldSelection.html',
-        'text!js/util/ui/template/fieldSelectionBody.html',
-        'text!js/util/ui/template/fieldSelectionFieldItem.html',
+
+        'text!js/util/ui/template/fieldSelection.tpl',
+        'text!js/util/ui/template/fieldSelectionBody.tpl',
+        'text!js/util/ui/template/fieldSelectionFieldItem.tpl',
         'achy/widget/ui/message',
         'js/util/ui/view/modal',
         'js/util/api/oi'
     ],
-    function(Backbone, _, FieldSelectionTpl, FieldSelectionBodyTpl, FieldSelectionFieldItemTpl, Message, Modal, OI) {
+    function(Backbone, FieldSelectionTpl, FieldSelectionBodyTpl, FieldSelectionFieldItemTpl, Message, Modal, OI) {
         var FieldSelectionView = Backbone.View.extend({
             events: {
                 'click .btn-fieldSelection': 'showSelection'
@@ -56,7 +56,7 @@ define([
             render: function() {
                 var t = this;
                 t.$el.html('');
-                var element = $(_.template(FieldSelectionTpl, {
+                var element = $(tpl(FieldSelectionTpl, {
                     options: t.options,
                     config: t.config
                 })).appendTo(t.$el);
@@ -68,7 +68,7 @@ define([
                 var t = this;
                 t.viewDialog = {};
                 t.viewDialog.container = $('<div></div>');
-                t.selectionTreeView = $(FieldSelectionBodyTpl).appendTo(t.viewDialog.container);
+                t.selectionTreeView = $(tpl(FieldSelectionBodyTpl)).appendTo(t.viewDialog.container);
                 //获取OI
                 if (!t.config.identified) {
                     _log('没有identified');
@@ -118,7 +118,7 @@ define([
                     fieldContainer.html('');
                     $.each(fields, function(i, field) {
                         var haveSelected = $nvwa.array.have(currentContainerSelectedFieldSN, field.serialNumber);
-                        var item = $(_.template(FieldSelectionFieldItemTpl, {
+                        var item = $(tpl(FieldSelectionFieldItemTpl, {
                             field: field,
                             connPath: connPath,
                             haveSelected: haveSelected

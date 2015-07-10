@@ -1,13 +1,13 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
-    'text!js/producer/template/editorContainerAttribute.html',
+    'text!js/producer/template/editorContainerAttribute.tpl',
     'js/core/element/view/select',
     'js/core/element/view/gapConfig',
     'js/util/ui/view/fieldSelection',
     'js/util/ui/control'
-], function(Backbone, _, MC, tpl, SelectView, GapConfigView, FieldSelectionView, ControlUtil) {
+], function(Backbone, MC, Tpl, SelectView, GapConfigView, FieldSelectionView, ControlUtil) {
     var EditorContainerAttributeView = Backbone.View.extend({
         events: {},
         initialize: function(options, config, events) {
@@ -33,7 +33,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(tpl, {
+            t.$el.html(tpl(Tpl, {
                 options: t.options,
                 config: t.config
             }));

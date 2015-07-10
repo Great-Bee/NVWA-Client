@@ -1,6 +1,5 @@
 //高级导入控件
 define([
-		'underscore',
 		'js/core/element/view/button',
 		'js/core/element/view/import',
 		'js/core/element/view/downloadImportTemplate',
@@ -9,7 +8,7 @@ define([
 		'js/util/ui/view/cover',
 		'js/util/ui/view/modal',
 	],
-	function(_, ButtonView, ImportBtnView, DownloadImportTemplateBtnView, FileAPI, Message, Cover, Modal) {
+	function(ButtonView, ImportBtnView, DownloadImportTemplateBtnView, FileAPI, Message, Cover, Modal) {
 		var AdvancedImportBtnView = ButtonView.extend({
 			events: {
 				'click button': '_click'

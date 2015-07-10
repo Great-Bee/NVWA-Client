@@ -1,13 +1,13 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/umeditor.html',
+    'text!js/core/element/template/umeditor.tpl',
     'js/bower_components/umeditor/umeditor.config',
     'js/bower_components/umeditor/umeditor',
     'css!bower_components/umeditor/themes/default/css/umeditor'
     // 'js/bower_components/ueditor/lang/zh-cn/zh-cn',
-], function(_, BaseElementView, StringUtil, UMEditorTpl, UEditorConfig, UEditorALL) {
+], function(BaseElementView, StringUtil, UMEditorTpl, UEditorConfig, UEditorALL) {
     var UMEditorView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -22,7 +22,7 @@ define([
             this.inidUMEditor();
         },
         render: function() {
-            this.$el.html(_.template(UMEditorTpl, {
+            this.$el.html(tpl(UMEditorTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

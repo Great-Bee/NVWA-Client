@@ -1,7 +1,7 @@
 /**
  *卡片组件
  */
-define(['text!js/util/ui/template/cardView.html'], function(Tpl) {
+define(['text!js/util/ui/template/cardView.tpl'], function(Tpl) {
     var CardView = Backbone.View.extend({
         events: {
             'click a': 'onClick'
@@ -42,7 +42,7 @@ define(['text!js/util/ui/template/cardView.html'], function(Tpl) {
         render: function() {
             var t = this;
             var t = this;
-            t.$el.html(_.template(Tpl, {
+            t.$el.html(tpl(Tpl, {
                 options: t.options,
                 dataSource: t.dataSource,
                 config: t.config

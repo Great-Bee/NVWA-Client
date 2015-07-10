@@ -1,13 +1,13 @@
 define([
-    'backbone', 'underscore',
+    'backbone',
     'js/util/string',
     'js/core/module/nvwaUser',
     'achy/widget/ui/message',
     'js/util/ui/view/modal',
     'js/util/api/mc',
     'js/core/container/util/view/attribute',
-    'text!js/core/container/util/template/pagination.html'
-], function(Backbone, _, StringUtil, NvwaUser, Message, Modal, MC, AttributeView, PaginationTpl) {
+    'text!js/core/container/util/template/pagination.tpl'
+], function(Backbone, StringUtil, NvwaUser, Message, Modal, MC, AttributeView, PaginationTpl) {
     var GridView = Backbone.View.extend({
         events: {
             'click .removeable': 'removeField',
@@ -142,10 +142,10 @@ define([
             var t = this;
             _log(t.elements);
             _log(t.data);
-             // 格式化data 单独写一个转换方法
+            // 格式化data 单独写一个转换方法
             t._columnFormat();
-           
-            this.$el.html(_.template(PaginationTpl, {
+
+            this.$el.html(tpl(PaginationTpl, {
                 eleBean: t.eleBean, //containerBean
                 attributes: t.attributes, //客户端属性
                 editAble: t.editAble, //是否可编辑
@@ -405,43 +405,43 @@ define([
         //格式化列表
         _columnFormat: function(){
             var t = this;
-            $.each(t.elements,function(i,elem){
-                if(elem){
+            $.each(t.elements, function(i, elem) {
+                if (elem) {
                     var element = elem.element;
                     var data = t.data.currentRecords;
-                    if(elem.elementClientAttribute){
-                        var title =  elem.elementClientAttribute.text;
+                    if (elem.elementClientAttribute) {
+                        var title = elem.elementClientAttribute.text;
                         //设置title
-                        if(title){
-                            $.each(t.elements,function(index,ele){
-                                if(element.id == ele.element.id){
+                        if (title) {
+                            $.each(t.elements, function(index, ele) {
+                                if (element.id == ele.element.id) {
                                     t.elements[index].element.name = title;
                                 }
                             });
                         }
                     }
-                    if(elem.elementClientAttribute && elem.elementClientAttribute.columnConfig){
-                        var clientAttribute = eval('('+elem.elementClientAttribute.columnConfig+')');//{"format":"number","digitNum":"1","isCoin":false}
-                        $.each(data,function(index,column){
+                    if (elem.elementClientAttribute && elem.elementClientAttribute.columnConfig) {
+                        var clientAttribute = eval('(' + elem.elementClientAttribute.columnConfig + ')'); //{"format":"number","digitNum":"1","isCoin":false}
+                        $.each(data, function(index, column) {
                             var columnValue = column[element.serialNumber];
-                            
-                            if(columnValue && clientAttribute){
+
+                            if (columnValue && clientAttribute) {
                                 //选中设置属性的那列
                                 var format = clientAttribute.format;
-                                if(format && format == 'number'){
+                                if (format && format == 'number') {
                                     var digitNum = clientAttribute['digitNum'];
                                     var isCoin = clientAttribute['isCoin'];
-                                    columnValue=Number(columnValue).toFixed(digitNum);
-                                    if(isCoin){
+                                    columnValue = Number(columnValue).toFixed(digitNum);
+                                    if (isCoin) {
                                         //货币模式
                                         var columnvalues = columnValue.split('.');
                                         var num = columnvalues[0];
                                         var temp = 0;
                                         var tempValue = '';
-                                        for(var i=num.length-1;i>=0;i--){
+                                        for (var i = num.length - 1; i >= 0; i--) {
                                             tempValue = tempValue + num[i];
                                             temp++;
-                                            if(temp>=3 && i!=0){
+                                            if (temp >= 3 && i != 0) {
                                                 tempValue = tempValue + ',';
                                                 temp = 0;
                                             }
@@ -449,17 +449,17 @@ define([
                                         //倒叙
                                         var resultValue = '';
                                         var tempLen = tempValue.length;
-                                        for(var i = 0;i<tempLen;i++){
-                                            resultValue = resultValue + tempValue[tempLen-1-i];
+                                        for (var i = 0; i < tempLen; i++) {
+                                            resultValue = resultValue + tempValue[tempLen - 1 - i];
                                         }
-                                        if(columnvalues.length>1){
-                                            resultValue = resultValue + '.'+ columnvalues[1];
+                                        if (columnvalues.length > 1) {
+                                            resultValue = resultValue + '.' + columnvalues[1];
                                         }
                                         column[element.serialNumber] = resultValue;
-                                    }else{
+                                    } else {
                                         column[element.serialNumber] = columnValue;
                                     }
-                                }else if(format && format == 'datetime'){//{"format":"datetime","datetime":"yyyy-mm-dd"}
+                                } else if (format && format == 'datetime') { //{"format":"datetime","datetime":"yyyy-mm-dd"}
                                     var format = clientAttribute['datetime'];
                                     var formatDate = new Date(columnValue).format(format);
                                     column[element.serialNumber] = formatDate;
@@ -469,14 +469,14 @@ define([
                     }
                 }
             });
-            
+
         },
-        _getClientAttributeIndexByEleId: function(elementId){
+        _getClientAttributeIndexByEleId: function(elementId) {
             var t = this;
             var eles = t.elements;
-            var index=0;
-            for(var i=0;i<eles.length;i++){
-                if(eles[i].element.id == elementId){
+            var index = 0;
+            for (var i = 0; i < eles.length; i++) {
+                if (eles[i].element.id == elementId) {
                     index = i;
                     break;
                 }
@@ -484,30 +484,30 @@ define([
             return index;
         },
         //保存客户端属性
-        _saveClientAttributes: function(saveData){
+        _saveClientAttributes: function(saveData) {
             var t = this;
             var clientAttr = {
                 elementId: t['element']['id']
             }
             var index = t._getClientAttributeIndexByEleId(t['element']['id']);
-            clientAttr = $.extend(clientAttr,t.elements[index].elementClientAttribute, saveData);
+            clientAttr = $.extend(clientAttr, t.elements[index].elementClientAttribute, saveData);
             t.elements[index].elementClientAttribute = clientAttr;
             MC.updateElementClientAttribute(clientAttr);
         },
-        
+
         /**
          * 设置cloumn客户端属性
          */
-        _showColumnAttribute: function(e){
+        _showColumnAttribute: function(e) {
             var t = this;
             var elementid = $(e.originalEvent.srcElement).attr("elementid");
-            
+
             var index = t._getClientAttributeIndexByEleId(elementid);
             //读取element
-            MC.readElement(elementid,function(elementBean){
+            MC.readElement(elementid, function(elementBean) {
                 //get support attribute
                 var __getSupportAttribute = function() {
-                    return ['text','columnFormat'];
+                    return ['text', 'columnFormat'];
                 };
                 //get defaule datasource schema list
                 var __getDatasourceSchemaList = function() {
@@ -549,9 +549,9 @@ define([
                     datasourceSchemaList: __getDatasourceSchemaList(),
                     datasourceConfig: __getDatasourceConfig(),
                     supportAttribute: __getSupportAttribute() //support client attribute
-                //    supportServerAttribute: __getSupportServerAttribute(), //support server attribute
-                //    supportEventNames: __getSupportEventNames(), //support client event name
-                //    supportServerEventNames: __getSupportServerEventNames() //support server event name
+                        //    supportServerAttribute: __getSupportServerAttribute(), //support server attribute
+                        //    supportEventNames: __getSupportEventNames(), //support client event name
+                        //    supportServerEventNames: __getSupportServerEventNames() //support server event name
                 }, t.eleBean, elementBean, {
                     callbackEvent: function() {
                         //销毁窗口          
@@ -566,7 +566,7 @@ define([
                         t._saveClientAttributes(saveData);
                     },
                     setServerAttributes: function(saveData) {
-                       //没有服务端属性
+                        //没有服务端属性
                     },
                     rollbackClientAttr: function(clientAttr) {
                         //TODO回滚数据

@@ -1,14 +1,14 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
-    'text!js/util/ui/template/editorEvent.html',
+    'text!js/util/ui/template/editorEvent.tpl',
     'js/util/ui/view/button',
     'js/util/string',
     'js/util/dictionary',
     'js/util/ui/view/editorClientEvent',
     'js/util/ui/view/editorServerEvent'
-], function(Backbone, _, MCModel, tpl, ButtonView, StringUtil, Dictionary, EditorClientEventView, EditorServerEventView) {
+], function(Backbone, MCModel, Tpl, ButtonView, StringUtil, Dictionary, EditorClientEventView, EditorServerEventView) {
 
     var EditorEvent = Backbone.View.extend({
         events: {},
@@ -36,7 +36,7 @@ define([
         render: function() {
             var t = this;
 
-            t.$el.html(_.template(tpl, {
+            t.$el.html(tpl(Tpl, {
                 options: t.options,
                 config: t.config
             }));

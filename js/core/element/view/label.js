@@ -1,9 +1,9 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
-    'text!js/core/element/template/label.html'
-], function(_, BaseElementView, StringUtil, LabelTpl) {
+    'text!js/core/element/template/label.tpl'
+], function(BaseElementView, StringUtil, LabelTpl) {
     var LabelView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
@@ -25,7 +25,7 @@ define([
             BaseElementView.prototype.bindEvents.apply(this, arguments);
         },
         render: function() {
-            this.$el.html(_.template(LabelTpl, {
+            this.$el.html(tpl(LabelTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

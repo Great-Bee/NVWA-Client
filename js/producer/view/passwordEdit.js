@@ -1,11 +1,11 @@
 define([
-    'underscore',
+
     'js/core/element/view/base_element',
     'js/util/string',
     'js/util/api/producer',
     'js/util/ui/view/cover',
-    'text!js/producer/template/passwordEdit.html'
-], function(_, BaseElementView, StringUtil, Producer, Cover, TextTpl) {
+    'text!js/producer/template/passwordEdit.tpl'
+], function(BaseElementView, StringUtil, Producer, Cover, TextTpl) {
     var PasswordEditView = BaseElementView.extend({
         events: {
             "click .btn-passwordEdit": "passwordEdit",
@@ -60,7 +60,7 @@ define([
             } else if (!new_pwd2 || new_pwd2.length <= 0) {
                 _log('new_pwd2=' + new_pwd2);
                 t.$el.trigger('error', ['new_pwd2 is null.passwordEdit false']);
-            }else if (new_pwd != new_pwd2) {
+            } else if (new_pwd != new_pwd2) {
                 _log('new_pwd!=new_pwd2->new_pwd=' + new_pwd + 'new_pwd2=' + new_pwd2);
                 t.$el.trigger('error', ['new_pwd not equire new_pwd2.passwordEdit false']);
             } else {
@@ -107,7 +107,7 @@ define([
             }
         },
         render: function() {
-            this.$el.html(_.template(TextTpl, {
+            this.$el.html(tpl(TextTpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

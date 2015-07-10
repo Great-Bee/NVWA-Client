@@ -3,11 +3,11 @@
  **/
 define([
         'backbone',
-        'underscore',
-        'text!js/util/ui/template/list.html',
+
+        'text!js/util/ui/template/list.tpl',
         'js/util/ui/view/grid'
     ],
-    function(Backbone, _, ListGridTpl, GridView) {
+    function(Backbone, ListGridTpl, GridView) {
         var ListGridView = Backbone.View.extend({
             events: {},
             /**
@@ -40,7 +40,7 @@ define([
              */
             render: function() {
                 var t = this;
-                t.$el.html(_.template(ListGridTpl, {
+                t.$el.html(tpl(ListGridTpl, {
                     options: t.options,
                     config: t.config
                 }));

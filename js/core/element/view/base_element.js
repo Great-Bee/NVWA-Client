@@ -1,9 +1,8 @@
 define([
 	'backbone',
-	'underscore',
 	'js/core/module/nvwaUser',
 	'achy/widget/ui/message'
-], function(Backbone, _, NvwaUserAPI, Message) {
+], function(Backbone, NvwaUserAPI, Message) {
 	var BaseElementView = Backbone.View.extend({
 		initialize: function(options, eleBean, attributes, eves, editAble) {
 			this.defaultAttributes = this.defaultAttributes || {};

@@ -1,7 +1,7 @@
 define([
     'backbone',
-    'underscore',
-    'text!js/producer/template/conditionForm.html',
+
+    'text!js/producer/template/conditionForm.tpl',
     'js/util/api/producer',
     'js/util/api/oi',
     'js/util/api/mc',
@@ -12,7 +12,7 @@ define([
     'js/util/dictionary',
     'js/util/string',
     'js/core/element/view/select'
-], function(Backbone, _, formTpl, Producer, OI, MC, Modal, Message, DropButtonView, FieldSelectionView, Dictionary, StringUtil, SelectView) {
+], function(Backbone, formTpl, Producer, OI, MC, Modal, Message, DropButtonView, FieldSelectionView, Dictionary, StringUtil, SelectView) {
     var ConditionFormView = Backbone.View.extend({
         events: {
             'keydown [fieldname="name"]': 'checkNameKeyUp',
@@ -105,7 +105,7 @@ define([
          */
         render: function() {
             var t = this;
-            t.$el.html(_.template(formTpl, {
+            t.$el.html(tpl(formTpl, {
                 options: t.options,
                 config: t.config
             }));

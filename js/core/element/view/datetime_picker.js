@@ -1,8 +1,8 @@
 define([
-	'underscore', 'js/core/element/view/text',
+	'js/core/element/view/text',
 	'datetimepicker', 'datetimepicker_lang',
 	'css!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min'
-], function(_, TextView) {
+], function(TextView) {
 	var DatetimePickerView = TextView.extend({
 		events: {},
 		initialize: function(options, eleBean, attributes, eves, editAble) {

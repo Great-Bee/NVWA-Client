@@ -1,11 +1,11 @@
 ﻿define([
-	'backbone', 'underscore',
+	'backbone',
 	'js/util/string',
-	'text!js/core/container/util/template/row.html',
+	'text!js/core/container/util/template/row.tpl',
 	'js/util/api/mc',
 	'js/util/dictionary',
 	'js/core/container/util/view/column'
-], function(Backbone, _, StringUtil, RowTpl, MC, DictionaryUtil, ColumnView) {
+], function(Backbone, StringUtil, RowTpl, MC, DictionaryUtil, ColumnView) {
 	var RowView = Backbone.View.extend({
 		events: {
 			"click .btn-rowUP": "rowUP",
@@ -223,7 +223,7 @@
 		},
 		//渲染
 		render: function() {
-			$(_.template(RowTpl, {
+			$(tpl(RowTpl, {
 				attributes: this.attributes,
 				editAble: this.containerObject.editAble,
 				serialNumber: this.serialNumber

@@ -1,6 +1,6 @@
 define([
     'backbone',
-    'underscore',
+
     'js/util/api/mc',
     'js/util/ui/view/button',
     'achy/widget/ui/message',
@@ -8,7 +8,7 @@ define([
     'js/util/ui/view/list',
     'js/util/dictionary',
     'js/util/ui/view/editorClientEventForm'
-], function(Backbone, _, MCModel, ButtonView, Message, Modal, ListGridView, Dictionary, ClientEventFormView) {
+], function(Backbone, MCModel, ButtonView, Message, Modal, ListGridView, Dictionary, ClientEventFormView) {
 
     var EditorClientEventView = Backbone.View.extend({
         events: {},

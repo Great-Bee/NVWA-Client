@@ -1,10 +1,10 @@
 define([
-	'underscore',
+
 	'js/core/element/view/base_element',
-	'text!js/core/element/template/thumbnailConfig.html',
+	'text!js/core/element/template/thumbnailConfig.tpl',
 	'js/core/element/view/text',
 	'js/core/element/view/select',
-], function(_, BaseElementView, Tpl, TextView, SelectView) {
+], function(BaseElementView, Tpl, TextView, SelectView) {
 	var VideoConfigView = BaseElementView.extend({
 		events: {
 			"click .debug": "debug",
@@ -28,7 +28,7 @@ define([
 			BaseElementView.prototype.bindEvents.apply(this, arguments);
 		},
 		render: function() {
-			this.$el.html(_.template(Tpl, {
+			this.$el.html(tpl(Tpl, {
 				eleBean: this.eleBean,
 				attributes: this.attributes,
 				editAble: this.editAble

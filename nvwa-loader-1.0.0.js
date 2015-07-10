@@ -39,6 +39,9 @@ document.createElement("script");c.type=b.scriptType||"text/javascript";c.charse
 b.onScriptError,!1)),h.src=d,K=h,C?x.insertBefore(h,C):x.appendChild(h),K=null,h;if(da)try{importScripts(d),b.completeLoad(c)}catch(l){b.onError(A("importscripts","importScripts failed for "+c+" at "+d,l,[c]))}};z&&M(document.getElementsByTagName("script"),function(b){x||(x=b.parentNode);if(J=b.getAttribute("data-main"))return q=J,t.baseUrl||(D=q.split("/"),q=D.pop(),fa=D.length?D.join("/")+"/":"./",t.baseUrl=fa),q=q.replace(ea,""),j.jsExtRegExp.test(q)&&(q=J),t.deps=t.deps?t.deps.concat(q):[q],!0});
 define=function(b,c,d){var h,j;"string"!==typeof b&&(d=c,c=b,b=null);I(c)||(d=c,c=null);!c&&H(d)&&(c=[],d.length&&(d.toString().replace(la,"").replace(ma,function(b,d){c.push(d)}),c=(1===d.length?["require"]:["require","exports","module"]).concat(c)));if(O){if(!(h=K))P&&"interactive"===P.readyState||M(document.getElementsByTagName("script"),function(b){if("interactive"===b.readyState)return P=b}),h=P;h&&(b||(b=h.getAttribute("data-requiremodule")),j=E[h.getAttribute("data-requirecontext")])}(j?j.defQueue:
 R).push([b,c,d])};define.amd={jQuery:!0};j.exec=function(b){return eval(b)};j(t)}})(this);
+/*! tpl.js 0.3.1, github.com/niceue/tpl.js */
+!function(n){function t(n,t){var i=e(n);return t?i(t):i}function e(n){n=n||"","#"===n.charAt(0)&&(n=document.getElementById(n.substring(1)).innerHTML);for(var e,i,r,_=function(n){return n.trim?n.trim():n.replace(/^\s*|\s*$/g,"")},u=function(n){return n.replace(/('|\\|\r?\n)/g,"\\$1")},f=t.begin,s=t.end,c=t.variable,d=c||"$",o="var "+d+"="+d+"||this,__='',___,                echo=function(s){__+=s},                include=function(t,d){__+=tpl(t).call(d||"+d+")};"+(c?"":"with($||{}){"),g=f.length,l=s.length,a=n.indexOf(f);-1!=a&&(e=i?a+g:n.indexOf(s),!(a>e));)o+="__+='"+u(n.substring(0,a))+"';",i?(n=n.substring(g+l+1),i--):(r=_(n.substring(a+g,e)),"#"===r?i=1:0===r.indexOf("=")?(r=r.substring(1),o+="___="+r+";typeof ___!=='undefined'&&(__+=___);"):o+="\n"+r+"\n"),n=n.substring(e+l),a=n.indexOf(f+(i?"#"+s:""));return o+="__+='"+u(n)+"'"+(c?";":"}")+"return __",new Function(d,o)}t.begin="<#",t.end="#>",n.tpl=t,"function"==typeof define&&define("tpl",[],function(){return t})}(this);
+
 
 var $nvwa = {
   version : "1.0.0"
@@ -223,6 +226,7 @@ requirejs.config({
     shim: {
         'backbone': {
             deps: ['underscore', 'jquery'],
+		//	deps: ['jquery'],
             exports: 'Backbone'
         },
         'underscore': {
