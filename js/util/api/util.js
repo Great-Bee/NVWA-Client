@@ -2,7 +2,7 @@
  * Util
  * @return {[type]} [description]
  */
-define(['js/util/http'], function(http) {
+define('js/util/api/util', ['js/util/http'], function(http) {
     var DEFAULT_INDEX = 'id';
     var Producer = {
         initialize: function() {},

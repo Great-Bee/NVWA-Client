@@ -1,7 +1,7 @@
 /**
  *session object grid view
  **/
-define([
+define('js/producer/view/sessionObject', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

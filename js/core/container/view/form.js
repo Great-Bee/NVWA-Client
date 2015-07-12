@@ -1,4 +1,4 @@
-define([
+define('js/core/container/view/form', [
 	'js/core/container/view/base_container',
 	'text!js/core/container/template/form.tpl',
 	'js/util/api/mc',

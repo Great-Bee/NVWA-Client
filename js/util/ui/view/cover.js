@@ -1,7 +1,7 @@
 /**
  *遮罩组件
  */
-define([], function() {
+define('js/util/ui/view/cover', [], function() {
     var ButtonView = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {

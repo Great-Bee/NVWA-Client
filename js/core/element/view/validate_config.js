@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/validate_config', [
 	'backbone',
 	'js/core/element/view/base_element',
 	'text!js/core/element/template/validate_config.tpl'

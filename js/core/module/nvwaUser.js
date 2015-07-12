@@ -1,7 +1,7 @@
 /**
  * nvwaUser
  */
-define([
+define('js/core/module/nvwaUser', [
     'js/util/http',
     'js/util/api/producer'
 ], function(http, Producer) {

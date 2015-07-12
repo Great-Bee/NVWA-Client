@@ -1,4 +1,4 @@
-define([], function() {
+define('js/util/ui/control', [], function() {
 	ControlUtil = {
 		showControl: function(el, showList) {
 			if (el) {

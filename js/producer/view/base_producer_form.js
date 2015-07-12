@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/base_producer_form', [
     'backbone',
 
     'js/util/api/oi',

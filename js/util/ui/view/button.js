@@ -1,7 +1,7 @@
 /**
  *按钮组件
  */
-define([], function() {
+define('js/util/ui/view/button', [], function() {
     var ButtonView = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {

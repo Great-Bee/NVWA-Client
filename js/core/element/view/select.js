@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/select', [
 
     'js/core/module/nvwaUser',
     'js/core/element/view/base_element',

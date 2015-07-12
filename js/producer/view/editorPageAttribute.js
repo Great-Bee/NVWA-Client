@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/editorPageAttribute', [
 
 	'text!js/producer/template/editorPageAttribute.tpl',
 	'js/util/string',
@@ -102,7 +102,7 @@ define([
 					break;
 			}
 		},
-		readApi: function(){
+		readApi: function() {
 			var t = this;
 			var contrainerAlias = $(event.target).parent().attr("value");
 			var pageAlias = t.config.pageBean.alias;

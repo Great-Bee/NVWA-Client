@@ -1,4 +1,4 @@
-define(['js/bower_components/uuid-js/lib/uuid', 'js/util/api/util'], function(UUID, UtilApi) {
+define('js/util/string', ['js/bower_components/uuid-js/lib/uuid', 'js/util/api/util'], function(UUID, UtilApi) {
     $nvwa.string = {
         //随即计算一个序列号，保证本地唯一
         randomSN: function() {

@@ -1,7 +1,7 @@
 /**
  * User View
  */
-define([
+define('js/user/view/user', [
     'backbone',
 
     'text!js/user/template/userLayout.tpl',
@@ -152,7 +152,7 @@ define([
 
         render: function() {
             var t = this;
-            t.$el.html(tpl(UserTpl));
+            t.$el.html(tpl(UserTpl,{}));
             t._init();
             return t;
         },

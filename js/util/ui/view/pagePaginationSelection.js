@@ -1,4 +1,4 @@
-define([
+define('js/util/ui/view/pagePaginationSelection', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

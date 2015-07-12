@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/combobox', [
     'js/core/module/nvwaUser',
     'js/core/element/view/base_element',
     'js/util/string',

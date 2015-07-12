@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/reservedSelection', [
         'backbone',
 
         'text!js/producer/template/reservedSelection.tpl',

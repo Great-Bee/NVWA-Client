@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/base_element', [
 	'backbone',
 	'js/core/module/nvwaUser',
 	'achy/widget/ui/message'

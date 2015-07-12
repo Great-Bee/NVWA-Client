@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/datasource', [
     'backbone', 'js/util/api/mc',
     'js/core/element/view/base_element',
     'js/util/ui/view/modal',
@@ -53,8 +53,8 @@ define([
         __renderDynamicsource: function(alias, handler) {
             var t = this;
             var _tpl = [];
-            _tpl.push("<a class='btn btn-primary' href='#container/grid/edit/<%=alias%>' target='_blank'>数据源:<%=alias%></a>");
-            $('.dynamic label').html(_.template(_tpl.join(), {
+            _tpl.push("<a class='btn btn-primary' href='#container/grid/edit/<#=alias#>' target='_blank'>数据源:<#=alias#></a>");
+            $('.dynamic label').html(tpl(_tpl.join(), {
                 alias: alias
             })).data("alias", alias);
             t._renderSchema();
@@ -63,11 +63,11 @@ define([
                 t.$el.find(".schemaFields").each(function(i, schemaFieldsEle) {
                     var _tpl = [];
                     _tpl.push('<select class="form-control"><option value="">请选择字段</option>');
-                    _tpl.push('<%for(i=0;i<elements.length;i++){%>');
-                    _tpl.push('<option value="<%=elements[i]["serialNumber"]%>"><%=elements[i]["name"]%></option>');
-                    _tpl.push('<%}%>');
+                    _tpl.push('<#for(i=0;i<elements.length;i++){#>');
+                    _tpl.push('<option value="<#=elements[i]["serialNumber"]#>"><#=elements[i]["name"]#></option>');
+                    _tpl.push('<#}#>');
                     _tpl.push('</select>');
-                    $(schemaFieldsEle).html(_.template(_tpl.join(''), {
+                    $(schemaFieldsEle).html(tpl(_tpl.join(''), {
                         elements: elements
                     }));
                 });
@@ -140,12 +140,12 @@ define([
             var t = this;
 
             var _tpl = [];
-            _tpl.push('<%for(c=0;c<attributes.schemaList.length;c++){%>');
-            _tpl.push('<th class="schema"><%=attributes.schemaList[c].name%>(<%=attributes.schemaList[c].schema%>)</th>');
-            _tpl.push('<%}%>');
+            _tpl.push('<#for(c=0;c<attributes.schemaList.length;c++){#>');
+            _tpl.push('<th class="schema"><#=attributes.schemaList[c].name#>(<#=attributes.schemaList[c].schema#>)</th>');
+            _tpl.push('<#}#>');
             var trEle = $(t.$el.find(".static table thead tr"));
             trEle.empty();
-            trEle.append(_.template(_tpl.join(''), {
+            trEle.append(tpl(_tpl.join(''), {
                 attributes: t.attributes
             }))
             trEle.append('<th style="width:40px"></th>');
@@ -153,12 +153,12 @@ define([
             t._addStaticData();
 
             var _tpl2 = [];
-            _tpl2.push('<%for(c=0;c<attributes.schemaList.length;c++){%>');
+            _tpl2.push('<#for(c=0;c<attributes.schemaList.length;c++){#>');
             _tpl2.push('<tr class="schema">');
-            _tpl2.push('<td><%=attributes.schemaList[c].name%>(<%=attributes.schemaList[c].schema%>)</td>');
+            _tpl2.push('<td><#=attributes.schemaList[c].name#>(<#=attributes.schemaList[c].schema#>)</td>');
             _tpl2.push('<td class="schemaFields"></td>');
             _tpl2.push('</tr>');
-            _tpl2.push('<%}%>');
+            _tpl2.push('<#}#>');
             var tbodyEle = $(t.$el.find(".dynamic table tbody"));
             tbodyEle.empty();
             tbodyEle.append(tpl(_tpl2.join(''), {

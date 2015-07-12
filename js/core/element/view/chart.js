@@ -1,5 +1,5 @@
 //highcharts图表控件
-define([
+define('js/core/element/view/chart', [
 	'js/core/element/view/base_element', 'highcharts'
 ], function(BaseElementView) {
 	var ChartView = BaseElementView.extend({

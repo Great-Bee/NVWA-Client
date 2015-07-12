@@ -1,4 +1,4 @@
-define([
+define('js/core/container/util/view/pagination', [
     'backbone',
     'js/util/string',
     'js/core/module/nvwaUser',
@@ -403,7 +403,7 @@ define([
             });
         },
         //格式化列表
-        _columnFormat: function(){
+        _columnFormat: function() {
             var t = this;
             $.each(t.elements, function(i, elem) {
                 if (elem) {

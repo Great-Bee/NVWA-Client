@@ -1,5 +1,5 @@
 //普通按钮
-define([
+define('js/core/element/view/selectButton', [
 
     'js/core/element/view/base_element',
     'js/util/string',

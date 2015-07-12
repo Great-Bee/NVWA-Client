@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/containerSelectButton', [
 	'js/util/string',
 	'js/util/ui/view/modal',
 	'js/util/api/mc',

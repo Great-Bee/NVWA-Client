@@ -1,4 +1,4 @@
-define([
+define('js/util/ui/view/modal', [
     'lodash'
 ], function(_) {
     'use strict';

@@ -1,4 +1,4 @@
-define([], function() {
+define('js/util/array', [], function() {
 	$nvwa.array = {
 		//判断这个数组里面是不是有期望的元素
 		have: function(arrayObject, filterKeys) {

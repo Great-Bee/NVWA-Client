@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/log', [
         'backbone',
         'js/util/ui/view/button',
         'js/util/ui/view/list',

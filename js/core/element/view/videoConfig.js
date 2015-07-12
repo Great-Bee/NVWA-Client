@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/videoConfig', [
 
 	'js/core/element/view/base_element',
 	'text!js/core/element/template/videoConfig.tpl',

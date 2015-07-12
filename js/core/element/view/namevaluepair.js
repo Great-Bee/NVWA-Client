@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/namevaluepair', [
 	'backbone',
 	'js/util/string',
 	'js/core/element/view/base_element',

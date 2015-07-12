@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/editPage', [
     'backbone',
 
     'js/util/api/mc',

@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/editorConditionForm', [
     'backbone',
 
     'text!js/producer/template/conditionForm.tpl',

@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/oiForm', [
     'text!js/producer/template/oiForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/producer',

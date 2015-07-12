@@ -1,4 +1,4 @@
-define([
+define('js/core/page/view/base_page', [
     'backbone'
 ], function(Backbone) {
     var BasePageView = Backbone.View.extend({

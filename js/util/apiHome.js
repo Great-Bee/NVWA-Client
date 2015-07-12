@@ -3,7 +3,7 @@
  * 提供给客户端使用的各种远程接口的api函数
  * @return {[type]} [description]
  */
-define([], function() {
+define('js/util/apiHome', [], function() {
     var ApiHome = {
         //保存表单
         updateForm: function(pageAlias, containerAlias, objectId) {

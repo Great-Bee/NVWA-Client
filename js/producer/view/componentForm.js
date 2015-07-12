@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/componentForm', [
     'backbone',
 
     'text!js/producer/template/componentForm.tpl',

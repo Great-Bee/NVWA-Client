@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/reservedFieldForm', [
     'text!js/producer/template/reservedFieldForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/producer',

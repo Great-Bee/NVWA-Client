@@ -1,4 +1,4 @@
-define([], function() {
+define('js/util/map', [], function() {
 	MapUtil = {
 		filter: function(mapObject, filterKeys) {
 			if (mapObject) {

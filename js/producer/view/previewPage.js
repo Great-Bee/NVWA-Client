@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/previewPage', [
     'backbone',
 
     'js/util/api/mc',

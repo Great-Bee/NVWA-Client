@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/location', [
 	'backbone',
 	'js/util/string',
 	'js/core/element/view/base_element',

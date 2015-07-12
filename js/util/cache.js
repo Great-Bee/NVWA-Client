@@ -1,4 +1,4 @@
-define(['js/util/api/mc'], function(MC) {
+define('js/util/cache', ['js/util/api/mc'], function(MC) {
     $nvwa.cache = {
         //icon cache
         iconCache: null,

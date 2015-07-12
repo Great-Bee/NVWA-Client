@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/code', [
     'js/core/element/view/base_element',
     'js/util/string',
     'text!js/core/element/template/code.tpl',
@@ -20,7 +20,7 @@ define([
             this.initEditor();
         },
         render: function() {
-            this.$el.html(_.template(Tpl, {
+            this.$el.html(tpl(Tpl, {
                 eleBean: this.eleBean,
                 attributes: this.attributes,
                 editAble: this.editAble

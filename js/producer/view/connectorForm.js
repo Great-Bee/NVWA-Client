@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/connectorForm', [
     'backbone',
 
     'text!js/producer/template/connectorForm.tpl',

@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/text', [
 
 	'js/core/element/view/base_element',
 	'text!js/core/element/template/text.tpl'

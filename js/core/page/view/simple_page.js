@@ -1,4 +1,4 @@
-define([
+define('js/core/page/view/simple_page', [
 
     'js/core/page/view/base_page',
     'text!js/core/page/template/simple_page.tpl',

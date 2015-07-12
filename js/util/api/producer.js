@@ -2,7 +2,7 @@
  * Producer
  * @return {[type]} [description]
  */
-define(['js/util/http'], function(http) {
+define('js/util/api/producer', ['js/util/http'], function(http) {
     var DEFAULT_INDEX = 'id';
     var Producer = {
         initialize: function() {},
@@ -88,7 +88,7 @@ define(['js/util/http'], function(http) {
                 }
             }, false, 'POST', false);
         },
-        producerPasswordEdit: function(old_pwd,new_pwd,handler) {
+        producerPasswordEdit: function(old_pwd, new_pwd, handler) {
             var url = '/nvwaSecurity/passwordEdit';
             var data = {
                 oldPassword: old_pwd,

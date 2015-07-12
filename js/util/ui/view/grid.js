@@ -1,7 +1,7 @@
 /**
  *grid组件
  */
-define([
+define('js/util/ui/view/grid', [
     'backbone',
 
     'text!js/util/ui/template/grid.tpl',

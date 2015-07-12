@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/editorContainerAttribute', [
     'backbone',
 
     'js/util/api/mc',

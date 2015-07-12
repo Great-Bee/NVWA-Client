@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/index', [
         'backbone', 'achy/widget/ui/message',
         'text!js/producer/template/index.tpl',
     ],

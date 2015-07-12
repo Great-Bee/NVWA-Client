@@ -2,7 +2,7 @@
  * Router
  * @return {[type]} [description]
  */
-define(["js/producer/view/producer",
+define('router', ["js/producer/view/producer",
     'js/util/api/producer',
     'js/util/api/oi',
     'js/util/api/mc'

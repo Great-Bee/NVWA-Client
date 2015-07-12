@@ -2,9 +2,9 @@
  * Router for User
  * Date:2015-01-28
  */
-define([
+define('js/user/router', [
 	"js/user/view/user"
-], function(UserLayoutView){
+], function(UserLayoutView) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			//User home page
@@ -15,14 +15,13 @@ define([
 		},
 
 		//initialize
-        initialize: function() {
-        },
+		initialize: function() {},
 
 		//initialize
 		_init: function() {
 			this.layout_view = new UserLayoutView({
-					el: document.body
-				});
+				el: document.body
+			});
 			this.layout_view.render();
 		},
 
@@ -33,17 +32,17 @@ define([
 
 		//login
 		userLogin: function() {
-			requirejs(["js/user/view/entrance"], function(EntranceView){
+			requirejs(["js/user/view/entrance"], function(EntranceView) {
 				var entranceView = new EntranceView({
 					el: document.body
-                });
+				});
 				entranceView.render();
 			});
 		},
 
 		//error page
 		error: function() {
-			requirejs(["js/user/view/error"], function(ErrorView){
+			requirejs(["js/user/view/error"], function(ErrorView) {
 				var errorView = new ErrorView({
 					el: document.body
 				})

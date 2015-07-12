@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/chart_config', [
     'backbone',
     'js/core/element/view/base_element',
     'text!js/core/element/template/chart_config.tpl'

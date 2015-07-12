@@ -2,7 +2,7 @@
  * HTTP
  * @return {[type]} [description]
  */
-define([], function() {
+define('js/util/http', [], function() {
     $nvwa.http = {
         initialize: function() {
 

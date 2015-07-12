@@ -1,4 +1,4 @@
-﻿define([
+﻿define('js/core/container/util/view/attribute', [
 	'backbone',
 	'text!js/core/container/util/template/attribute.tpl',
 	'js/util/api/mc',

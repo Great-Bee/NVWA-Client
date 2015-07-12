@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/tree', [
 
 	'js/core/element/view/base_element',
 	'text!js/core/element/template/tree.tpl',

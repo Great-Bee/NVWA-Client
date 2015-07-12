@@ -1,4 +1,4 @@
-define([
+define('js/util/ui/view/editorClientEventForm', [
         'backbone',
 
         'text!js/util/ui/template/clientEventForm.tpl',

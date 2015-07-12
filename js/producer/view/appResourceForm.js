@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/appResourceForm', [
     'backbone',
 
     'text!js/producer/template/appResourceForm.tpl',

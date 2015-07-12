@@ -1,4 +1,4 @@
-define([
+define('js/test/view/testView', [
     'backbone',
 
     'text!js/test/template/testView.tpl',

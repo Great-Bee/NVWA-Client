@@ -1,4 +1,4 @@
-define([
+define('js/core/container/view/grid', [
     'js/core/container/view/base_container',
     'text!js/core/container/template/grid.tpl',
     'js/util/api/mc',

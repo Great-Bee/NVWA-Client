@@ -1,7 +1,7 @@
 /*
  *容器的表单
  */
-define([
+define('js/producer/view/containerForm', [
     'text!js/producer/template/containerForm.tpl',
     'js/producer/view/base_producer_form',
     'achy/widget/ui/message',

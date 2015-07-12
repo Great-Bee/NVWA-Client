@@ -1,7 +1,7 @@
 /**
  * MC
  */
-define(['js/util/http', 'js/util/api/producer'], function(http, Producer) {
+define('js/util/api/mc', ['js/util/http', 'js/util/api/producer'], function(http, Producer) {
     var DEFAULT_INDEX = 'id';
     var ModuleAlias = {
         Page: 'page',
@@ -2034,7 +2034,7 @@ define(['js/util/http', 'js/util/api/producer'], function(http, Producer) {
         /**
          *读取contrainer 的api 接口
          */
-        readContrainerAPI: function(methodN,pageAlias,contrainerAlias, handler) {
+        readContrainerAPI: function(methodN, pageAlias, contrainerAlias, handler) {
             var url = '/nvwa/container/crudApi';
             var data = {
                 pageAlias: pageAlias,

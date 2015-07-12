@@ -1,7 +1,7 @@
 /**
  * grid 组件
  **/
-define([
+define('js/util/ui/view/columnFormat', [
     'backbone',
     'js/core/element/view/base_element',
     'text!js/util/ui/template/columnFormat.tpl',

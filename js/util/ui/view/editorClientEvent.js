@@ -1,4 +1,4 @@
-define([
+define('js/util/ui/view/editorClientEvent', [
     'backbone',
 
     'js/util/api/mc',

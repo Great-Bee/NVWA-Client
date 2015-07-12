@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/clientReservedEvent', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

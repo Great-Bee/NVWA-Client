@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/apiConfigForm', [
     'backbone',
     'text!js/producer/template/apiConfigForm.tpl',
     'js/util/api/mc',

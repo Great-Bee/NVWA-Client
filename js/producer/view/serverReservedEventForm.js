@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/serverReservedEventForm', [
     'backbone',
 
     'text!js/producer/template/serverReservedEventForm.tpl',

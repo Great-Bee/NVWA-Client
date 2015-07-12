@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/fieldForm', [
     'text!js/producer/template/fieldForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/producer',

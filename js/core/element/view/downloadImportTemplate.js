@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/downloadImportTemplate', [
 		'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message'
 	],
 	function(ButtonView, FileAPI, Message) {

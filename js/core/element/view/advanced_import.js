@@ -1,5 +1,5 @@
 //高级导入控件
-define([
+define('js/core/element/view/advanced_import', [
 		'js/core/element/view/button',
 		'js/core/element/view/import',
 		'js/core/element/view/downloadImportTemplate',

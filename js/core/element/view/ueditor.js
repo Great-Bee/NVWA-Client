@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/ueditor', [
 
     'js/core/element/view/base_element',
     'js/util/string',

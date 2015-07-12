@@ -2,11 +2,11 @@
  * User
  * @return {[type]} [description]
  */
-define(['js/util/http'], function(http) {
+define('js/util/api/user', ['js/util/http'], function(http) {
     var User = {
         initialize: function() {},
 
-         //user login
+        //user login
         userLogin: function(loginName, password, handler) {
             var url = '';
             var data = {
@@ -27,8 +27,8 @@ define(['js/util/http'], function(http) {
                 registerEmail: registerEmail,
                 password: password
             }
-            http.request(url, data, function(response){
-                if (handler && handler != null){
+            http.request(url, data, function(response) {
+                if (handler && handler != null) {
                     hander(response);
                 }
             }, false, 'POST', false);

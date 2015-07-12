@@ -1,4 +1,4 @@
-define([
+define('js/util/ui/view/editorServerEventForm', [
 
     'js/util/ui/view/editorClientEventForm',
     'js/util/ui/view/dropButton',

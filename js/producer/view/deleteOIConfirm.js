@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/deleteOIConfirm', [
         'backbone',
 
         'text!js/producer/template/deleteOIConfirm.tpl'

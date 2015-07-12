@@ -1,7 +1,7 @@
 /**
  *search 组件
  **/
-define([
+define('js/util/ui/view/containerSelection', [
         'backbone',
 
         'text!js/util/ui/template/search.tpl',

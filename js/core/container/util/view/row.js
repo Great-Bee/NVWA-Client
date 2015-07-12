@@ -1,4 +1,4 @@
-﻿define([
+﻿define('js/core/container/util/view/row', [
 	'backbone',
 	'js/util/string',
 	'text!js/core/container/util/template/row.tpl',

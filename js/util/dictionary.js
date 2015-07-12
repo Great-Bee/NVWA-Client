@@ -1,4 +1,4 @@
-define([], function() {
+define('js/util/dictionary', [], function() {
     $nvwa.dictionary = {
         ComponentTypes: ["Field", "Label", "Link", "Img", "Button", "Video"],
         //OI状态类型

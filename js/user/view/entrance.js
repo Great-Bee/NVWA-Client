@@ -3,7 +3,7 @@
      *
      */
 
-    define([
+    define('js/user/view/entrance', [
         'js/core/element/view/base_element',
         'js/util/api/user',
         'text!js/user/template/entrance.tpl',

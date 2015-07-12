@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/import', [
 		'js/core/element/view/upload', 'js/util/api/file', 'achy/widget/ui/message'
 	],
 	function(UploadView, FileAPI, Message) {

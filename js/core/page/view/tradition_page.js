@@ -1,4 +1,4 @@
-define([
+define('js/core/page/view/tradition_page', [
 
     'js/core/page/view/base_page',
     'text!js/core/page/template/tradition_page.tpl',

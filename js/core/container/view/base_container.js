@@ -1,4 +1,4 @@
-define([
+define('js/core/container/view/base_container', [
 	'backbone'
 ], function(Backbone) {
 	var BaseContainerView = Backbone.View.extend({

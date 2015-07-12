@@ -1,7 +1,7 @@
 /**
  *page grid view
  **/
-define([
+define('js/producer/view/page', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

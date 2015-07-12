@@ -2,7 +2,7 @@
  * business util
  * @return {[type]} [description]
  */
-define([], function() {
+define('js/util/businessUtil', [], function() {
     var BusinessUtil = {
         initialize: function() {
 

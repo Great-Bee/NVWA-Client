@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/html', [
 	'backbone',
 	'js/core/element/view/base_element'
 ], function(Backbone, BaseElementView) {

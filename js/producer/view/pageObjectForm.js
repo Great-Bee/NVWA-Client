@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/pageObjectForm', [
     'text!js/producer/template/pageObjectForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/producer',

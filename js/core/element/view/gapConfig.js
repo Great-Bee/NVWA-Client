@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/gapConfig', [
 	'js/core/element/view/base_element',
 	'text!js/core/element/template/gapConfig.tpl',
 	'js/core/element/view/text'

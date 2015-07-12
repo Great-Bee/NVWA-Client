@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/component', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

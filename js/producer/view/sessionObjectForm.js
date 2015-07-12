@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/sessionObjectForm', [
     'text!js/producer/template/sessionObjectForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/mc',

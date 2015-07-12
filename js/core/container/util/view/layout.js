@@ -1,4 +1,4 @@
-﻿define([
+﻿define('js/core/container/util/view/layout', [
 	'backbone',
 	'js/util/api/mc',
 	'js/util/dictionary',

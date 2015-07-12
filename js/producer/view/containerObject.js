@@ -1,7 +1,7 @@
 /**
  *container object grid view
  **/
-define([
+define('js/producer/view/containerObject', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

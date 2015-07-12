@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/color_picker', [
 	'js/util/string',
 	'js/core/element/view/text',
 	'js/bower_components/colpick/js/colpick',

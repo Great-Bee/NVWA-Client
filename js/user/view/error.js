@@ -2,7 +2,7 @@
  * Error View
  */
 
-define([
+define('js/user/view/error', [
 	'backbone',
 
 	'text!js/user/template/error.tpl',
@@ -98,7 +98,7 @@ define([
 
 		render: function() {
 			var t = this;
-			t.$el.html(tpl(ErrorTempl));
+			t.$el.html(tpl(ErrorTempl,{}));
 			t._init();
 			animate();
 			return this;

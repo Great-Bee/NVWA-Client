@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/customScriptsForm', [
     'text!js/producer/template/customScriptsForm.tpl',
     'js/producer/view/base_producer_form',
     'text!js/producer/template/amdTpl.tpl',
@@ -158,7 +158,7 @@ define([
             if (formData && formData['code']) {
                 t.codeEditor.setValue(formData['code']);
             } else {
-                t.codeEditor.setValue(tpl(AMDTpl));
+                t.codeEditor.setValue(tpl(AMDTpl,{}));
             }
         },
         createSuccess: function(saveData) {

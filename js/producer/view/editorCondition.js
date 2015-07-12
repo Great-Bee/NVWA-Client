@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/editorCondition', [
     'backbone',
 
     'js/util/api/mc',

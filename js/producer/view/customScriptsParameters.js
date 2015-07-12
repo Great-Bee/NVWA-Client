@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/customScriptsParameters', [
         'backbone',
         'js/util/ui/view/button',
         'achy/widget/ui/message',

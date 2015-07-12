@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/editor_container_grid', [
     'backbone',
 
     'js/util/api/mc',

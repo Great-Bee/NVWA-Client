@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/systemConfig', [
         'backbone',
         'text!js/producer/template/systemConfig.tpl',
         'js/util/ui/view/button',

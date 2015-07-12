@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/upload', [
 
     'js/core/element/view/base_element',
     'text!js/core/element/template/upload.tpl',

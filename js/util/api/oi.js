@@ -1,7 +1,7 @@
 /**
  * OI
  */
-define([
+define('js/util/api/oi', [
     'js/util/http',
     'js/util/api/producer'
 ], function(http, Producer) {

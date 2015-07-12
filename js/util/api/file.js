@@ -1,7 +1,7 @@
 /**
  * File
  */
-define(['js/util/http', 'js/util/api/producer'], function(http, Producer) {
+define('js/util/api/file', ['js/util/http', 'js/util/api/producer'], function(http, Producer) {
     var DEFAULT_INDEX = 'id';
     var _basePath = '/nvwaFile';
     var File = {

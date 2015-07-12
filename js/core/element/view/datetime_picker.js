@@ -1,4 +1,4 @@
-define([
+define('js/core/element/view/datetime_picker', [
 	'js/core/element/view/text',
 	'datetimepicker', 'datetimepicker_lang',
 	'css!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min'

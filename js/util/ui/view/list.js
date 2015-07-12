@@ -1,7 +1,7 @@
 /**
  *Basic gird view
  **/
-define([
+define('js/util/ui/view/list', [
         'backbone',
 
         'text!js/util/ui/template/list.tpl',

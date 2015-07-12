@@ -1,4 +1,4 @@
-define([], function() {
+define('js/util/events', [], function() {
 	$nvwa.events = {
 		_fire: function(t) {
 			if (t.eves && t.eves.length > 0) {

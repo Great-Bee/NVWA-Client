@@ -1,7 +1,7 @@
 /**
  *search 组件
  **/
-define([
+define('js/util/ui/view/fieldSelection', [
         'backbone',
 
         'text!js/util/ui/template/fieldSelection.tpl',
@@ -68,7 +68,7 @@ define([
                 var t = this;
                 t.viewDialog = {};
                 t.viewDialog.container = $('<div></div>');
-                t.selectionTreeView = $(tpl(FieldSelectionBodyTpl)).appendTo(t.viewDialog.container);
+                t.selectionTreeView = $(tpl(FieldSelectionBodyTpl),{}).appendTo(t.viewDialog.container);
                 //获取OI
                 if (!t.config.identified) {
                     _log('没有identified');

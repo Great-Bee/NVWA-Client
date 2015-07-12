@@ -1,4 +1,4 @@
-define([
+define('js/producer/view/customScriptsParametersForm', [
     'text!js/producer/template/customScriptsParametersForm.tpl',
     'js/producer/view/base_producer_form',
     'js/util/api/mc',

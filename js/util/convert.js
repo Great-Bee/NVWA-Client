@@ -1,4 +1,4 @@
-define([], function() {
+define('js/util/convert', [], function() {
     ConvertUtil = {
         toPinyin: function(fromInput, identifiedInput) {
             fromInput.on('keydown', function(e) {
