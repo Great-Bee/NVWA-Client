@@ -5,7 +5,7 @@ define('js/util/ui/view/containerSelection', [
         'backbone',
 
         'text!js/util/ui/template/search.tpl',
-        'achy/widget/ui/message'
+        'js/bower_components/achy/message'
     ],
     function(Backbone, SearchTpl, Message) {
         var SearchBarView = Backbone.View.extend({

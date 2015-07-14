@@ -1,5 +1,5 @@
 define('js/producer/view/index', [
-        'backbone', 'achy/widget/ui/message',
+        'backbone', 'js/bower_components/achy/message',
         'text!js/producer/template/index.tpl',
     ],
     function(Backbone, Message, IndexTpl) {

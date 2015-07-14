@@ -3,7 +3,7 @@ define('js/producer/view/editor_container_grid', [
 
     'js/util/api/mc',
     'js/util/dictionary',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/string',
     'js/util/businessUtil',
     'text!js/producer/template/editorContainerGrid.tpl',

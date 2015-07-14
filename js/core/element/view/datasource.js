@@ -2,7 +2,7 @@ define('js/core/element/view/datasource', [
     'backbone', 'js/util/api/mc',
     'js/core/element/view/base_element',
     'js/util/ui/view/modal',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/containerPaginationSelection',
     'text!js/core/element/template/datasource.tpl',
     'js/core/element/view/pageSelectButton',

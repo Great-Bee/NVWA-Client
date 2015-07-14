@@ -1,5 +1,5 @@
 define('js/util/ui/view/modal', [
-    'lodash'
+    'lodash','bootstrapjs','bootstrap.modal'
 ], function(_) {
     'use strict';
 
@@ -11,12 +11,12 @@ define('js/util/ui/view/modal', [
     };
 
     Modal = function(options) {
-        var wrapper, tpl, _this, content;
+        var wrapper, Tpl, _this, content;
         _this = this;
 
         options = _.extend({}, defaults, options);
-        tpl = '<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button><h4 class="modal-title"></h4></div><div class="modal-body"></div><div class="modal-footer"></div></div></div></div>';
-        wrapper = $(tpl);
+        Tpl = '<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button><h4 class="modal-title"></h4></div><div class="modal-body"></div><div class="modal-footer"></div></div></div></div>';
+        wrapper = $(Tpl);
         this.body = wrapper.find('.modal-body');
         this.title = wrapper.find('.modal-title');
         this.footer = wrapper.find('.modal-footer');

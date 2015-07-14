@@ -8,7 +8,7 @@ define('js/core/container/view/grid', [
     'js/util/ui/view/fieldSelection',
     'js/util/ui/view/modal',
     'js/core/module/nvwaUser',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
 ], function(BaseContainerView, FormTpl, MC, Dictionary, StringUtil, PaginationView, FieldSelectionView, Modal, NVWAUserAPI, Message) {
     var GridView = BaseContainerView.extend({
         events: {

@@ -4,7 +4,7 @@ define('js/producer/view/customScriptsForm', [
     'text!js/producer/template/amdTpl.tpl',
     'js/util/api/mc',
     'js/util/ui/view/modal',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/dropButton',
     'js/util/dictionary',
     'js/core/element/view/code',

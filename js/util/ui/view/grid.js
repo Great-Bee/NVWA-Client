@@ -5,7 +5,7 @@ define('js/util/ui/view/grid', [
     'backbone',
 
     'text!js/util/ui/template/grid.tpl',
-    'achy/widget/ui/message'
+    'js/bower_components/achy/message'
 ], function(Backbone, gridTpl, Message) {
     var GridView = Backbone.View.extend({
         events: {},

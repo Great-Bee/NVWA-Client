@@ -1,5 +1,5 @@
 define('js/core/element/view/import', [
-		'js/core/element/view/upload', 'js/util/api/file', 'achy/widget/ui/message'
+		'js/core/element/view/upload', 'js/util/api/file', 'js/bower_components/achy/message'
 	],
 	function(UploadView, FileAPI, Message) {
 		var ImportView = UploadView.extend({

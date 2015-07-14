@@ -4,7 +4,7 @@ define('js/producer/view/oiForm', [
     'js/util/api/producer',
     'js/util/api/oi',
     'js/util/ui/view/modal',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/producer/view/field',
     'js/producer/view/connector',
     'js/producer/view/log',

@@ -1,5 +1,5 @@
 define('js/core/element/view/downloadImportTemplate', [
-		'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message'
+		'js/core/element/view/button', 'js/util/api/file', 'js/bower_components/achy/message'
 	],
 	function(ButtonView, FileAPI, Message) {
 		var DownloadImportTemploadBtnView = ButtonView.extend({

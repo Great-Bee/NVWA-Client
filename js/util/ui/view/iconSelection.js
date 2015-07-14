@@ -6,7 +6,7 @@ define('js/util/ui/view/iconSelection', [
 
         'text!js/util/ui/template/iconSelection.tpl',
         'text!js/util/ui/template/iconSelectionBody.tpl',
-        'achy/widget/ui/message',
+        'js/bower_components/achy/message',
         'js/util/ui/view/modal'
     ],
     function(Backbone, IconSelectionTpl, IconSelectionBodyTpl, Message, Modal) {

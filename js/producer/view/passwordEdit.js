@@ -5,7 +5,7 @@ define('js/producer/view/passwordEdit', [
     'js/util/api/producer',
     'js/util/ui/view/cover',
     'text!js/producer/template/passwordEdit.tpl',
-    'achy/widget/ui/message'
+    'js/bower_components/achy/message'
 ], function(BaseElementView, StringUtil, Producer, Cover, TextTpl, Message) {
     var PasswordEditView = BaseElementView.extend({
         events: {

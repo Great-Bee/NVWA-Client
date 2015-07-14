@@ -117,7 +117,10 @@ module.exports = function(grunt) {
           prettify: true
         },
         files: { //输出压缩后的文件
-          "<%=buildConfig.path%>/js/<%= pkg.name %>-<%= pkg.version %>-templates.js": ["js/core/container/template/*.tpl", "js/core/container/util/template/*.tpl", "js/core/element/template/*.tpl", "js/core/page/template/*.tpl", "js/producer/template/*.tpl", "js/user/template/*.tpl", "js/util/ui/template/*.tpl"]
+          "<%=buildConfig.path%>/js/<%= pkg.name %>-util-<%= pkg.version %>-templates.js": ["js/util/ui/template/*.tpl"],
+          "<%=buildConfig.path%>/js/<%= pkg.name %>-core-<%= pkg.version %>-templates.js": ["js/core/container/template/*.tpl", "js/core/container/util/template/*.tpl", "js/core/element/template/*.tpl", "js/core/page/template/*.tpl"],
+          "<%=buildConfig.path%>/js/<%= pkg.name %>-user-<%= pkg.version %>-templates.js": ["js/user/template/*.tpl"],
+          "<%=buildConfig.path%>/js/<%= pkg.name %>-producer-<%= pkg.version %>-templates.js": ["js/producer/template/*.tpl"],
         }
       }
     },
@@ -132,21 +135,29 @@ module.exports = function(grunt) {
           'build/release-<%=buildConfig.randomNum%>/css/<%= pkg.name %>-<%= pkg.version %>.css': [
             'css/main.css',
             'css/yestrap.css',
-            'css/yestrap_light.css'
+            // 'css/yestrap_light.css'
           ]
         }
       },
       js: { //js合并配置
         files: {
-          'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-<%= pkg.version %>.js': [
-            // 'build/<%= pkg.name %>-<%= pkg.version %>-templates.js', //合并后的模板文件
-            '<%=buildConfig.path%>/js/<%= pkg.name %>-<%= pkg.version %>-templates.js',
+          'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-util-<%= pkg.version %>.js': [
+            '<%=buildConfig.path%>/js/<%= pkg.name %>-util-<%= pkg.version %>-templates.js',
             'js/util/**/*.js',
-            'js/core/**/*.js',
-            'js/user/view/*.js',
-            'js/producer/view/*.js',
-            'js/user/router.js',
             'js/router.js'
+          ],
+          'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-core-<%= pkg.version %>.js': [
+            '<%=buildConfig.path%>/js/<%= pkg.name %>-core-<%= pkg.version %>-templates.js',
+            'js/core/**/*.js'
+          ],
+          'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-user-<%= pkg.version %>.js': [
+            '<%=buildConfig.path%>/js/<%= pkg.name %>-user-<%= pkg.version %>-templates.js',
+            'js/user/view/*.js',
+            'js/user/router.js'
+          ],
+          'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-producer-<%= pkg.version %>.js': [
+            '<%=buildConfig.path%>/js/<%= pkg.name %>-producer-<%= pkg.version %>-templates.js',
+            'js/producer/view/*.js'
           ]
         }
       }
@@ -167,12 +178,14 @@ module.exports = function(grunt) {
     },
     uglify: { //js文件压缩
       build: {
-        // files: {
-        src: buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.js', //压缩源文件是之前合并的buildt.js文件  
-        dest: buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.min.js' //压缩  
-          //  'build/js/<%= pkg.name %>-<%= pkg.version %>.min.js': ['build/js/<%=pkg.name%>-<%=pkg.version%>.js'],
-          //  'build/release-' + randomNum + '/js/<%= pkg.name %>-<%= pkg.version %>.min.js': ['build/js/<%=pkg.name%>-<%=pkg.version%>.js'],
-          //  }
+        files: {
+          //    src: buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.js', //压缩源文件是之前合并的buildt.js文件  
+          //    dest: buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.min.js' //压缩  
+          '<%=buildConfig.path%>/js/<%= pkg.name %>-util-<%= pkg.version %>.min.js': ['<%=buildConfig.path%>/js/<%= pkg.name %>-util-<%= pkg.version %>.js'],
+          '<%=buildConfig.path%>/js/<%= pkg.name %>-core-<%= pkg.version %>.min.js': ['<%=buildConfig.path%>/js/<%= pkg.name %>-core-<%= pkg.version %>.js'],
+          '<%=buildConfig.path%>/js/<%= pkg.name %>-user-<%= pkg.version %>.min.js': ['<%=buildConfig.path%>/js/<%= pkg.name %>-user-<%= pkg.version %>.js'],
+          '<%=buildConfig.path%>/js/<%= pkg.name %>-producer-<%= pkg.version %>.min.js': ['<%=buildConfig.path%>/js/<%= pkg.name %>-producer-<%= pkg.version %>.js'],
+        }
       }
       /*,
             uijs: {
@@ -209,13 +222,21 @@ module.exports = function(grunt) {
 
             real_path = real_path.replace('build', buidPath);
 
-            console.log(real_path);
-            var file = real_path + '.js';
-            var hash = crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex');
-            var suffix = hash.slice(0, 6);
-            console.log('suffix=' + suffix);
-            var final_name = real_path + '.' + suffix + '.js';
-            console.log(final_name);
+            var md5Str = function(filePath, fileType) {
+              var file = filePath.replace('nvwa-client', 'nvwa-client-' + fileType) + '.js';
+              var hash = crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex');
+              var suffix = hash.slice(0, 6);
+              console.log('suffix=' + suffix);
+              var final_name = filePath + '.' + suffix + '.js';
+              console.log(final_name);
+              var minFile = final_name.split('/')[final_name.split('/').length - 1];
+              return minFile;
+            }
+
+            var minFile_util = buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
+            var minFile_core = buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
+            var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
+            var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
             /*  return '<!-- build:js ' + block.dest + ' -->\n' +
                 '\t\t<script type="text/javascript" charset="utf-8" src="<%=systemConfig.get("staticResourceUrl")%>/nvwa-loader-1.0.0.js?t=<%=System.currentTimeMillis()%>"\n' +
                 '\t\tbaseUrl = "build/release-' + randomNum + '/js"\n' +
@@ -227,7 +248,7 @@ module.exports = function(grunt) {
                 '\t\tpreload = "<%=systemConfig.get("staticResourceUrl")%>/build/release-' + randomNum + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + ',achy" > </script>\n' +
                 ' <!-- endbuild -->';*/
             return '<!-- build:js ' + block.dest + ' -->\n' +
-              '\t\t<script src="nvwa-loader-1.0.0.js"\n' +
+              '\t\t<script src="nvwa-loader-1.4.0.js"\n' +
               '\t\tbaseUrl = "' + buidPath + '/js"\n' +
               '\t\tapi=""\n' +
               '\t\tskin=""\n' +
@@ -235,8 +256,9 @@ module.exports = function(grunt) {
               '\t\tlang = "zh_CN"\n' +
               '\t\tjsonp = "true"\n' +
               '\t\tnvwa-api=""\n' +
+              //   '\t\tindex = "user.index"\n' +
               //  '\t\tstaticDomain = "<%=systemConfig.get("staticDomain")%>"\n' +
-              '\t\tpreload = "' + buidPath + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + ',achy" > </script>\n' +
+              '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + ',' + minFile_producer + '" > </script>\n' +
               ' <!-- endbuild -->';
           }
         }

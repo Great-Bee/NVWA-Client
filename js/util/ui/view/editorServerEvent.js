@@ -3,7 +3,7 @@ define('js/util/ui/view/editorServerEvent', [
 
     'js/util/api/mc',
     'js/util/ui/view/button',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/modal',
     'js/util/ui/view/list',
     'js/util/ui/view/editorServerEventForm',

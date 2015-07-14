@@ -1,5 +1,5 @@
 define('js/core/element/view/export', [
-		'js/core/element/view/button', 'js/util/api/file', 'achy/widget/ui/message', 'js/util/ui/view/cover',
+		'js/core/element/view/button', 'js/util/api/file', 'js/bower_components/achy/message', 'js/util/ui/view/cover',
 	],
 	function(ButtonView, FileAPI, Message, Cover) {
 		var ExportBtnView = ButtonView.extend({

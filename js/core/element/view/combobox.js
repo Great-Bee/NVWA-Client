@@ -4,7 +4,7 @@ define('js/core/element/view/combobox', [
     'js/util/string',
     'text!js/core/element/template/combobox.tpl',
     'bootstrap-combobox',
-    'achy/widget/ui/message'
+    'js/bower_components/achy/message'
 ], function(NvwaUserAPI, BaseElementView, StringUtil, ComboboxTpl, Combobox, Message) {
     var ComboboxView = BaseElementView.extend({
         events: {

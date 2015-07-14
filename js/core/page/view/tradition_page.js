@@ -4,7 +4,7 @@ define('js/core/page/view/tradition_page', [
     'text!js/core/page/template/tradition_page.tpl',
     'js/util/api/mc',
     'js/util/dictionary',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/string',
     'js/util/ui/view/button',
     'js/util/ui/view/containerPaginationSelection',

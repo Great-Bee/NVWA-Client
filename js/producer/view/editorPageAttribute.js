@@ -3,7 +3,7 @@ define('js/producer/view/editorPageAttribute', [
 	'text!js/producer/template/editorPageAttribute.tpl',
 	'js/util/string',
 	'js/util/ui/view/modal',
-	'achy/widget/ui/message',
+	'js/bower_components/achy/message',
 	'js/util/api/mc',
 	'js/producer/view/editorContainerAttribute',
 	'js/core/element/view/multipleContainerSelect',

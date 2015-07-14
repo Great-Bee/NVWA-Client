@@ -6,7 +6,7 @@ define('js/producer/view/editorConditionForm', [
     'js/util/api/oi',
     'js/util/api/mc',
     'js/util/ui/view/modal',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/dropButton',
     'js/util/ui/view/fieldSelection',
     'js/util/dictionary',

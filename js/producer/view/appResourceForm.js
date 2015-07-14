@@ -5,7 +5,7 @@ define('js/producer/view/appResourceForm', [
     'js/util/api/producer',
     'js/util/ui/view/modal',
     'js/util/api/mc',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/string'
 ], function(Backbone, formTpl, Producer, Modal, MC, Message, StringUtil) {
     var AppResourceFormView = Backbone.View.extend({

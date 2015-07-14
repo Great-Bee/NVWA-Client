@@ -4,7 +4,7 @@
 define('js/producer/view/containerForm', [
     'text!js/producer/template/containerForm.tpl',
     'js/producer/view/base_producer_form',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/string',
     'js/util/api/producer',
     'js/util/api/oi',
