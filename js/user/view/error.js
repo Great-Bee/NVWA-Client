@@ -6,7 +6,7 @@ define('js/user/view/error', [
 	'backbone',
 
 	'text!js/user/template/error.tpl',
-	'css!js/bower_components/error/css/error',
+	'text!js/bower_components/error/css/error.css',
 	'js/bower_components/error/js/three',
 ], function(Backbone, ErrorTempl) {
 	//

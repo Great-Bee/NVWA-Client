@@ -4,7 +4,7 @@ define('js/core/element/view/code', [
     'text!js/core/element/template/code.tpl',
     'js/bower_components/codemirror/lib/codemirror',
     'js/bower_components/codemirror/mode/javascript/javascript',
-    'css!bower_components/codemirror/lib/codemirror'
+    'text!bower_components/codemirror/lib/codemirror.css'
 
 ], function(BaseElementView, StringUtil, Tpl, CodeMirror) {
     var CodeEditorView = BaseElementView.extend({

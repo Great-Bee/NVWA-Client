@@ -5,7 +5,7 @@ define('js/core/element/view/radio', [
     'js/util/dictionary',
     'text!js/core/element/template/radio.tpl',
     'radio',
-    'css!bower_components/iCheck/skins/all'
+    'text!bower_components/iCheck/skins/all.css'
 ], function(BaseElementView, StringUtil, Dictionary, RadioTpl, RadioControl) {
     var RadioView = BaseElementView.extend({
         events: {

@@ -4,7 +4,7 @@ define('js/core/element/view/tree', [
 	'text!js/core/element/template/tree.tpl',
 	'js/core/module/nvwaUser',
 	'js/bower_components/bootstrap-treeview/src/js/bootstrap-treeview',
-	'css!bower_components/bootstrap-treeview/src/css/bootstrap-treeview'
+	'text!bower_components/bootstrap-treeview/src/css/bootstrap-treeview.css'
 ], function(BaseElementView, TreeTpl, NvwaUserAPI, TreeGridView) {
 	var TreeView = BaseElementView.extend({
 		events: {

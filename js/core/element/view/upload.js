@@ -4,7 +4,7 @@ define('js/core/element/view/upload', [
     'text!js/core/element/template/upload.tpl',
     'text!js/core/element/template/uploadItem.tpl',
     'js/bower_components/jQuery-File-Upload/js/jquery.fileupload',
-    'css!bower_components/jQuery-File-Upload/css/jquery.fileupload'
+    'text!bower_components/jQuery-File-Upload/css/jquery.fileupload.css'
 ], function(BaseElementView, UploadTpl, UploadItemTpl) {
     var UploadView = BaseElementView.extend({
         events: {

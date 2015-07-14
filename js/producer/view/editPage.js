@@ -6,7 +6,7 @@ define('js/producer/view/editPage', [
     'js/bower_components/achy/message',
     'text!js/producer/template/editPage.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
-    'css!bower_components/Slidebars/distribution/0.10.2/slidebars',
+    'text!bower_components/Slidebars/distribution/0.10.2/slidebars.css',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 ], function(Backbone, MCModel, Dictionary, Message, gridEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
     var EditorContainerGridView = Backbone.View.extend({

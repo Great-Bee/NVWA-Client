@@ -5,7 +5,7 @@ define('js/core/element/view/umeditor', [
     'text!js/core/element/template/umeditor.tpl',
     'js/bower_components/umeditor/umeditor.config',
     'js/bower_components/umeditor/umeditor',
-    'css!bower_components/umeditor/themes/default/css/umeditor'
+    'text!bower_components/umeditor/themes/default/css/umeditor.css'
     // 'js/bower_components/ueditor/lang/zh-cn/zh-cn',
 ], function(BaseElementView, StringUtil, UMEditorTpl, UEditorConfig, UEditorALL) {
     var UMEditorView = BaseElementView.extend({

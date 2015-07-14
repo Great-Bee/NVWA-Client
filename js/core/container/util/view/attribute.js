@@ -17,7 +17,7 @@
 	'js/util/ui/view/editorEvent',
 	'js/util/ui/control',
 	'js/util/ui/view/columnFormat',
-	'datetimepicker', 'datetimepicker_lang', 'css!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min'
+	'datetimepicker', 'datetimepicker_lang', 'text!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
 ], function(
 	Backbone,
 	AttributeTpl,

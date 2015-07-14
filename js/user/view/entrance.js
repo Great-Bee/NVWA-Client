@@ -7,9 +7,9 @@
         'js/core/element/view/base_element',
         'js/util/api/user',
         'text!js/user/template/entrance.tpl',
-        'css!js/bower_components/user-login/css/bootstrap',
-        'css!js/bower_components/user-login/css/bootstrap-responsive',
-        'css!js/bower_components/user-login/css/user-login',
+        'text!js/bower_components/user-login/css/bootstrap.css',
+        'text!js/bower_components/user-login/css/bootstrap-responsive.css',
+        'text!js/bower_components/user-login/css/user-login.css',
         'js/bower_components/jquery/dist/jquery',
     ], function(BaseElementView, User, EntranceTpl) {
         var UserLoginView = BaseElementView.extend({

@@ -8,7 +8,7 @@ define('js/producer/view/editor_container_form', [
     'js/util/businessUtil',
     'text!js/producer/template/editorContainerForm.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
-    'css!bower_components/Slidebars/distribution/0.10.2/slidebars',
+    'text!bower_components/Slidebars/distribution/0.10.2/slidebars.css',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 ], function(Backbone, MCModel, Dictionary, Message, StringUtil, BusinessUtil, formEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
     var EditorContainerFormView = Backbone.View.extend({

@@ -5,7 +5,7 @@ define('js/producer/view/preview_container_grid', [
     'js/util/dictionary',
     'text!js/producer/template/previewContainerGrid.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
-    'css!bower_components/Slidebars/distribution/0.10.2/slidebars',
+    'text!bower_components/Slidebars/distribution/0.10.2/slidebars.css',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 ], function(Backbone, MCModel, Dictionary, gridEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
     var EditorContainerGridView = Backbone.View.extend({

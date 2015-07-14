@@ -8,7 +8,7 @@ define('js/core/container/util/view/column', [
 	'js/core/container/util/view/attribute',
 	'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 	'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
-	'css!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
+	'text!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css',
 ], function(Backbone, StringUtil, ColumnTpl, MC, Modal, Message, AttributeView, CollapseView) {
 	var ColumnView = Backbone.View.extend({
 		events: {

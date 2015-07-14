@@ -11,7 +11,7 @@ define('js/core/page/view/tradition_page', [
     'js/util/ui/view/modal',
     'js/core/container/util/view/attribute',
     'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
-    'css!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
+    'text!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css',
 ], function(BasePageView, PageTpl, MC, DictionaryUtil, Message, StringUtil, ButtonView, ContainerSelection, Modal, AttributeView) {
     var PageView = BasePageView.extend({
         events: {

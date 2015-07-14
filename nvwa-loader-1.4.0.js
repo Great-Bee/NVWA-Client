@@ -213,6 +213,7 @@ requirejs.config({
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         lodash: 'bower_components/lodash/dist/lodash.min',
+        'jqueryui': 'bower_components/jqueryui/jquery-ui.min',
 
         // underscore: 'lib/lodash.underscore.min',
         // jqueryui: 'lib/jquery.ui-1.10.3.min',

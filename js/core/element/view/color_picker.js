@@ -2,7 +2,7 @@ define('js/core/element/view/color_picker', [
 	'js/util/string',
 	'js/core/element/view/text',
 	'js/bower_components/colpick/js/colpick',
-	'css!bower_components/colpick/css/colpick'
+	'text!bower_components/colpick/css/colpick.css'
 ], function(StringUtil, TextView) {
 	var ColorPickerView = TextView.extend({
 		events: {},

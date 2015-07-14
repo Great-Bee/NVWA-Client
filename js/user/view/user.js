@@ -5,9 +5,9 @@ define('js/user/view/user', [
     'backbone',
 
     'text!js/user/template/userLayout.tpl',
-    'css!js/bower_components/user-index/css/bootstrap.min',
-    'css!js/bower_components/user-index/css/bootstrap-responsive.min',
-    'css!js/bower_components/user-index/css/user-index',
+    'text!js/bower_components/user-index/css/bootstrap.min.css',
+    'text!js/bower_components/user-index/css/bootstrap-responsive.min.css',
+    'text!js/bower_components/user-index/css/user-index.css',
 ], function(Backbone, UserTpl) {
     var UserView = Backbone.View.extend({
 

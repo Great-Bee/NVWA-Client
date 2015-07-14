@@ -1,7 +1,7 @@
 define('js/core/element/view/tags', [
 	'backbone', 'js/core/element/view/text',
 	'tags_input',
-	'css!bower_components/bootstrap-tagsinput/build/bootstrap-tagsinput'
+	'text!bower_components/bootstrap-tagsinput/build/bootstrap-tagsinput.css'
 ], function(Backbone, TextView) {
 	var TagsView = TextView.extend({
 		events: {},
