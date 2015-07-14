@@ -9,7 +9,7 @@ define('js/producer/view/producer', [
     var ProducerView = Backbone.View.extend({
         initialize: function(options, config) {},
         render: function() {
-            this.$el.html(tpl(ProducerTpl,{}));
+            this.$el.html(tpl(ProducerTpl, {}));
             return this;
         },
         setBarActive: function(module) {

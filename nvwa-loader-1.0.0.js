@@ -136,13 +136,14 @@ if (skin && skin.length > 0) {
 
 //NVWA API
 var nvwaAPI = window._loader.getAttribute('nvwa-api');
+var baseUrl=staticDomain+window._loader.getAttribute('baseUrl')||staticDomain + 'js';
 if(!nvwaAPI){
     nvwaAPI = document.location.origin;
 }
 window._nvwaAPI = nvwaAPI;
 
 requirejs.config({
-    baseUrl: staticDomain + 'js',
+    baseUrl: baseUrl,
     paths: {
         //Path
         // lib: 'lib',
@@ -153,12 +154,14 @@ requirejs.config({
         // business: bizBase,
 
         'js':'../js',
+        'build':'../../build',
 
         //achy
         'achy': 'bower_components/achy/achy',
         'yestrap': '../css/yestrap',
         'yestrap_light': '../css/yestrap_light',
         'main': '../css/main',
+        'text': "bower_components/text",
 
         bootstrap: 'bower_components/bootstrap/dist',
         bootstrapjs: 'bower_components/bootstrap/dist/js/bootstra.min',

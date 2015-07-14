@@ -1,4 +1,5 @@
 define('index', [
+    //   'text',
     'backbone',
     'router', //路由定义
     'js/util/error', //异常搜集
@@ -7,9 +8,10 @@ define('index', [
     'js/util/dictionary', //Dictionary
     'js/util/array', //ArrayUtil
     'js/util/cache', //Local cache
-    'js/util/events', //events规范
-    'css!yestrap', //Yestrap CSS
-    'css!main' //Main.css
+    'js/util/events' //events规范
+
+    //  'css!yestrap', //Yestrap CSS
+    //   'css!main' //Main.css
 ], function(Backbone, Router) {
     return {
         init: function() {
