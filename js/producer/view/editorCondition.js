@@ -3,7 +3,7 @@ define('js/producer/view/editorCondition', [
 
     'js/util/api/mc',
     'js/util/ui/view/button',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/modal',
     'js/util/ui/view/list',
     'js/producer/view/editorConditionForm'

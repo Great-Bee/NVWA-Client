@@ -2,7 +2,7 @@ define('js/core/container/util/view/pagination', [
     'backbone',
     'js/util/string',
     'js/core/module/nvwaUser',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/modal',
     'js/util/api/mc',
     'js/core/container/util/view/attribute',

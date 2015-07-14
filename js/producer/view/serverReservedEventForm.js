@@ -6,7 +6,7 @@ define('js/producer/view/serverReservedEventForm', [
     'js/util/ui/view/modal',
     'js/util/dictionary',
     'js/util/ui/view/dropButton',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/api/mc',
     'js/util/string'
 ], function(Backbone, formTpl, Producer, Modal, Dictionary, DropButtonView, Message, MC, StringUtil) {

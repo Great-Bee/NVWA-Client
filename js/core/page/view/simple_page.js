@@ -6,7 +6,7 @@ define('js/core/page/view/simple_page', [
     'js/util/ui/view/button',
     'js/util/ui/view/containerPaginationSelection',
     'js/util/ui/view/modal',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
 ], function(BasePageView, PageTpl, MC, ButtonView, ContainerSelection, Modal, Message) {
     var PageView = BasePageView.extend({
         events: {},

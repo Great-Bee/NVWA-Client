@@ -1,7 +1,7 @@
 define('js/producer/view/serverReservedEvent', [
         'backbone',
         'js/util/ui/view/button',
-        'achy/widget/ui/message',
+        'js/bower_components/achy/message',
         'js/util/ui/view/modal',
         'js/util/api/producer',
         'js/util/api/mc',

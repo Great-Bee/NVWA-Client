@@ -4,7 +4,7 @@ define('js/core/element/view/advanced_import', [
 		'js/core/element/view/import',
 		'js/core/element/view/downloadImportTemplate',
 		'js/util/api/file',
-		'achy/widget/ui/message',
+    	'js/bower_components/achy/message',		
 		'js/util/ui/view/cover',
 		'js/util/ui/view/modal',
 	],

@@ -3,7 +3,7 @@ define('js/producer/view/customScriptsParametersForm', [
     'js/producer/view/base_producer_form',
     'js/util/api/mc',
     'js/util/ui/view/modal',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/ui/view/dropButton',
     'js/util/dictionary',
     'js/core/element/view/code',

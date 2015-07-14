@@ -1,7 +1,7 @@
 define('js/core/element/view/base_element', [
 	'backbone',
 	'js/core/module/nvwaUser',
-	'achy/widget/ui/message'
+    'js/bower_components/achy/message'	
 ], function(Backbone, NvwaUserAPI, Message) {
 	var BaseElementView = Backbone.View.extend({
 		initialize: function(options, eleBean, attributes, eves, editAble) {

@@ -3,7 +3,7 @@ define('js/producer/view/editPage', [
 
     'js/util/api/mc',
     'js/util/dictionary',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'text!js/producer/template/editPage.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
     'css!bower_components/Slidebars/distribution/0.10.2/slidebars',

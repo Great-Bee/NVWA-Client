@@ -1,6 +1,6 @@
 define('js/util/ui/view/scriptPaginationSelection', [
         'js/util/ui/view/button',
-        'achy/widget/ui/message',
+        'js/bower_components/achy/message',
         'js/util/ui/view/modal',
         'js/util/api/mc',
         'js/util/dictionary',

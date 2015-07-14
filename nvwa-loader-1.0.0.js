@@ -155,13 +155,13 @@ requirejs.config({
 
         'js':'../js',
         'build':'../../build',
-
+		'text': "bower_components/text",
         //achy
-        'achy': 'bower_components/achy/achy',
+        // 'achy': 'bower_components/achy/achy',
         'yestrap': '../css/yestrap',
         'yestrap_light': '../css/yestrap_light',
         'main': '../css/main',
-        'text': "bower_components/text",
+        
 
         bootstrap: 'bower_components/bootstrap/dist',
         bootstrapjs: 'bower_components/bootstrap/dist/js/bootstra.min',
@@ -232,9 +232,9 @@ requirejs.config({
 		//	deps: ['jquery'],
             exports: 'Backbone'
         },
-        'underscore': {
-            exports: '_'
-        },
+        // 'underscore': {
+        //     exports: '_'
+        // },
         'mustache': {
             exports: 'Mustache'
         },

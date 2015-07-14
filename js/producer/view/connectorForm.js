@@ -6,7 +6,7 @@ define('js/producer/view/connectorForm', [
     'js/util/api/oi',
     'js/util/ui/view/modal',
     'js/util/ui/view/dropButton',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/dictionary',
     'js/util/string',
     'js/util/convert'

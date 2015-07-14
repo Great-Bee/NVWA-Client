@@ -4,7 +4,7 @@ define('js/core/container/util/view/column', [
 	'text!js/core/container/util/template/column.tpl',
 	'js/util/api/mc',
 	'js/util/ui/view/modal',
-	'achy/widget/ui/message',
+	'js/bower_components/achy/message',
 	'js/core/container/util/view/attribute',
 	'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 	'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',

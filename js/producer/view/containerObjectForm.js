@@ -4,7 +4,7 @@ define('js/producer/view/containerObjectForm', [
     'js/util/api/producer',
     'js/util/ui/view/modal',
     'js/util/api/mc',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/string'
 ], function(formTpl, BaseProducerForm, Producer, Modal, MC, Message, StringUtil) {
     var ContainerObjectFormView = BaseProducerForm.extend({

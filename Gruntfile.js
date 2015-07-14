@@ -132,7 +132,7 @@ module.exports = function(grunt) {
           'build/release-<%=buildConfig.randomNum%>/css/<%= pkg.name %>-<%= pkg.version %>.css': [
             'css/main.css',
             'css/yestrap.css',
-            'css/yestrap_light.css'
+            // 'css/yestrap_light.css'
           ]
         }
       },
@@ -227,7 +227,7 @@ module.exports = function(grunt) {
                 '\t\tpreload = "<%=systemConfig.get("staticResourceUrl")%>/build/release-' + randomNum + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + ',achy" > </script>\n' +
                 ' <!-- endbuild -->';*/
             return '<!-- build:js ' + block.dest + ' -->\n' +
-              '\t\t<script src="nvwa-loader-1.0.0.js"\n' +
+              '\t\t<script src="nvwa-loader-1.4.0.js"\n' +
               '\t\tbaseUrl = "' + buidPath + '/js"\n' +
               '\t\tapi=""\n' +
               '\t\tskin=""\n' +
@@ -236,7 +236,7 @@ module.exports = function(grunt) {
               '\t\tjsonp = "true"\n' +
               '\t\tnvwa-api=""\n' +
               //  '\t\tstaticDomain = "<%=systemConfig.get("staticDomain")%>"\n' +
-              '\t\tpreload = "' + buidPath + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + ',achy" > </script>\n' +
+              '\t\tpreload = "' + buidPath + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + '" > </script>\n' +
               ' <!-- endbuild -->';
           }
         }

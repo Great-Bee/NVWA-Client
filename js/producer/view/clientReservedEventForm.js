@@ -6,7 +6,7 @@ define('js/producer/view/clientReservedEventForm', [
     'js/util/ui/view/modal',
     'js/util/dictionary',
     'js/util/ui/view/dropButton',
-    'achy/widget/ui/message',
+    'js/bower_components/achy/message',
     'js/util/api/mc',
     'js/util/string',
     'js/util/convert'

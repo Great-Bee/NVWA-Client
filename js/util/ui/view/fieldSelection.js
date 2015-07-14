@@ -7,7 +7,7 @@ define('js/util/ui/view/fieldSelection', [
         'text!js/util/ui/template/fieldSelection.tpl',
         'text!js/util/ui/template/fieldSelectionBody.tpl',
         'text!js/util/ui/template/fieldSelectionFieldItem.tpl',
-        'achy/widget/ui/message',
+        'js/bower_components/achy/message',
         'js/util/ui/view/modal',
         'js/util/api/oi'
     ],

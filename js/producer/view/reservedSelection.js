@@ -3,7 +3,7 @@ define('js/producer/view/reservedSelection', [
 
         'text!js/producer/template/reservedSelection.tpl',
         'js/util/ui/view/modal',
-        'achy/widget/ui/message',
+        'js/bower_components/achy/message',
     ],
     function(Backbone, ReservedSelectionTpl, Modal, Message) {
         var reservedSelectionView = Backbone.View.extend({

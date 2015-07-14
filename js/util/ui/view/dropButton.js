@@ -1,4 +1,4 @@
-define('js/util/ui/view/dropButton', ['bootstrap-combobox', 'achy/widget/ui/message'], function(Combobox, Message) {
+define('js/util/ui/view/dropButton', ['bootstrap-combobox', 'js/bower_components/achy/message'], function(Combobox, Message) {
     var DropButtonView = Backbone.View.extend({
         events: {},
         initialize: function(options, config) {
