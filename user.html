@@ -4,15 +4,23 @@
         <meta charset="UTF-8">
         <title>NVWA 制作系统</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <script src="nvwa-loader-1.0.0.js"
-                api=""
-                skin=""
-                index="user/index"
-                debug="true"
-                lang="zh_CN"
-                jsonp="true"
-                preload="achy"></script>
+         <!-- build:css build/css/nvwa-client-1.0.0.min-->
+		<link rel="stylesheet" href="build/release-c9ea04/css/nvwa-client-1.0.0.min.22a6a5.css">
+ <!-- endbuild -->
+  <!-- build:jsUser build/js/nvwa-client-1.0.0.min -->
+		<script src="nvwa-loader-1.0.0.js"
+		baseUrl = "build/release-c9ea04/js"
+		api=""
+		skin=""
+		debug = "true"
+		lang = "zh_CN"
+		jsonp = "true"
+		nvwa-api=""
+		preload = "build/release-c9ea04/js/nvwa-client-util-1.0.0.min.be817c.js,build/release-c9ea04/js/nvwa-client-core-1.0.0.min.c77c3f.js,build/release-c9ea04/js/nvwa-client-user-1.0.0.min.c1aa93.js" > </script>
+ <!-- endbuild -->
         <style>
+
+       
            .overlay {
             background: #080808;
             position: fixed;
