@@ -56,15 +56,15 @@ define('js/user/view/viewPage', [
             var pageclientEvents = t.pageView['clientEvents'];
             var pageElementViews = t.pageView['elementViews'];
             //渲染事件
-            requirejs(["js/util/ui/view/editorEvent"], function(EditorEvent) {
-                new EditorEvent({
-                    el: $('#event')
-                }, {
-                    containerBean: pageBean,
-                    target: Dictionary.EventTargetType.page,
-                    targetId: pageBean['id']
-                });
-            });
+            /*     requirejs(["js/util/ui/view/editorEvent"], function(EditorEvent) {
+                     new EditorEvent({
+                         el: $('#event')
+                     }, {
+                         containerBean: pageBean,
+                         target: Dictionary.EventTargetType.page,
+                         targetId: pageBean['id']
+                     });
+                 });*/
             //渲染container
             var pageContainer = $('#editor_page');
             requirejs(["js/core/page/view/" + pageBean.type], function(PageView) {
