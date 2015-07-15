@@ -1,4 +1,4 @@
-<div class="panel panel-${attributes.style}" pageAlias="${pageBean.alias}" >    
+<div class="panel panel-${attributes.style}" pageAlias="${pageBean.alias}" >
     <!--表单部署区域-->        
     <div class="row<#if(editAble){#> alert alert-info<#}#>" style="margin-left:0px;margin-right:0px;">             
         <div   class="col-md-12"  style="padding-left:0px;padding-right:0px;"><!--搜索框-->

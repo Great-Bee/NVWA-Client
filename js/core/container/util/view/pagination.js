@@ -6,7 +6,8 @@ define('js/core/container/util/view/pagination', [
     'js/util/ui/view/modal',
     'js/util/api/mc',
     'js/core/container/util/view/attribute',
-    'text!js/core/container/util/template/pagination.tpl'
+    'text!js/core/container/util/template/pagination.tpl',
+    'jqueryui'
 ], function(Backbone, StringUtil, NvwaUser, Message, Modal, MC, AttributeView, PaginationTpl) {
     var GridView = Backbone.View.extend({
         events: {

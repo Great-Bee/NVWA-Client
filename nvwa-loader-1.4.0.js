@@ -204,7 +204,7 @@ requirejs.config({
         'yestrap': '../css/yestrap',
         'yestrap_light': '../css/yestrap_light',
         'main': '../css/main',
-        'user.index':'../js/user/index',
+    //    'user.index':'user/index',
         'bootstrap.modal': 'bower_components/bootstrap-modal/js/bootstrap-modal',
         
 

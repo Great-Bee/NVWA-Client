@@ -11,6 +11,7 @@ define('js/user/router', [
 			"": "index",
 			"index": "index",
 			"login": "userLogin",
+            "page/view/:id":"viewPageLayout",
 			"error": "error"
 		},
 
@@ -22,6 +23,7 @@ define('js/user/router', [
 			this.layout_view = new UserLayoutView({
 				el: document.body
 			});
+
 			this.layout_view.render();
 		},
 
@@ -39,6 +41,21 @@ define('js/user/router', [
 				entranceView.render();
 			});
 		},
+        viewPageLayout: function(pageAlias) {
+            var t = this;
+            t._init();
+            _log(pageAlias);
+            var container = $(".container");
+            requirejs(["js/user/view/viewPage"], function(ViewPageLayoutView) {
+                var viewPageLayoutView = new ViewPageLayoutView({
+                    el: container,
+                    routes: t
+                }, {
+                    pageAlias: pageAlias
+                });
+                t.layoutView.setBarActive('page');
+            });
+        },
 
 		//error page
 		error: function() {

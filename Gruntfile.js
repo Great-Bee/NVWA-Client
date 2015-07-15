@@ -133,8 +133,12 @@ module.exports = function(grunt) {
         //dest: 'build/css/<%= pkg.name %>-<%= pkg.version %>.css' //生成到grunt项目路径下的dist文件夹下为all.css  
         files: {
           'build/release-<%=buildConfig.randomNum%>/css/<%= pkg.name %>-<%= pkg.version %>.css': [
-            'css/main.css',
             'css/yestrap.css',
+            'css/main.css',
+            'js/bower_components/user-index/css/bootstrap.min.css', //user端css
+            'js/bower_components/user-index/css/bootstrap-responsive.min.css', //user端css
+            'js/bower_components/user-index/css/user-index.css', //user端css
+            'js/bower_components/user-login/css/user-login.css' //user端css
             // 'css/yestrap_light.css'
           ]
         }
@@ -256,7 +260,7 @@ module.exports = function(grunt) {
               '\t\tlang = "zh_CN"\n' +
               '\t\tjsonp = "true"\n' +
               '\t\tnvwa-api=""\n' +
-              //   '\t\tindex = "user.index"\n' +
+              '\t\tindex = "user/index"\n' +
               //  '\t\tstaticDomain = "<%=systemConfig.get("staticDomain")%>"\n' +
               '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + ',' + minFile_producer + '" > </script>\n' +
               ' <!-- endbuild -->';

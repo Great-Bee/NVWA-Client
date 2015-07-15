@@ -1,4 +1,4 @@
-define('js/user/index', [
+define('user/index', [
     'backbone',
     'js/user/router', //路由定义user
     'js/util/error', //异常搜集
