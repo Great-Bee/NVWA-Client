@@ -176,26 +176,7 @@ window._nvwaAPI = nvwaAPI;
 
 requirejs.config({
     baseUrl: baseUrl,
-    paths: {
-        //Path
-        // lib: 'lib',
-        // plugin: 'plugin',
-        // compressed: 'compressed',
-        // achilles: '..',
-        // business: bizBase,
-
-        //old
-        // 'build':'../../build',
-        // 'js':'../js',
-        // 'css':'../css',
-        // 'lib':'../lib',
-        // 'text': "../lib/text",
-        // 'fileUpload':'../lib/jQuery-File-Upload/js/jquery.fileupload',
-        // 'jquery.ui.widget':'../lib/jQuery-File-Upload/js/vendor/jquery.ui.widget',
-        // 'jquery':'../lib/jquery/jquery-2.1.3.min',
-        // 'dateTimePicker':'../lib/jquery-datetimepicker/jquery.datetimepicker'
-
-		//new
+    paths: {      
         'js':'../js',
         'build':'../../build',
 		'text': "bower_components/text",
@@ -212,12 +193,6 @@ requirejs.config({
         backbone: 'bower_components/backbone/backbone',
         lodash: 'bower_components/lodash/dist/lodash.min',
         'jqueryui': 'bower_components/jqueryui/jquery-ui.min',
-
-        // underscore: 'lib/lodash.underscore.min',
-        // jqueryui: 'lib/jquery.ui-1.10.3.min',
-        // d3: 'lib/d3/d3.min',
-        // angular: 'lib/angular.min',
-
         'marionette': 'bower_components/marionette/lib/core/backbone.marionette',
         'backbone.wreqr':  'bower_components/backbone.wreqr/lib/backbone.wreqr',
         'backbone.babysitter':  'bower_components/backbone.babysitter/lib/backbone.babysitter',

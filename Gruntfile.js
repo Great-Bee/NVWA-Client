@@ -48,6 +48,17 @@ module.exports = function(grunt) {
   grunt.log.writeln("任务执行详情：");
   grunt.log.writeln("");
 
+  var md5Str = function(filePath, fileType) {
+    var file = filePath.replace('nvwa-client', 'nvwa-client-' + fileType) + '.js';
+    var hash = crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex');
+    var suffix = hash.slice(0, 6);
+    console.log('suffix=' + suffix);
+    var final_name = filePath + '.' + suffix + '.js';
+    console.log(final_name);
+    var minFile = final_name.split('/')[final_name.split('/').length - 1];
+    return minFile;
+  }
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -197,7 +208,7 @@ module.exports = function(grunt) {
             }*/
     },
     usemin: {
-      html: ['index.html','user.html'],
+      html: ['index.html', 'user.html'],
       options: {
         blockReplacements: {
           css: function(block) {
@@ -217,29 +228,18 @@ module.exports = function(grunt) {
               '\t\t<link rel="stylesheet" href="' + final_name + '">\n' +
               ' <!-- endbuild -->';
           },
-          js: function(block) {
+          jsProducer: function(block) {
             var real_path = block.dest;
             console.log("real_path" + real_path);
 
             real_path = real_path.replace('build', buidPath);
 
-            var md5Str = function(filePath, fileType) {
-              var file = filePath.replace('nvwa-client', 'nvwa-client-' + fileType) + '.js';
-              var hash = crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex');
-              var suffix = hash.slice(0, 6);
-              console.log('suffix=' + suffix);
-              var final_name = filePath + '.' + suffix + '.js';
-              console.log(final_name);
-              var minFile = final_name.split('/')[final_name.split('/').length - 1];
-              return minFile;
-            }
-
             var minFile_util = buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
             var minFile_core = buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
             var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
             var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
-   
-            return '<!-- build:js ' + block.dest + ' -->\n' +
+
+            return '<!-- build:jsProducer ' + block.dest + ' -->\n' +
               '\t\t<script src="' + nvwaLoaderVersion + '.js"\n' +
               '\t\tbaseUrl = "' + buidPath + '/js"\n' +
               '\t\tapi=""\n' +
@@ -247,11 +247,35 @@ module.exports = function(grunt) {
               '\t\tdebug = "true"\n' +
               '\t\tlang = "zh_CN"\n' +
               '\t\tjsonp = "true"\n' +
-              '\t\tnvwa-api=""\n' +              
+              '\t\tnvwa-api=""\n' +
               // '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + '" > </script>\n' +              
               '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_producer + '" > </script>\n' +
               ' <!-- endbuild -->';
-          }          
+          },
+          jsUser: function(block) {
+            var real_path = block.dest;
+            console.log("real_path" + real_path);
+
+            real_path = real_path.replace('build', buidPath);           
+
+            var minFile_util = buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
+            var minFile_core = buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
+            var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
+            var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
+
+            return '<!-- build:jsUser ' + block.dest + ' -->\n' +
+              '\t\t<script src="' + nvwaLoaderVersion + '.js"\n' +
+              '\t\tbaseUrl = "' + buidPath + '/js"\n' +
+              '\t\tapi=""\n' +
+              '\t\tskin=""\n' +
+              '\t\tdebug = "true"\n' +
+              '\t\tlang = "zh_CN"\n' +
+              '\t\tjsonp = "true"\n' +
+              '\t\tnvwa-api=""\n' +
+              '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + '" > </script>\n' +
+              // '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_producer + '" > </script>\n' +
+              ' <!-- endbuild -->';
+          }
         }
       }
     },
