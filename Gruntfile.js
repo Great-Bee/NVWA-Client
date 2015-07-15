@@ -201,7 +201,7 @@ module.exports = function(grunt) {
             }*/
     },
     usemin: {
-      html: 'index.html',
+      html: ['index.html', 'user.html'],
       options: {
         blockReplacements: {
           css: function(block) {
@@ -216,9 +216,7 @@ module.exports = function(grunt) {
             console.log('suffix=' + suffix);
             var final_name = real_path + '.' + suffix + '.css';
             console.log(final_name);
-            /*  return '<!-- build:css ' + block.dest + '-->\n' +
-                '\t\t<link rel="stylesheet" href="<%=systemConfig.get("staticResourceUrl")%>/' + final_name + '">\n' +
-                ' <!-- endbuild -->';*/
+
             return '<!-- build:css ' + block.dest + '-->\n' +
               '\t\t<link rel="stylesheet" href="' + final_name + '">\n' +
               ' <!-- endbuild -->';
@@ -244,16 +242,7 @@ module.exports = function(grunt) {
             var minFile_core = buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
             var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
             var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
-            /*  return '<!-- build:js ' + block.dest + ' -->\n' +
-                '\t\t<script type="text/javascript" charset="utf-8" src="<%=systemConfig.get("staticResourceUrl")%>/nvwa-loader-1.0.0.js?t=<%=System.currentTimeMillis()%>"\n' +
-                '\t\tbaseUrl = "build/release-' + randomNum + '/js"\n' +
-                '\t\tdebug = "true"\n' +
-                '\t\tlang = "zh_CN"\n' +
-                '\t\tjsonp = "true"\n' +
-                '\t\tnvwa-api=""\n' +
-                //  '\t\tstaticDomain = "<%=systemConfig.get("staticDomain")%>"\n' +
-                '\t\tpreload = "<%=systemConfig.get("staticResourceUrl")%>/build/release-' + randomNum + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + ',achy" > </script>\n' +
-                ' <!-- endbuild -->';*/
+
             return '<!-- build:js ' + block.dest + ' -->\n' +
               '\t\t<script src="' + nvwaLoaderVersion + '.js"\n' +
               '\t\tbaseUrl = "' + buidPath + '/js"\n' +
