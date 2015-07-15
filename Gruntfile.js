@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   var hashTmp = crypto.createHash('md5').update(String(Math.random() * 10000000000000000)).digest('hex');
   var randomNum = hashTmp.slice(0, 6);
   var buidPath = 'build/release-' + randomNum;
+  var nvwaLoaderVersion = 'nvwa-loader-1.0.0.js';
   var concat_css_file_path = buidPath + '/css/<%= pkg.name %>-<%= pkg.version %>.css';
   var concat_js_file_path = buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.js';
   grunt.log.writeln("===============" + randomNum + "===========");
@@ -248,7 +249,7 @@ module.exports = function(grunt) {
                 '\t\tpreload = "<%=systemConfig.get("staticResourceUrl")%>/build/release-' + randomNum + '/js/' + final_name.split('/')[final_name.split('/').length - 1] + ',achy" > </script>\n' +
                 ' <!-- endbuild -->';*/
             return '<!-- build:js ' + block.dest + ' -->\n' +
-              '\t\t<script src="nvwa-loader-1.4.0.js"\n' +
+              '\t\t<script src="' + nvwaLoaderVersion + '.js"\n' +
               '\t\tbaseUrl = "' + buidPath + '/js"\n' +
               '\t\tapi=""\n' +
               '\t\tskin=""\n' +
