@@ -145,12 +145,15 @@ module.exports = function(grunt) {
         //dest: 'build/css/<%= pkg.name %>-<%= pkg.version %>.css' //生成到grunt项目路径下的dist文件夹下为all.css  
         files: {
           'build/release-<%=buildConfig.randomNum%>/css/<%= pkg.name %>-<%= pkg.version %>.css': [
+
+            //  'js/bower_components/user-index/css/bootstrap.min.css', //user端css
+            //   'js/bower_components/user-index/css/bootstrap-responsive.min.css', //user端css
+            // 'js/bower_components/user-index/css/user-index.css', //user端css
+            //  'js/bower_components/user-login/css/user-login.css', //user端css
             'css/yestrap.css',
             'css/main.css',
-            'js/bower_components/user-index/css/bootstrap.min.css', //user端css
-            'js/bower_components/user-index/css/bootstrap-responsive.min.css', //user端css
-            'js/bower_components/user-index/css/user-index.css', //user端css
-            'js/bower_components/user-login/css/user-login.css' //user端css
+
+
             // 'css/yestrap_light.css'
           ]
         }
@@ -240,7 +243,7 @@ module.exports = function(grunt) {
 
             var minFile_util = buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
             var minFile_core = buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
-         //   var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
+            //   var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
             var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
 
             return '<!-- build:jsProducer ' + block.dest + ' -->\n' +
@@ -259,12 +262,12 @@ module.exports = function(grunt) {
             var real_path = block.dest;
             console.log("real_path" + real_path);
 
-            real_path = real_path.replace('build', buidPath);           
+            real_path = real_path.replace('build', buidPath);
 
             var minFile_util = buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
             var minFile_core = buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
             var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
-        //    var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
+            //    var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
 
             return '<!-- build:jsUser ' + block.dest + ' -->\n' +
               '\t\t<script src="' + nvwaLoaderVersion + '.js"\n' +

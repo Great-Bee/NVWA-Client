@@ -7,9 +7,9 @@
         'js/core/element/view/base_element',
         'js/util/api/user',
         'text!js/user/template/entrance.tpl',
-        'text!js/bower_components/user-login/css/bootstrap.css',
-        'text!js/bower_components/user-login/css/bootstrap-responsive.css',
-        'text!js/bower_components/user-login/css/user-login.css',
+        //   'text!js/bower_components/user-login/css/bootstrap.css',
+        //    'text!js/bower_components/user-login/css/bootstrap-responsive.css',
+        //    'text!js/bower_components/user-login/css/user-login.css',
         'js/bower_components/jquery/dist/jquery',
     ], function(BaseElementView, User, EntranceTpl) {
         var UserLoginView = BaseElementView.extend({
@@ -22,6 +22,16 @@
 
             //initialize
             initialize: function() {
+                var addCss = function(cssurl) {
+                    var link = document.createElement('link');
+                    link.type = 'text/css';
+                    link.rel = 'stylesheet';
+                    link.href = cssurl;
+                    document.getElementsByTagName("head")[0].appendChild(link);
+                }
+                addCss('js/bower_components/user-login/css/bootstrap.css');
+                addCss('js/bower_components/user-login/css/bootstrap-responsive.css');
+                addCss('js/bower_components/user-login/css/user-login.css');
                 this.initListener();
             },
 

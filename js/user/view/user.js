@@ -5,13 +5,24 @@ define('js/user/view/user', [
     'backbone',
 
     'text!js/user/template/userLayout.tpl',
-    'text!js/bower_components/user-index/css/bootstrap.min.css',
-    'text!js/bower_components/user-index/css/bootstrap-responsive.min.css',
-    'text!js/bower_components/user-index/css/user-index.css',
+    //   'text!js/bower_components/user-index/css/bootstrap.min.css',
+    //   'text!js/bower_components/user-index/css/bootstrap-responsive.min.css',
+    //   'text!js/bower_components/user-index/css/user-index.css',
 ], function(Backbone, UserTpl) {
     var UserView = Backbone.View.extend({
 
         initialize: function() {
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/user-index/css/bootstrap.min.css');
+            addCss('js/bower_components/user-index/css/bootstrap-responsive.min.css');
+            addCss('js/bower_components/user-index/css/user-index.css');
+
             if ($('.skin-color').length <= 0) {
                 var link = document.createElement('link');
                 link.type = 'text/css';
@@ -152,7 +163,7 @@ define('js/user/view/user', [
 
         render: function() {
             var t = this;
-            t.$el.html(tpl(UserTpl,{}));
+            t.$el.html(tpl(UserTpl, {}));
             t._init();
             return t;
         },
