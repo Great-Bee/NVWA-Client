@@ -205,9 +205,7 @@ requirejs.config({
         'yestrap_light': '../css/yestrap_light',
         'main': '../css/main',
         'user.index':'../js/user/index',
-        'bootstrap.modal': 'bower_components/bootstrap-modal/js/bootstrap-modal',
-        
-
+        'bootstrap.modal': 'bower_components/bootstrap-modal/js/bootstrap-modal',        
         bootstrap: 'bower_components/bootstrap/dist',
         bootstrapjs: 'bower_components/bootstrap/dist/js/bootstrap.min',
         jquery: 'bower_components/jquery/dist/jquery.min',

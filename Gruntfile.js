@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   var hashTmp = crypto.createHash('md5').update(String(Math.random() * 10000000000000000)).digest('hex');
   var randomNum = hashTmp.slice(0, 6);
   var buidPath = 'build/release-' + randomNum;
-  var nvwaLoaderVersion = 'nvwa-loader-1.0.0.js';
+  var nvwaLoaderVersion = 'nvwa-loader-1.0.0';
   var concat_css_file_path = buidPath + '/css/<%= pkg.name %>-<%= pkg.version %>.css';
   var concat_js_file_path = buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.js';
   grunt.log.writeln("===============" + randomNum + "===========");
@@ -144,8 +144,7 @@ module.exports = function(grunt) {
         files: {
           'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-util-<%= pkg.version %>.js': [
             '<%=buildConfig.path%>/js/<%= pkg.name %>-util-<%= pkg.version %>-templates.js',
-            'js/util/**/*.js',
-            'js/router.js'
+            'js/util/**/*.js'
           ],
           'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-core-<%= pkg.version %>.js': [
             '<%=buildConfig.path%>/js/<%= pkg.name %>-core-<%= pkg.version %>-templates.js',
@@ -154,11 +153,14 @@ module.exports = function(grunt) {
           'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-user-<%= pkg.version %>.js': [
             '<%=buildConfig.path%>/js/<%= pkg.name %>-user-<%= pkg.version %>-templates.js',
             'js/user/view/*.js',
-            'js/user/router.js'
+            'js/user/router.js',
+            'js/user/index.js'
           ],
           'build/release-<%=buildConfig.randomNum%>/js/<%= pkg.name %>-producer-<%= pkg.version %>.js': [
             '<%=buildConfig.path%>/js/<%= pkg.name %>-producer-<%= pkg.version %>-templates.js',
-            'js/producer/view/*.js'
+            'js/producer/view/*.js',
+            'js/producer/router.js',
+            'js/producer/index.js'
           ]
         }
       }
@@ -257,9 +259,10 @@ module.exports = function(grunt) {
               '\t\tlang = "zh_CN"\n' +
               '\t\tjsonp = "true"\n' +
               '\t\tnvwa-api=""\n' +
-              //   '\t\tindex = "user.index"\n' +
-              //  '\t\tstaticDomain = "<%=systemConfig.get("staticDomain")%>"\n' +
-              '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + ',' + minFile_producer + '" > </script>\n' +
+              // '\t\tbiz="user"\n' +
+              // '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + '" > </script>\n' +
+              // '\t\tbiz="producer"\n' +
+              '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_producer + '" > </script>\n' +
               ' <!-- endbuild -->';
           }
         }
