@@ -1,12 +1,20 @@
 define('js/core/element/view/datetime_picker', [
 	'js/core/element/view/text',
 	'datetimepicker', 'datetimepicker_lang',
-	'text!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
+	//	'text!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
 ], function(TextView) {
 	var DatetimePickerView = TextView.extend({
 		events: {},
 		initialize: function(options, eleBean, attributes, eves, editAble) {
 			var t = this;
+			var addCss = function(cssurl) {
+				var link = document.createElement('link');
+				link.type = 'text/css';
+				link.rel = 'stylesheet';
+				link.href = cssurl;
+				document.getElementsByTagName("head")[0].appendChild(link);
+			}
+			addCss('js/bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css');
 
 			t.defaultAttributes = t.defaultAttributes || {};
 			t.defaultAttributes = $.extend({}, t.defaultAttributes, {

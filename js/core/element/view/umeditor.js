@@ -5,7 +5,7 @@ define('js/core/element/view/umeditor', [
     'text!js/core/element/template/umeditor.tpl',
     'js/bower_components/umeditor/umeditor.config',
     'js/bower_components/umeditor/umeditor',
-    'text!bower_components/umeditor/themes/default/css/umeditor.css'
+ //   'text!bower_components/umeditor/themes/default/css/umeditor.css'
     // 'js/bower_components/ueditor/lang/zh-cn/zh-cn',
 ], function(BaseElementView, StringUtil, UMEditorTpl, UEditorConfig, UEditorALL) {
     var UMEditorView = BaseElementView.extend({
@@ -17,6 +17,14 @@ define('js/core/element/view/umeditor', [
                 //元素类型
                 type: 'umeditor',
             };
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/umeditor/themes/default/css/umeditor.css');
             BaseElementView.prototype.initialize.apply(this, arguments);
             this.render();
             this.inidUMEditor();

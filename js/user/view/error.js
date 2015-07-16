@@ -6,7 +6,7 @@ define('js/user/view/error', [
 	'backbone',
 
 	'text!js/user/template/error.tpl',
-	'text!js/bower_components/error/css/error.css',
+//	'text!js/bower_components/error/css/error.css',
 	'js/bower_components/error/js/three',
 ], function(Backbone, ErrorTempl) {
 	//
@@ -98,6 +98,14 @@ define('js/user/view/error', [
 
 		render: function() {
 			var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/error/css/error.css');
 			t.$el.html(tpl(ErrorTempl,{}));
 			t._init();
 			animate();

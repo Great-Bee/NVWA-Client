@@ -23,15 +23,15 @@
             //initialize
             initialize: function() {
                 var addCss = function(cssurl) {
-                    var link = document.createElement('link');
-                    link.type = 'text/css';
-                    link.rel = 'stylesheet';
-                    link.href = cssurl;
-                    document.getElementsByTagName("head")[0].appendChild(link);
-                }
-                addCss('js/bower_components/user-login/css/bootstrap.css');
-                addCss('js/bower_components/user-login/css/bootstrap-responsive.css');
-                addCss('js/bower_components/user-login/css/user-login.css');
+                        var link = document.createElement('link');
+                        link.type = 'text/css';
+                        link.rel = 'stylesheet';
+                        link.href = cssurl;
+                        document.getElementsByTagName("head")[0].appendChild(link);
+                    }
+                    //      addCss('js/bower_components/user-login/css/bootstrap.css');
+                    //     addCss('js/bower_components/user-login/css/bootstrap-responsive.css');
+                    //    addCss('js/bower_components/user-login/css/user-login.css');
                 this.initListener();
             },
 

@@ -10,6 +10,22 @@ define('js/user/view/viewPage', [
         },
         initialize: function(options, config) {
             var t = this;
+
+            var removeCss = function(cssurl) {
+                    var findStr = '[href="' + cssurl + '"]';
+                    var findDom = $(document.getElementsByTagName("head")[0]).find(findStr);
+                    if (findDom) {
+                        findDom.remove();
+                    }
+                }
+                //    removeCss('js/bower_components/user-login/css/bootstrap.css');
+                //    removeCss('js/bower_components/user-login/css/bootstrap-responsive.css');
+                //    removeCss('js/bower_components/user-login/css/user-login.css');
+                //    removeCss('js/bower_components/user-index/css/user-index.css');
+                //    removeCss('js/bower_components/user-index/css/bootstrap.min.css');
+                //    removeCss('js/bower_components/user-index/css/bootstrap-responsive.min.css');
+
+
             t.options = options;
             config = $.extend({
                 pageAlias: null

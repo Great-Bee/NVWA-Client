@@ -45,7 +45,10 @@ define('js/user/router', [
 			var t = this;
 			t._init();
 			_log(pageAlias);
-			var container = $(".container");
+			//var bodyDom = $('body');
+			//bodyDom.html('');
+			//$('<div class="container" style="width:auto"></div>').appendTo(bodyDom);
+			var container = $("#content1");
 			requirejs(["js/user/view/viewPage"], function(ViewPageLayoutView) {
 				var viewPageLayoutView = new ViewPageLayoutView({
 					el: container,
@@ -53,7 +56,7 @@ define('js/user/router', [
 				}, {
 					pageAlias: pageAlias
 				});
-				t.layout_view.setBarActive('page');
+				//	t.layout_view.setBarActive('page');
 			});
 		},
 

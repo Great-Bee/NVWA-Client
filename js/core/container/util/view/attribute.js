@@ -17,7 +17,8 @@
 	'js/util/ui/view/editorEvent',
 	'js/util/ui/control',
 	'js/util/ui/view/columnFormat',
-	'datetimepicker', 'datetimepicker_lang', 'text!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
+	'datetimepicker', 'datetimepicker_lang',
+   // 'text!bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'
 ], function(
 	Backbone,
 	AttributeTpl,
@@ -47,6 +48,14 @@
 		},
 		initialize: function(options, attributes, containerBean, element, layoutEvents) {
 			var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css');
 			if (!t.serialNumber) {
 				t.serialNumber = $nvwa.string.randomSN();
 			}

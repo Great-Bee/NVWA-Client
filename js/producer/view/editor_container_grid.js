@@ -8,9 +8,9 @@ define('js/producer/view/editor_container_grid', [
     'js/util/businessUtil',
     'text!js/producer/template/editorContainerGrid.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
-    'text!bower_components/Slidebars/distribution/0.10.2/slidebars.css',
+ //   'text!bower_components/Slidebars/distribution/0.10.2/slidebars.css',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
-], function(Backbone, MCModel, Dictionary, Message, StringUtil, BusinessUtil, gridEditorTpl, SlidebarsView, SlidebarsViewCSS, CollapseView) {
+], function(Backbone, MCModel, Dictionary, Message, StringUtil, BusinessUtil, gridEditorTpl, SlidebarsView, CollapseView) {
     var EditorContainerGridView = Backbone.View.extend({
         events: {
             'click #openPanelLeft': 'openPanelLeft',
@@ -19,6 +19,14 @@ define('js/producer/view/editor_container_grid', [
         },
         initialize: function(options, config) {
             var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/Slidebars/distribution/0.10.2/slidebars.css');
             t.options = options;
             config = $.extend({
                 containerAlias: null

@@ -5,7 +5,7 @@ define('js/core/element/view/radio', [
     'js/util/dictionary',
     'text!js/core/element/template/radio.tpl',
     'radio',
-    'text!bower_components/iCheck/skins/all.css'
+  //  'text!bower_components/iCheck/skins/all.css'
 ], function(BaseElementView, StringUtil, Dictionary, RadioTpl, RadioControl) {
     var RadioView = BaseElementView.extend({
         events: {
@@ -13,6 +13,14 @@ define('js/core/element/view/radio', [
         },
         initialize: function(options, eleBean, attributes, eves, editAble) {
             var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/iCheck/skins/all.css');
             this.defaultAttributes = {
                 radioColor: 'blue', //radio 的颜色 red blue aero green line pink orange yellow 
                 //编辑器宽度**

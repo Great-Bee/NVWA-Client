@@ -4,7 +4,7 @@ define('js/core/element/view/tree', [
 	'text!js/core/element/template/tree.tpl',
 	'js/core/module/nvwaUser',
 	'js/bower_components/bootstrap-treeview/src/js/bootstrap-treeview',
-	'text!bower_components/bootstrap-treeview/src/css/bootstrap-treeview.css'
+//	'text!bower_components/bootstrap-treeview/src/css/bootstrap-treeview.css'
 ], function(BaseElementView, TreeTpl, NvwaUserAPI, TreeGridView) {
 	var TreeView = BaseElementView.extend({
 		events: {
@@ -19,6 +19,14 @@ define('js/core/element/view/tree', [
 				color: '#428bca',
 				bgColor: '#ffcb2f'
 			};
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/bootstrap-treeview/src/css/bootstrap-treeview.css');
 			BaseElementView.prototype.initialize.apply(this, arguments);
 			this.render();
 			this._loadData();

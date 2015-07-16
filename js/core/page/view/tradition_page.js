@@ -11,7 +11,8 @@ define('js/core/page/view/tradition_page', [
     'js/util/ui/view/modal',
     'js/core/container/util/view/attribute',
     'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
-    'text!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css',
+ //   'text!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css',
+    'jqueryui'
 ], function(BasePageView, PageTpl, MC, DictionaryUtil, Message, StringUtil, ButtonView, ContainerSelection, Modal, AttributeView) {
     var PageView = BasePageView.extend({
         events: {
@@ -20,6 +21,14 @@ define('js/core/page/view/tradition_page', [
         },
         initialize: function(options, pageBean, pageClientAttribute, pageclientEvents, pageElementViews, editAble) {
             var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css');
             t.defaultClientAttribute = {
 
             };

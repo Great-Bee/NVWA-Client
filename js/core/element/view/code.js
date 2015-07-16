@@ -4,12 +4,20 @@ define('js/core/element/view/code', [
     'text!js/core/element/template/code.tpl',
     'js/bower_components/codemirror/lib/codemirror',
     'js/bower_components/codemirror/mode/javascript/javascript',
-    'text!bower_components/codemirror/lib/codemirror.css'
+  //  'text!bower_components/codemirror/lib/codemirror.css'
 
 ], function(BaseElementView, StringUtil, Tpl, CodeMirror) {
     var CodeEditorView = BaseElementView.extend({
         events: {},
         initialize: function(options, eleBean, attributes, eves, editAble) {
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/codemirror/lib/codemirror.css');
             this.defaultAttributes = {
                 readonly: false,
                 //元素类型

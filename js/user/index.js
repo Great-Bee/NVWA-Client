@@ -5,7 +5,8 @@ define('index', [
     'js/util/apiHome',
     'js/util/string', //StringUtil
     'js/util/dictionary', //Dictionary
-    'js/util/array' //ArrayUtil
+    'js/util/array', //ArrayUtil
+    'js/util/events' //events规范
     // 'js/util/cache', //Local cache
     //    'css!yestrap', //Yestrap CSS
     //    'css!main' //Main.css

@@ -8,7 +8,7 @@ define('js/core/container/util/view/column', [
 	'js/core/container/util/view/attribute',
 	'js/bower_components/jQuery-Collapse/src/jquery.collapse',
 	'js/bower_components/jQuery-contextMenu/src/jquery.contextMenu',
-	'text!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css',
+//	'text!js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css',
 ], function(Backbone, StringUtil, ColumnTpl, MC, Modal, Message, AttributeView, CollapseView) {
 	var ColumnView = Backbone.View.extend({
 		events: {
@@ -17,6 +17,14 @@ define('js/core/container/util/view/column', [
 		},
 		initialize: function(options, attributes, elementView, layoutEvents, containerObject) {
 			var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css');
 			if (!t.serialNumber) {
 				t.serialNumber = StringUtil.randomSN();
 			}

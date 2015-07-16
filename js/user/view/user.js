@@ -13,15 +13,15 @@ define('js/user/view/user', [
 
         initialize: function() {
             var addCss = function(cssurl) {
-                var link = document.createElement('link');
-                link.type = 'text/css';
-                link.rel = 'stylesheet';
-                link.href = cssurl;
-                document.getElementsByTagName("head")[0].appendChild(link);
-            }
-            addCss('js/bower_components/user-index/css/bootstrap.min.css');
-            addCss('js/bower_components/user-index/css/bootstrap-responsive.min.css');
-            addCss('js/bower_components/user-index/css/user-index.css');
+                    var link = document.createElement('link');
+                    link.type = 'text/css';
+                    link.rel = 'stylesheet';
+                    link.href = cssurl;
+                    document.getElementsByTagName("head")[0].appendChild(link);
+                }
+                ///    addCss('js/bower_components/user-index/css/bootstrap.min.css');
+                //    addCss('js/bower_components/user-index/css/bootstrap-responsive.min.css');
+                //    addCss('js/bower_components/user-index/css/user-index.css');
 
             if ($('.skin-color').length <= 0) {
                 var link = document.createElement('link');

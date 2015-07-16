@@ -4,7 +4,7 @@ define('js/core/element/view/upload', [
     'text!js/core/element/template/upload.tpl',
     'text!js/core/element/template/uploadItem.tpl',
     'js/bower_components/jQuery-File-Upload/js/jquery.fileupload',
-    'text!bower_components/jQuery-File-Upload/css/jquery.fileupload.css'
+ //   'text!bower_components/jQuery-File-Upload/css/jquery.fileupload.css'
 ], function(BaseElementView, UploadTpl, UploadItemTpl) {
     var UploadView = BaseElementView.extend({
         events: {
@@ -12,6 +12,14 @@ define('js/core/element/view/upload', [
         },
         initialize: function(options, eleBean, attributes, eves, editAble) {
             var t = this;
+            var addCss = function(cssurl) {
+                var link = document.createElement('link');
+                link.type = 'text/css';
+                link.rel = 'stylesheet';
+                link.href = cssurl;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            addCss('js/bower_components/jQuery-File-Upload/css/jquery.fileupload.css');
             this.defaultAttributes = {
                 multi: false
             };
