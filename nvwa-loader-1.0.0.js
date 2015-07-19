@@ -178,7 +178,7 @@ requirejs.config({
     baseUrl: baseUrl,
     paths: {      
         'js':'../js',
-        'build':'../../build',
+        'build':'../build',
 		'text': "bower_components/text",
         //achy
         // 'achy': 'bower_components/achy/achy',
