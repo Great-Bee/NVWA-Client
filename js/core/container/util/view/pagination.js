@@ -13,7 +13,8 @@ define('js/core/container/util/view/pagination', [
         events: {
             'click .removeable': 'removeField',
             'deleteElement': '_deleteElement',
-            'click .item': '_showColumnAttribute'
+            'click .item': '_showColumnAttribute',
+            'click .attributeBtn': '_showColumnAttribute'
         },
         initialize: function(options, eleBean, attributes, eves, elements, layouts, editAble) {
 
