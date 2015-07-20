@@ -41,7 +41,7 @@ a:hover {
     }
 
 
-#header1  [class^="icon-"], [class*=" icon-"] {
+#header1  [class^="icon-"],#header1 [class*=" icon-"] {
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -405,7 +405,7 @@ a:hover {
   color: #999;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 }
-#user-nav1 .label-important, .badge-important {
+#user-nav1 .label-important, #user-nav1 .badge-important {
   background-color: #b94a48;
 }
  #user-nav1 .label {

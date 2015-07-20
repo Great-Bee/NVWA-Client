@@ -1,4 +1,4 @@
-<div class="panel panel-${attributes.style}" pageAlias="${pageBean.alias}">
+<div class="panel panel-<#=attributes.style#>" pageAlias="<#=pageBean.alias#>">
     <div class="panel-heading">
     <#if(editAble){#> 
         <div class="row">       

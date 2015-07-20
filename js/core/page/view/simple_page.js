@@ -29,6 +29,7 @@ define('js/core/page/view/simple_page', [
             if (t.pageBean && t.pageBean['layouts']) {
                 _log('page layouts');
                 t.layouts = eval("(" + t.pageBean['layouts'] + ")");
+
                 _log(t.layouts);
                 if (t.layouts && t.layouts.length >= 1) {
                     //渲染配置

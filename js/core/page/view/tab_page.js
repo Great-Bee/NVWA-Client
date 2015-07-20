@@ -1,7 +1,7 @@
-define('js/core/page/view/tradition_page', [
+define('js/core/page/view/tab_page', [
 
     'js/core/page/view/base_page',
-    'text!js/core/page/template/tradition_page.tpl',
+    'text!js/core/page/template/tab_page.tpl',
     'js/util/api/mc',
     'js/util/dictionary',
     'js/bower_components/achy/message',
@@ -29,6 +29,7 @@ define('js/core/page/view/tradition_page', [
                 document.getElementsByTagName("head")[0].appendChild(link);
             }
             addCss('js/bower_components/jQuery-contextMenu/src/jquery.contextMenu.css');
+
             t.defaultClientAttribute = {
 
             };
@@ -38,12 +39,27 @@ define('js/core/page/view/tradition_page', [
                 columnViews: []
             };
             t.initLayout();
+            //    $('#tabTitle a:first').tab('show'); //初始化显示哪个tab 
             t.initListener();
         },
         afterSaveLayouts: function() {
             var t = this;
             //reload page
             location.reload();
+        },
+        //tab 显示
+        _showTab: function(e, t, idname) {
+            if (idname) {
+                t.currentTab = idname.replace("#", "");
+                //    debugger;
+                event.preventDefault(); //阻止a链接的跳转行为 
+                //    $(idname).tab('show'); //显示当前选中的链接及关联的content 
+                t.$el.find('.nav-tabs').find('[role="presentation"]').removeClass('active');
+                t.$el.find('[idname="' + idname + '"]').parent().addClass("active");
+
+                t.$el.find('.tab-content').find('.tab-pane').removeClass('active');
+                $(idname).addClass("active");
+            }
         },
         __updateElementLayout: function(elementBodys) {
             var t = this;
@@ -119,6 +135,11 @@ define('js/core/page/view/tradition_page', [
                     _log(target);
                 }
             });
+            t.$el.find('#tabTitle a').on('click', function() {
+                var $tabTitle = $(event.target).attr("idname");
+                t.currentTab = $tabTitle.replace("#", "");
+                t._showTab(null, t, $tabTitle);
+            })
         },
         _initElementListener: function(el, componentView, elementView) {
             var t = this;
@@ -293,7 +314,7 @@ define('js/core/page/view/tradition_page', [
         //获取渲染元素的锚点 for last
         _getLastElementRenderTarget: function() {
             var t = this;
-            var list = t.$el.find('.def-top-button-bar').children();
+            var list = t.$el.find('#' + t.currentTab).find('.def-top-button-bar').children();
             if (list && list.length > 0) {
                 var object = $(list[list.length - 1]);
                 return t._getElementRenderTarget(object);
@@ -303,7 +324,7 @@ define('js/core/page/view/tradition_page', [
                 return null;
             }
         },
-        //初始化传统页面的布局
+        //初始化tab页面的布局
         initLayout: function() {
             var t = this;
             _log('page');
@@ -311,7 +332,7 @@ define('js/core/page/view/tradition_page', [
             _log('pageClientAttribute');
             _log(t.pageClientAttribute);
             //对于新创建的简单页面初始化布局
-            t.pageBean['layouts'] = t.pageBean['layouts'] || '[[],[],[]]';
+            t.pageBean['layouts'] = t.pageBean['layouts'] || '[[],[[],[],[]]]';
             if (t.pageBean && t.pageBean['layouts']) {
                 _log('page layouts');
                 t.layouts = eval("(" + t.pageBean['layouts'] + ")");
@@ -333,16 +354,6 @@ define('js/core/page/view/tradition_page', [
                             hasSearchForm = true;
                         }
                     }
-                    //渲染grid
-                    var gridLayout = t.layouts[2];
-                    if (gridLayout && gridLayout.length > 0) {
-                        var data = {
-                            alias: gridLayout[0],
-                            type: 'grid'
-                        };
-                        t._containerSelection(t.$el.find('.def-grid-bar'), data);
-                    }
-
                     if (t.editAble) {
                         //渲染 search from 添加按钮
                         var searchFormLayoutAddButtonView = t.$el.find('.def-search-bar');
@@ -374,69 +385,141 @@ define('js/core/page/view/tradition_page', [
                                 });
                             }
                         });
-                        //渲染 grid 添加按钮
-                        var gridLayoutAddButtonView = t.$el.find('.def-grid-bar');
-                        gridLayoutAddButtonView.html('');
+
+                        //添加按钮 -添加tab
                         new ButtonView({
-                            el: t.$el.find('.grid-setting-container')
+                            el: t.$el.find('.tab-setting-container')
                         }, {
-                            text: '添加显示分页数据容器',
+                            text: '添加tab',
                             icon: 'glyphicon-plus',
                             click: function() {
-                                t.containerSelectionView = [];
-                                t.containerSelectionView.container = $('<div></div>');
-                                t.containerSelectionView.dialog = new Modal({
-                                    title: '选择列表容器',
-                                    content: t.containerSelectionView.container
-                                });
-                                t.fieldGrid = new ContainerSelection({
-                                    el: t.containerSelectionView.container
-                                }, {
-                                    conditions: [{
-                                        fieldName: 'type',
-                                        fieldValue: 'grid'
-                                    }]
-                                });
-                                t.containerSelectionView.container.on('selectedContainer', function(e, data) {
-                                    //关闭选择器
-                                    $(t.containerSelectionView.dialog).modal('hide');
-                                    t._containerSelection(gridLayoutAddButtonView, data);
+                                //渲染tab
+                                t._renderTabTitle('请输入tab的标题');
+                                //将新添加的tab设置成当前tab,并且设置t.currentTab
+                                t._showTab(null, t, '#请输入tab的标题');
+                                t.$el.find('[idname="#请输入tab的标题"]').on('click', function() {
+                                    t._showTab(event, t, $(event.target).attr("idname"));
                                 });
                             }
                         });
                     } else {
-                        //no editable
                         if (!hasSearchForm) {
-                            //no search form
-                            //remove search-setting-container
                             t.$el.find('.search-setting-container').parent().parent().remove();
-                            t.$el.find('.def-top-button-bar').parent().parent().attr('class', 'col-md-12');
-                            t.$el.find('.grid-setting-container').parent().parent().attr('class', 'col-md-12');
                         }
                     }
-                    //渲染顶部元素
-                    var topElementLayout = t.layouts[1];
-                    if (topElementLayout && topElementLayout.length > 0) {
-                        var eleViewsMap = {};
-                        if (t.pageElementViews && t.pageElementViews.length > 0) {
-                            $.each(t.pageElementViews, function(k, elementView) {
-                                if (elementView && elementView.element && elementView.element.id) {
-                                    eleViewsMap[elementView.element.id] = elementView;
+                    //渲染所有的tab标题
+                    if (t.layouts && t.layouts.length > 1) {
+                        for (var i = 1; i < t.layouts.length; i++) {
+                            if (t.layouts[i][0] && t.layouts[i][0].length > 0) {
+                                //渲染标题和 初始内容页
+                                t._renderTabTitle(t.layouts[i][0][0]);
+                                //默认显示第一个tab
+                                if (i == 1) {
+                                    t.$el.find('[idname="#' + t.layouts[i][0][0] + '"]').parent().addClass('active');
+                                    t.$el.find('#' + t.layouts[i][0][0]).addClass('active');
                                 }
-                            });
+                            }
                         }
-                        $.each(topElementLayout, function(i, elementId) {
-                            //render element
-                            //get element view from viewMap
-                            var eleView = eleViewsMap[elementId];
-                            _log(eleView);
-                            //TODO 渲染顶部元素
-                            var eleRenderBody = t._getLastElementRenderTarget();
-                            t._initColumn(eleView, eleRenderBody);
-                        });
+                    }
+                    //拿到第一个tab
+                    var tabs = t.layouts[1];
+                    if (tabs && tabs.length > 0 && tabs[0] && tabs[0].length > 0) {
+                        t.currentTab = tabs[0][0]; //拿到当前tab 的标题
+                        //渲染tab   默认渲染第一个列表
+                        t._renderTab(tabs);
                     }
 
                 }
+            }
+        },
+        //渲染tab的标题 和 tab的初始内容页
+        _renderTabTitle: function(tabTitle) {
+            var t = this;
+            if (tabTitle) {
+                //先渲染标题
+                var $tabTitle = $('<li role="presentation"><a href="#' + tabTitle + '" idname="#' + tabTitle + '">' + tabTitle + '</a></li>');
+                t.$el.find('.tab-setting-container').parent().before($tabTitle);
+                var tabContent = '<div class="tab-pane" id="' + tabTitle + '"><div><div class="' + (t.editAble ? "def" : "") + ' def-top-button-bar top-button-bar control-area ' + (t.editAble ? "ui-droppable" : "") + '"> <div class = "top-button-box"> ' + (t.editAble ? " <div class = 'column-mask hidden'> </div>" : "") + '<div  class="element-drop-area ' + (t.editAble ? "ui-droppable" : "") + '"> <def ' + (!t.editAble ? 'class = "hidden"' : "") + '> 请放置元件2 </def></div> </div></div> </div> <div> <div class = "form-group"> <div class = "grid-setting-container"> </div> <div class = "def def-grid-bar grid-bar control-area"> <def> 请放置元件 </def></div > </div></div> </div> ';
+                //再渲染 tab初始内容页
+                var $tabContent = $(tabContent);
+                //tab内容初始化界面
+                $tabContent.appendTo(t.$el.find('.tab-content'));
+            }
+        },
+        //渲染 单个tab页content   tabLyaout 是tab 的布局 [['tab1'],[490],['grid']]
+        _renderTab: function(tabLyaout) {
+            var t = this;
+            //渲染grid
+            var gridLayout = tabLyaout[2];
+
+            if (gridLayout && gridLayout.length > 0 && t.currentTab) {
+                var data = {
+                    alias: gridLayout[0],
+                    type: 'grid'
+                };
+                t._containerSelection(t.$el.find('#' + t.currentTab).find('.def-grid-bar'), data);
+            }
+
+            if (t.editAble) {
+                //渲染 grid 添加按钮
+                var gridLayoutAddButtonView = t.$el.find('#' + t.currentTab).find('.def-grid-bar');
+                gridLayoutAddButtonView.html('');
+                new ButtonView({
+                    el: t.$el.find('#' + t.currentTab).find('.grid-setting-container')
+                }, {
+                    text: '添加显示分页数据容器',
+                    icon: 'glyphicon-plus',
+                    click: function() {
+                        t.containerSelectionView = [];
+                        t.containerSelectionView.container = $('<div></div>');
+                        t.containerSelectionView.dialog = new Modal({
+                            title: '选择列表容器',
+                            content: t.containerSelectionView.container
+                        });
+                        t.fieldGrid = new ContainerSelection({
+                            el: t.containerSelectionView.container
+                        }, {
+                            conditions: [{
+                                fieldName: 'type',
+                                fieldValue: 'grid'
+                            }]
+                        });
+                        t.containerSelectionView.container.on('selectedContainer', function(e, data) {
+                            //关闭选择器
+                            $(t.containerSelectionView.dialog).modal('hide');
+                            t._containerSelection(gridLayoutAddButtonView, data);
+                        });
+                    }
+                });
+            } else {
+                //no editable
+                if (!hasSearchForm) {
+                    //no search form
+                    //remove search-setting-container
+                    t.$el.find('.def-top-button-bar').parent().parent().parent().parent().attr('class', 'col-md-12');
+                    t.$el.find('.grid-setting-container').parent().parent().parent().parent().parent().attr('class', 'col-md-12');
+                }
+            }
+            //渲染顶部元素
+            var topElementLayout = tabLyaout[1];
+            if (topElementLayout && topElementLayout.length > 0) {
+                var eleViewsMap = {};
+                if (t.pageElementViews && t.pageElementViews.length > 0) {
+                    $.each(t.pageElementViews, function(k, elementView) {
+                        if (elementView && elementView.element && elementView.element.id) {
+                            eleViewsMap[elementView.element.id] = elementView;
+                        }
+                    });
+                }
+                $.each(topElementLayout, function(i, elementId) {
+                    //render element
+                    //get element view from viewMap
+                    var eleView = eleViewsMap[elementId];
+                    _log(eleView);
+                    //TODO 渲染顶部元素
+                    var eleRenderBody = t._getLastElementRenderTarget();
+                    t._initColumn(eleView, eleRenderBody);
+                });
             }
         },
         //添加一列(element) to database
