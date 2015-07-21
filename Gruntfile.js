@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   var hashTmp = crypto.createHash('md5').update(String(Math.random() * 10000000000000000)).digest('hex');
   var randomNum = hashTmp.slice(0, 6);
   var buidPath = 'build/release-' + randomNum;
-  var nvwaLoaderVersion = 'nvwa-loader-1.0.0';
+  var nvwaLoaderVersion = 'nvwa-loader-1.4.0';
   var concat_css_file_path = buidPath + '/css/<%= pkg.name %>-<%= pkg.version %>.css';
   var concat_js_file_path = buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.js';
   grunt.log.writeln("===============" + randomNum + "===========");
