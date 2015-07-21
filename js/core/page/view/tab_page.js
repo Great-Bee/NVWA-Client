@@ -40,7 +40,7 @@ define('js/core/page/view/tab_page', [
             };
             t.initLayout();
             //    $('#tabTitle a:first').tab('show'); //初始化显示哪个tab 
-            t.initListener();
+            //    t.initListener();
         },
         afterSaveLayouts: function() {
             var t = this;
@@ -59,6 +59,9 @@ define('js/core/page/view/tab_page', [
 
                 t.$el.find('.tab-content').find('.tab-pane').removeClass('active');
                 $(idname).addClass("active");
+
+                //显示设置标题的属性
+                t._setTabTitleAttribute();
             }
         },
         __updateElementLayout: function(elementBodys) {
@@ -72,14 +75,19 @@ define('js/core/page/view/tab_page', [
             _log('update layouts');
             _log(newLayouts);
             //update layouts
-            t.layouts[1] = newLayouts;
+            //    t.layouts[1] = newLayouts;
+            //设置当前tab 的element layouts
+            t._chooiceTab(null, null, newLayouts);
             //update to server
             t._saveLayout();
         },
-        initListener: function() {
+        //初始化top bar 的 事件
+        _initTopBarListener: function(tabTitle) {
             var t = this;
-
-            t.$el.find('.element-drop-area').droppable({
+            if (!tabTitle && t.currentTab) {
+                tabTitle = t.currentTab;
+            }
+            t.$el.find('#' + tabTitle).find('.element-drop-area').droppable({
                 over: function(event, ui) {
                     //拖拽经过
                 },
@@ -123,19 +131,19 @@ define('js/core/page/view/tab_page', [
                 }
             });
             //fire top button box draggable event            
-            $(".top-button-bar").sortable({
+            t.$el.find('#' + tabTitle).find(".top-button-bar").sortable({
                 update: function(event, ui) {
                     var elementBodys = $(event.target).find('[elementId]');
                     t.__updateElementLayout(elementBodys);
                 }
             });
-            t.$el.find('.dropRemoveArea').droppable({
+            t.$el.find('#' + tabTitle).find('.dropRemoveArea').droppable({
                 drop: function(event, ui) {
                     var target = $(event.target).parent();
                     _log(target);
                 }
             });
-            t.$el.find('#tabTitle a').on('click', function() {
+            t.$el.find('#tabTitle').find('[idname="#' + tabTitle + '"]').on('click', function() {
                 var $tabTitle = $(event.target).attr("idname");
                 t.currentTab = $tabTitle.replace("#", "");
                 t._showTab(null, t, $tabTitle);
@@ -171,7 +179,7 @@ define('js/core/page/view/tab_page', [
                                 if (deleteElement && deleteElement.ok) {
                                     //delete element success
                                     //update element layouts
-                                    var elementBodys = t.$el.find('.def-top-button-bar').find('[elementid]');
+                                    var elementBodys = t.$el.find('#' + t.currentTab).find('.def-top-button-bar').find('[elementid]');
                                     t.__updateElementLayout(elementBodys);
                                     //alert message
                                     new Message({
@@ -302,6 +310,81 @@ define('js/core/page/view/tab_page', [
             //显示
             $('#elementSettings').show();
         },
+        //设置tab的title
+        _setTabTitleAttribute: function() {
+            var t = this;
+            //get component support attribute
+            var supportAttr = ['text'];
+            //hidden掉所有的右边面板
+            $('[data-collapse]').hide();
+            //显示属性面板
+            $('#elementSettings').html('');
+            //随意给的一个element
+            var element = {};
+            element.id = 0;
+            t.elementSettings = new AttributeView({
+                    el: $('#elementSettings')
+                }, {
+                    supportAttribute: supportAttr,
+                    clientAtttributes: {
+                        text: t.currentTab
+                    } || {}, //get component client attribute
+                    serverAtttributes: null || {} //这个地方的元素不允许设置服务器属性
+                },
+                null,
+                element, //get element object
+                {
+                    callbackEvent: function() {
+                        //销毁窗口          
+
+                    },
+                    setClientAttribute: function(attributeName, attributeValue) {
+                        //修改tab的标题只需要更新page表中的layouts属性
+                        _log('attributeName=' + attributeName + '++attributeValue=' + attributeValue);
+                        var $tabTitleDom = t.$el.find('[idname="#' + t.currentTab + '"]');
+                        if ($tabTitleDom) {
+                            // 修改idname
+                            $tabTitleDom.attr("idname", '#' + attributeValue);
+                            $tabTitleDom.html(attributeValue);
+                            //修改id
+                            t.$el.find('#' + t.currentTab).attr("id", attributeValue);
+                            //设置layouts
+                            t._chooiceTab(null, null, null, attributeValue);
+                            //保存布局
+                            t._saveLayout();
+                            t.currentTab = attributeValue;
+                            //添加监听
+                            t._initTopBarListener(attributeValue);
+                        }
+                    },
+                    setServerAttributes: function(saveData) {
+                        //这个地方的元素不允许设置服务器属性
+                    },
+                    rollbackClientAttr: function(clientAttr) {
+                        $.each(clientAttr, function(k, attr) {
+                            componentView.setAttribute(k, attr);
+                        });
+                        new Message({
+                            type: 'info',
+                            msg: '回滚当前元素客户端属性设置',
+                            timeout: 1500
+                        });
+                    }
+                });
+
+            //屏蔽服务端属性的tab
+            t.elementSettings.disableServerAttribute();
+
+            //激活控件
+            t.collapse = new jQueryCollapse($("#elementSettings"));
+            //默认打开第一
+            if (supportAttr && supportAttr.length > 0) {
+                //说明当前元素上已经有组件,默认打开客户端属性和事件这两个标签
+                t.collapse.open(0);
+            }
+            //显示
+            $('#elementSettings').show();
+        },
         //获取渲染元素的锚点
         _getElementRenderTarget: function(target) {
             // body...
@@ -395,11 +478,14 @@ define('js/core/page/view/tab_page', [
                             click: function() {
                                 //渲染tab
                                 t._renderTabTitle('请输入tab的标题');
+                                //给新增的tab 添加监听
+                                t._initTopBarListener('请输入tab的标题');
                                 //将新添加的tab设置成当前tab,并且设置t.currentTab
                                 t._showTab(null, t, '#请输入tab的标题');
-                                t.$el.find('[idname="#请输入tab的标题"]').on('click', function() {
-                                    t._showTab(event, t, $(event.target).attr("idname"));
-                                });
+                                /*   t.$el.find('[idname="#请输入tab的标题"]').on('click', function() {
+                                       t._showTab(event, t, $(event.target).attr("idname"));
+                                   });*/
+
                             }
                         });
                     } else {
@@ -413,6 +499,8 @@ define('js/core/page/view/tab_page', [
                             if (t.layouts[i][0] && t.layouts[i][0].length > 0) {
                                 //渲染标题和 初始内容页
                                 t._renderTabTitle(t.layouts[i][0][0]);
+                                //添加单个页面的监听
+                                t._initTopBarListener(t.layouts[i][0][0]);
                                 //默认显示第一个tab
                                 if (i == 1) {
                                     t.$el.find('[idname="#' + t.layouts[i][0][0] + '"]').parent().addClass('active');
@@ -444,6 +532,39 @@ define('js/core/page/view/tab_page', [
                 var $tabContent = $(tabContent);
                 //tab内容初始化界面
                 $tabContent.appendTo(t.$el.find('.tab-content'));
+                if (t.editAble) {
+                    //渲染 grid 添加按钮
+                    var gridLayoutAddButtonView = t.$el.find('#' + tabTitle).find('.def-grid-bar');
+                    gridLayoutAddButtonView.html('');
+                    //如果是编辑状态，添加grid 的添加按钮
+                    new ButtonView({
+                        el: t.$el.find('#' + tabTitle).find('.grid-setting-container')
+                    }, {
+                        text: '添加显示分页数据容器',
+                        icon: 'glyphicon-plus',
+                        click: function() {
+                            t.containerSelectionView = [];
+                            t.containerSelectionView.container = $('<div></div>');
+                            t.containerSelectionView.dialog = new Modal({
+                                title: '选择列表容器',
+                                content: t.containerSelectionView.container
+                            });
+                            t.fieldGrid = new ContainerSelection({
+                                el: t.containerSelectionView.container
+                            }, {
+                                conditions: [{
+                                    fieldName: 'type',
+                                    fieldValue: 'grid'
+                                }]
+                            });
+                            t.containerSelectionView.container.on('selectedContainer', function(e, data) {
+                                //关闭选择器
+                                $(t.containerSelectionView.dialog).modal('hide');
+                                t._containerSelection(gridLayoutAddButtonView, data);
+                            });
+                        }
+                    });
+                }
             }
         },
         //渲染 单个tab页content   tabLyaout 是tab 的布局 [['tab1'],[490],['grid']]
@@ -462,35 +583,35 @@ define('js/core/page/view/tab_page', [
 
             if (t.editAble) {
                 //渲染 grid 添加按钮
-                var gridLayoutAddButtonView = t.$el.find('#' + t.currentTab).find('.def-grid-bar');
-                gridLayoutAddButtonView.html('');
-                new ButtonView({
-                    el: t.$el.find('#' + t.currentTab).find('.grid-setting-container')
-                }, {
-                    text: '添加显示分页数据容器',
-                    icon: 'glyphicon-plus',
-                    click: function() {
-                        t.containerSelectionView = [];
-                        t.containerSelectionView.container = $('<div></div>');
-                        t.containerSelectionView.dialog = new Modal({
-                            title: '选择列表容器',
-                            content: t.containerSelectionView.container
-                        });
-                        t.fieldGrid = new ContainerSelection({
-                            el: t.containerSelectionView.container
-                        }, {
-                            conditions: [{
-                                fieldName: 'type',
-                                fieldValue: 'grid'
-                            }]
-                        });
-                        t.containerSelectionView.container.on('selectedContainer', function(e, data) {
-                            //关闭选择器
-                            $(t.containerSelectionView.dialog).modal('hide');
-                            t._containerSelection(gridLayoutAddButtonView, data);
-                        });
-                    }
-                });
+                //  var gridLayoutAddButtonView = t.$el.find('#' + t.currentTab).find('.def-grid-bar');
+                //  gridLayoutAddButtonView.html('');
+                /*   new ButtonView({
+                       el: t.$el.find('#' + t.currentTab).find('.grid-setting-container')
+                   }, {
+                       text: '添加显示分页数据容器',
+                       icon: 'glyphicon-plus',
+                       click: function() {
+                           t.containerSelectionView = [];
+                           t.containerSelectionView.container = $('<div></div>');
+                           t.containerSelectionView.dialog = new Modal({
+                               title: '选择列表容器',
+                               content: t.containerSelectionView.container
+                           });
+                           t.fieldGrid = new ContainerSelection({
+                               el: t.containerSelectionView.container
+                           }, {
+                               conditions: [{
+                                   fieldName: 'type',
+                                   fieldValue: 'grid'
+                               }]
+                           });
+                           t.containerSelectionView.container.on('selectedContainer', function(e, data) {
+                               //关闭选择器
+                               $(t.containerSelectionView.dialog).modal('hide');
+                               t._containerSelection(gridLayoutAddButtonView, data);
+                           });
+                       }
+                   });*/
             } else {
                 //no editable
                 if (!hasSearchForm) {
@@ -615,9 +736,36 @@ define('js/core/page/view/tab_page', [
             if (data['type'] == 'form') {
                 t.layouts[0] = [data['alias']];
             } else if (data['type'] == 'grid') {
-                t.layouts[2] = [data['alias']];
+                //    t.layouts[2] = [data['alias']];
+                t._chooiceTab(null, data['alias']);
             }
             t._saveLayout();
+        },
+        //通过tabTitle选择t.layouts中对应的位置,并设置值
+        _chooiceTab: function(elementId, gridAlias, elementArray, tabTitle) {
+            var t = this;
+            if (t.currentTab) {
+                for (var i = 1; i < t.layouts.length; i++) {
+                    //找到当前tab
+                    if (t.layouts[i][0] && t.layouts[i][0][0] == t.currentTab) {
+                        //添加elements
+                        if (elementId) {
+                            t.layouts[i][1].push(elementId);
+                        }
+                        //添加grid
+                        if (gridAlias) {
+                            t.layouts[i][2] = [gridAlias];
+                        }
+                        //添加element数组
+                        if (elementArray) {
+                            t.layouts[i][1] = elementArray;
+                        }
+                        if (tabTitle) {
+                            t.layouts[i][0] = [tabTitle];
+                        }
+                    }
+                }
+            }
         },
         //render container
         _renderContainer: function(el, data) {
