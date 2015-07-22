@@ -502,99 +502,100 @@ define('js/core/container/util/view/pagination', [
          */
         _showColumnAttribute: function(e) {
             var t = this;
-            var elementid = $(e.originalEvent.srcElement).attr("elementid");
+            if (t.editAble) {
+                var elementid = $(e.originalEvent.srcElement).attr("elementid");
 
-            var index = t._getClientAttributeIndexByEleId(elementid);
-            //读取element
-            MC.readElement(elementid, function(elementBean) {
-                //get support attribute
-                var __getSupportAttribute = function() {
-                    return ['text', 'columnFormat'];
-                };
-                //get defaule datasource schema list
-                var __getDatasourceSchemaList = function() {
-                    return [{
-                        name: "名称",
-                        schema: "name"
-                    }, {
-                        name: "值",
-                        schema: "value"
-                    }];
-                };
-                var __getDatasourceConfig = function() {
-                    return {
-                        staticEnble: true,
-                        dynamicEnble: true,
-                        dynamicFieldEnble: true
+                var index = t._getClientAttributeIndexByEleId(elementid);
+                //读取element
+                MC.readElement(elementid, function(elementBean) {
+                    //get support attribute
+                    var __getSupportAttribute = function() {
+                        return ['text', 'columnFormat'];
                     };
-                };
-                var __getSupportServerAttribute = function() {
-                    return [];
-                };
-                var __getSupportEventNames = function() {
-                    return [];
-                };
-                var __getSupportServerEventNames = function() {
-                    return [];
-                }
-
-                //hidden掉所有的右边面板
-                $('[data-collapse]').hide();
-                //显示属性面板
-                $('#elementSettings').html('');
-                //将element保存到t里面
-                t.element = elementBean;
-                t.elementSettings = new AttributeView({
-                    el: $('#elementSettings')
-                }, {
-                    clientAtttributes: t.elements[index].elementClientAttribute || {}, //server attribute
-                    datasourceSchemaList: __getDatasourceSchemaList(),
-                    datasourceConfig: __getDatasourceConfig(),
-                    supportAttribute: __getSupportAttribute() //support client attribute
-                        //    supportServerAttribute: __getSupportServerAttribute(), //support server attribute
-                        //    supportEventNames: __getSupportEventNames(), //support client event name
-                        //    supportServerEventNames: __getSupportServerEventNames() //support server event name
-                }, t.eleBean, elementBean, {
-                    callbackEvent: function() {
-                        //销毁窗口          
-                        $('#' + t.serialNumber + '-settings').removeClass('btn-select');
-                        $('#' + t.serialNumber + '-settings').addClass('btn-primary');
-                    },
-                    setClientAttribute: function(attributeName, attributeValue) {
-                        t.refreshCurrentPage();
-                    },
-                    setClientAttributes: function(saveData) {
-                        //将客户端属性保存到数据库
-                        t._saveClientAttributes(saveData);
-                    },
-                    setServerAttributes: function(saveData) {
-                        //没有服务端属性
-                    },
-                    rollbackClientAttr: function(clientAttr) {
-                        //TODO回滚数据
-                        $.each(clientAttr, function(k, attr) {
-                            t.componentView.setAttribute(k, attr);
-                        });
-                        new Message({
-                            type: 'info',
-                            msg: '回滚当前元素客户端属性设置',
-                            timeout: 1500
-                        });
+                    //get defaule datasource schema list
+                    var __getDatasourceSchemaList = function() {
+                        return [{
+                            name: "名称",
+                            schema: "name"
+                        }, {
+                            name: "值",
+                            schema: "value"
+                        }];
+                    };
+                    var __getDatasourceConfig = function() {
+                        return {
+                            staticEnble: true,
+                            dynamicEnble: true,
+                            dynamicFieldEnble: true
+                        };
+                    };
+                    var __getSupportServerAttribute = function() {
+                        return [];
+                    };
+                    var __getSupportEventNames = function() {
+                        return [];
+                    };
+                    var __getSupportServerEventNames = function() {
+                        return [];
                     }
+
+                    //hidden掉所有的右边面板
+                    $('[data-collapse]').hide();
+                    //显示属性面板
+                    $('#elementSettings').html('');
+                    //将element保存到t里面
+                    t.element = elementBean;
+                    t.elementSettings = new AttributeView({
+                        el: $('#elementSettings')
+                    }, {
+                        clientAtttributes: t.elements[index].elementClientAttribute || {}, //server attribute
+                        datasourceSchemaList: __getDatasourceSchemaList(),
+                        datasourceConfig: __getDatasourceConfig(),
+                        supportAttribute: __getSupportAttribute() //support client attribute
+                            //    supportServerAttribute: __getSupportServerAttribute(), //support server attribute
+                            //    supportEventNames: __getSupportEventNames(), //support client event name
+                            //    supportServerEventNames: __getSupportServerEventNames() //support server event name
+                    }, t.eleBean, elementBean, {
+                        callbackEvent: function() {
+                            //销毁窗口          
+                            $('#' + t.serialNumber + '-settings').removeClass('btn-select');
+                            $('#' + t.serialNumber + '-settings').addClass('btn-primary');
+                        },
+                        setClientAttribute: function(attributeName, attributeValue) {
+                            t.refreshCurrentPage();
+                        },
+                        setClientAttributes: function(saveData) {
+                            //将客户端属性保存到数据库
+                            t._saveClientAttributes(saveData);
+                        },
+                        setServerAttributes: function(saveData) {
+                            //没有服务端属性
+                        },
+                        rollbackClientAttr: function(clientAttr) {
+                            //TODO回滚数据
+                            $.each(clientAttr, function(k, attr) {
+                                t.componentView.setAttribute(k, attr);
+                            });
+                            new Message({
+                                type: 'info',
+                                msg: '回滚当前元素客户端属性设置',
+                                timeout: 1500
+                            });
+                        }
+                    });
+                    //激活控件
+                    t.collapse = new jQueryCollapse($("#elementSettings"));
+                    //默认打开第一和第二个tab
+                    if (__getSupportAttribute() && __getSupportAttribute().length > 0) {
+                        //说明当前元素上已经有组件,默认打开客户端属性和服务器属性这两个标签
+                        t.collapse.open(0);
+                        t.collapse.open(1);
+                    }
+                    //显示
+                    $('#elementSettings').show();
+
                 });
-                //激活控件
-                t.collapse = new jQueryCollapse($("#elementSettings"));
-                //默认打开第一和第二个tab
-                if (__getSupportAttribute() && __getSupportAttribute().length > 0) {
-                    //说明当前元素上已经有组件,默认打开客户端属性和服务器属性这两个标签
-                    t.collapse.open(0);
-                    t.collapse.open(1);
-                }
-                //显示
-                $('#elementSettings').show();
-
-            });
-
+            }
         }
     });
     return GridView;
