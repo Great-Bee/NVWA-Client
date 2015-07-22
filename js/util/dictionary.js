@@ -39,7 +39,8 @@ define('js/util/dictionary', [], function() {
             // dashboard: '面板',
             // print: '打印'
             simple_page: 'Simple Page',
-            tradition_page: 'Tradition Page'
+            tradition_page: 'Tradition Page',
+            tab_page: 'Tab Page'
         },
         //container mode type is used for form container
         ContainerModeType: {

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   var hashTmp = crypto.createHash('md5').update(String(Math.random() * 10000000000000000)).digest('hex');
   var randomNum = hashTmp.slice(0, 6);
   var buidPath = 'build/release-' + randomNum;
-  var nvwaLoaderVersion = 'nvwa-loader-1.4.0';
+  var nvwaLoaderVersion = 'nvwa-loader-1.0.0';
   var concat_css_file_path = buidPath + '/css/<%= pkg.name %>-<%= pkg.version %>.css';
   var concat_js_file_path = buidPath + '/js/<%= pkg.name %>-<%= pkg.version %>.js';
   grunt.log.writeln("===============" + randomNum + "===========");
@@ -215,7 +215,7 @@ module.exports = function(grunt) {
             }*/
     },
     usemin: {
-      html: ['index.html', 'user.html'],
+      html: ['index.html', 'user.html', 'nvwa.jsp', 'user.jsp'],
       options: {
         blockReplacements: {
           css: function(block) {
@@ -233,6 +233,23 @@ module.exports = function(grunt) {
 
             return '<!-- build:css ' + block.dest + '-->\n' +
               '\t\t<link rel="stylesheet" href="' + final_name + '">\n' +
+              ' <!-- endbuild -->';
+          },
+          cssJsp: function(block) {
+            var real_path = block.dest;
+
+            real_path = real_path.replace('build', buidPath);
+
+            console.log(real_path);
+            var file = real_path + '.css';
+            var hash = crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex');
+            var suffix = hash.slice(0, 6);
+            console.log('suffix=' + suffix);
+            var final_name = real_path + '.' + suffix + '.css';
+            console.log(final_name);
+
+            return '<!-- build:cssJsp ' + block.dest + '-->\n' +
+              '\t\t<link rel="stylesheet" href="<%=systemConfig.get("staticResourceUrl")%>/' + final_name + '">\n' +
               ' <!-- endbuild -->';
           },
           jsProducer: function(block) {
@@ -258,6 +275,29 @@ module.exports = function(grunt) {
               '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_producer + '" > </script>\n' +
               ' <!-- endbuild -->';
           },
+          jsProducerJsp: function(block) {
+            var real_path = block.dest;
+            console.log("real_path" + real_path);
+
+            real_path = real_path.replace('build', buidPath);
+
+            var minFile_util = '<%=systemConfig.get("staticResourceUrl")%>/' + buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
+            var minFile_core = '<%=systemConfig.get("staticResourceUrl")%>/' + buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
+            //   var minFile_user = buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
+            var minFile_producer = '<%=systemConfig.get("staticResourceUrl")%>/' + buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
+
+            return '<!-- build:jsProducerJsp ' + block.dest + ' -->\n' +
+              '\t\t<script src="<%=systemConfig.get("staticResourceUrl")%>/' + nvwaLoaderVersion + '.js"\n' +
+              '\t\tbaseUrl = "' + buidPath + '/js"\n' +
+              '\t\tapi=""\n' +
+              '\t\tskin=""\n' +
+              '\t\tdebug = "true"\n' +
+              '\t\tlang = "zh_CN"\n' +
+              '\t\tjsonp = "true"\n' +
+              '\t\tnvwa-api=""\n' +
+              '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_producer + '" > </script>\n' +
+              ' <!-- endbuild -->';
+          },
           jsUser: function(block) {
             var real_path = block.dest;
             console.log("real_path" + real_path);
@@ -271,6 +311,30 @@ module.exports = function(grunt) {
 
             return '<!-- build:jsUser ' + block.dest + ' -->\n' +
               '\t\t<script src="' + nvwaLoaderVersion + '.js"\n' +
+              '\t\tbaseUrl = "' + buidPath + '/js"\n' +
+              '\t\tapi=""\n' +
+              '\t\tskin=""\n' +
+              '\t\tdebug = "true"\n' +
+              '\t\tlang = "zh_CN"\n' +
+              '\t\tjsonp = "true"\n' +
+              '\t\tnvwa-api=""\n' +
+              '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_user + '" > </script>\n' +
+              // '\t\tpreload = "' + minFile_util + ',' + minFile_core + ',' + minFile_producer + '" > </script>\n' +
+              ' <!-- endbuild -->';
+          },
+          jsUserJsp: function(block) {
+            var real_path = block.dest;
+            console.log("real_path" + real_path);
+
+            real_path = real_path.replace('build', buidPath);
+
+            var minFile_util = '<%=systemConfig.get("staticResourceUrl")%>/' + buidPath + '/js/' + md5Str(real_path, 'util').replace('nvwa-client', 'nvwa-client-util');
+            var minFile_core = '<%=systemConfig.get("staticResourceUrl")%>/' + buidPath + '/js/' + md5Str(real_path, 'core').replace('nvwa-client', 'nvwa-client-core');
+            var minFile_user = '<%=systemConfig.get("staticResourceUrl")%>/' + buidPath + '/js/' + md5Str(real_path, 'user').replace('nvwa-client', 'nvwa-client-user');
+            //    var minFile_producer = buidPath + '/js/' + md5Str(real_path, 'producer').replace('nvwa-client', 'nvwa-client-producer');
+
+            return '<!-- build:jsUserJsp ' + block.dest + ' -->\n' +
+              '\t\t<script src="<%=systemConfig.get("staticResourceUrl")%>/' + nvwaLoaderVersion + '.js"\n' +
               '\t\tbaseUrl = "' + buidPath + '/js"\n' +
               '\t\tapi=""\n' +
               '\t\tskin=""\n' +

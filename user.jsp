@@ -12,19 +12,19 @@
         <meta charset="UTF-8">
         <title>NVWA 制作系统</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-         <!-- build:css build/css/nvwa-client-1.0.0.min-->
-		<link rel="stylesheet" href="build/release-b8a7b4/css/nvwa-client-1.0.0.min.db776b.css">
+         <!-- build:cssJsp build/css/nvwa-client-1.0.0.min-->
+		<link rel="stylesheet" href="<%=systemConfig.get("staticResourceUrl")%>/build/release-86c81a/css/nvwa-client-1.0.0.min.2bb904.css">
  <!-- endbuild -->
-  <!-- build:jsUser build/js/nvwa-client-1.0.0.min -->
+  <!-- build:jsUserJsp build/js/nvwa-client-1.0.0.min -->
 		<script src="<%=systemConfig.get("staticResourceUrl")%>/nvwa-loader-1.0.0.js"
-		baseUrl = "build/release-b8a7b4/js"
+		baseUrl = "build/release-86c81a/js"
 		api=""
 		skin=""
 		debug = "true"
 		lang = "zh_CN"
 		jsonp = "true"
 		nvwa-api=""
-		preload = "build/release-b8a7b4/js/nvwa-client-util-1.0.0.min.ddaaa5.js,build/release-b8a7b4/js/nvwa-client-core-1.0.0.min.f71207.js,build/release-b8a7b4/js/nvwa-client-user-1.0.0.min.8d9859.js" > </script>
+		preload = "<%=systemConfig.get("staticResourceUrl")%>/build/release-86c81a/js/nvwa-client-util-1.0.0.min.935ccd.js,<%=systemConfig.get("staticResourceUrl")%>/build/release-86c81a/js/nvwa-client-core-1.0.0.min.f481cc.js,<%=systemConfig.get("staticResourceUrl")%>/build/release-86c81a/js/nvwa-client-user-1.0.0.min.76ad4f.js" > </script>
  <!-- endbuild -->
         <style>
 

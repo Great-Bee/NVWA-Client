@@ -12,20 +12,20 @@
         WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
         HashMap systemConfig = (HashMap) context.getBean("systemConfig");
     %>
- <!-- build:css build/css/nvwa-client-1.0.0.min-->
-		<link rel="stylesheet" href="build/release-b8a7b4/css/nvwa-client-1.0.0.min.db776b.css">
+ <!-- build:cssJsp build/css/nvwa-client-1.0.0.min-->
+		<link rel="stylesheet" href="build/release-284336/css/nvwa-client-1.0.0.min.2bb904.css">
  <!-- endbuild -->
 
- <!-- build:jsProducer build/js/nvwa-client-1.0.0.min -->
-		<script src="<%=systemConfig.get("staticResourceUrl")%>/nvwa-loader-1.0.0.js"
-		baseUrl = "build/release-b8a7b4/js"
+ <!-- build:jsProducerJsp build/js/nvwa-client-1.0.0.min -->
+		<script src="nvwa-loader-1.0.0.js"
+		baseUrl = "build/release-284336/js"
 		api=""
 		skin=""
 		debug = "true"
 		lang = "zh_CN"
 		jsonp = "true"
 		nvwa-api=""
-		preload = "build/release-b8a7b4/js/nvwa-client-util-1.0.0.min.ddaaa5.js,build/release-b8a7b4/js/nvwa-client-core-1.0.0.min.f71207.js,build/release-b8a7b4/js/nvwa-client-producer-1.0.0.min.697571.js" > </script>
+		preload = "build/release-284336/js/nvwa-client-util-1.0.0.min.dd6f6b.js,build/release-284336/js/nvwa-client-core-1.0.0.min.f481cc.js,build/release-284336/js/nvwa-client-producer-1.0.0.min.fcef2d.js" > </script>
  <!-- endbuild -->
     </head>
     <body>
