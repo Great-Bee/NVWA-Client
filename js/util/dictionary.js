@@ -20,7 +20,8 @@ define('js/util/dictionary', [], function() {
             search: '搜索',
             grid: '列表',
             print: '打印',
-            chart: '图标'
+            chart: '图标',
+            dt_grid: 'DT列表'
         },
         //组件类型
         ComponentType: {

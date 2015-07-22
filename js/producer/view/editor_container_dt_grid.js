@@ -1,17 +1,15 @@
-define('js/producer/view/editor_container_grid', [
+define('js/producer/view/editor_container_dt_grid', [
     'backbone',
-
     'js/util/api/mc',
     'js/util/dictionary',
     'js/bower_components/achy/message',
     'js/util/string',
     'js/util/businessUtil',
-    'text!js/producer/template/editorContainerGrid.tpl',
+    'text!js/producer/template/editorContainerDtGrid.tpl',
     'js/bower_components/Slidebars/distribution/0.10.2/slidebars',
-    //   'text!bower_components/Slidebars/distribution/0.10.2/slidebars.css',
     'js/bower_components/jQuery-Collapse/src/jquery.collapse',
-], function(Backbone, MCModel, Dictionary, Message, StringUtil, BusinessUtil, gridEditorTpl, SlidebarsView, CollapseView) {
-    var EditorContainerGridView = Backbone.View.extend({
+], function(Backbone, MCModel, Dictionary, Message, StringUtil, BusinessUtil, DtGridEditorTpl, SlidebarsView, CollapseView) {
+    var EditorContainerDtGridView = Backbone.View.extend({
         events: {
             'click #openPanelLeft': 'openPanelLeft',
             'click #openPanelRight': 'openPanelRight',
@@ -37,6 +35,7 @@ define('js/producer/view/editor_container_grid', [
             MCModel.containerLayout(t.config['containerAlias'], function(response) {
                 if (response['ok']) {
                     t.containerModel = response['dataMap']['container'];
+                    debugger;
                     if (!t.containerModel) {
                         alert('没有相关容器信息');
                         return;
@@ -58,7 +57,7 @@ define('js/producer/view/editor_container_grid', [
         render: function() {
             var t = this;
 
-            t.$el.html(tpl(gridEditorTpl, {
+            t.$el.html(tpl(DtGridEditorTpl, {
                 options: t.options,
                 config: t.config
             }));
@@ -87,9 +86,9 @@ define('js/producer/view/editor_container_grid', [
             });
 
             //渲染最终grid
-            requirejs(["js/core/container/view/grid"], function(GridView) {
-                t.componentsView = new GridView({
-                        el: $('#editor_container_grid')
+            requirejs(["js/core/container/view/dt_grid"], function(DtGridView) {
+                t.componentsView = new DtGridView({
+                        el: $('#editor_container_dt_grid')
                     },
                     t.containerModel['container'],
                     t.containerModel['containerClientAttribute'],
@@ -175,5 +174,5 @@ define('js/producer/view/editor_container_grid', [
             t.slidebarsView.slidebars.open('right');
         }
     });
-    return EditorContainerGridView;
+    return EditorContainerDtGridView;
 });

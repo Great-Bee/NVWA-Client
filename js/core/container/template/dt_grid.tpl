@@ -1,4 +1,4 @@
-<div class="panel panel-<#=attributes.style#> panel-bottom" container="grid" style="margin-bottom:0px;">
+<div class="panel panel-<#=attributes.style#> panel-bottom" container="dt_grid" style="margin-bottom:0px;">
     <div class="panel-heading" <#if(editAble){#>style="height: 54px;"<#}#>>
       <h3 class="panel-title" <#if(editAble){#>style="float:left;line-height: 34px;"<#}#>>
           ${attributes.title}
