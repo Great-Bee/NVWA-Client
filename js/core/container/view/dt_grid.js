@@ -4,12 +4,12 @@ define('js/core/container/view/dt_grid', [
     'js/util/api/mc',
     'js/util/dictionary',
     'js/util/string',
-    'js/core/container/util/view/pagination',
+    'js/core/container/util/view/dtPagination',
     'js/util/ui/view/fieldSelection',
     'js/util/ui/view/modal',
     'js/core/module/nvwaUser',
     'js/bower_components/achy/message',
-], function(BaseContainerView, FormTpl, MC, Dictionary, StringUtil, PaginationView, FieldSelectionView, Modal, NVWAUserAPI, Message) {
+], function(BaseContainerView, FormTpl, MC, Dictionary, StringUtil, DtPaginationView, FieldSelectionView, Modal, NVWAUserAPI, Message) {
     var DtGridView = BaseContainerView.extend({
         events: {
             "update": "__updateEvent",
@@ -25,7 +25,6 @@ define('js/core/container/view/dt_grid', [
                 title: '请添加标题',
                 style: "primary",
             };
-            debugger;
             BaseContainerView.prototype.initialize.apply(this, arguments);
             t.elementLayout = elementLayout;
             t.options = options;
@@ -236,7 +235,7 @@ define('js/core/container/view/dt_grid', [
         initLayout: function() {
             var t = this;
             var gridContainer = this.$el.find('.panel-body');
-            t.paginationView = new PaginationView(
+            t.paginationView = new DtPaginationView(
                 gridContainer,
                 t.containerBean, {}, //attributes
                 {}, //event name array

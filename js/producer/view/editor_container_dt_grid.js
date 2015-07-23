@@ -35,7 +35,6 @@ define('js/producer/view/editor_container_dt_grid', [
             MCModel.containerLayout(t.config['containerAlias'], function(response) {
                 if (response['ok']) {
                     t.containerModel = response['dataMap']['container'];
-                    debugger;
                     if (!t.containerModel) {
                         alert('没有相关容器信息');
                         return;

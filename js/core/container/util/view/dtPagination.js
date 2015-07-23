@@ -9,7 +9,8 @@ define('js/core/container/util/view/dtPagination', [
     'text!js/core/container/util/template/dtPagination.tpl',
     'jqueryui',
     'js/bower_components/jquery-dataTable/media/js/jquery.dataTables.min',
-    'js/bower_components/jquery-dataTable/extensions/FixedColumns/js/dataTables.fixedColumns.min'
+    'js/bower_components/jquery-dataTable/extensions/FixedColumns/js/dataTables.fixedColumns.min',
+    'js/bower_components/jquery-dataTable/media/js/dataTables.bootstrap',
 ], function(Backbone, StringUtil, NvwaUser, Message, Modal, MC, AttributeView, DtPaginationTpl) {
     var DtGridView = Backbone.View.extend({
         events: {
@@ -22,13 +23,14 @@ define('js/core/container/util/view/dtPagination', [
 
             var t = this;
             var addCss = function(cssurl) {
-                var link = document.createElement('link');
-                link.type = 'text/css';
-                link.rel = 'stylesheet';
-                link.href = cssurl;
-                document.getElementsByTagName("head")[0].appendChild(link);
-            }
-            addCss('js/bower_components/jquery-dataTable/media/css/jquery.dataTables.min.css');
+                    var link = document.createElement('link');
+                    link.type = 'text/css';
+                    link.rel = 'stylesheet';
+                    link.href = cssurl;
+                    document.getElementsByTagName("head")[0].appendChild(link);
+                }
+                //   addCss('js/bower_components/jquery-dataTable/media/css/jquery.dataTables.min.css');
+            addCss('js/bower_components/jquery-dataTable/media/css/dataTables.bootstrap.css');
 
             this.$el = options;
             var serialNumber = eleBean['serialNumber'];
@@ -58,7 +60,19 @@ define('js/core/container/util/view/dtPagination', [
                 //元素类型
                 type: 'pagination',
                 //Feedback
-                feedback: null
+                feedback: null,
+
+                //========dt grid   dataTable 属性=========
+                scrollY: '300px', //垂直滚动，
+                scrollX: true, //水平滚动
+                scrollCollapse: true, //开启上下滚动条
+                paging: false, //是否开启分页功能
+                searching: false, //是否启动过滤、搜索功能
+                info: false, //页脚的提示信息
+                leftColumns: 1, //这里左边固定列可以设置固定一列
+                rightColumns: 0, //右边固定列0列
+                //========dt grid   dataTable 属性=========
+
             };
             //默认数据属性
             this.defaultData = {
@@ -101,7 +115,7 @@ define('js/core/container/util/view/dtPagination', [
             });
             t.$el.off().on('deleteElementLayout', function(e, id) {
                 var layouts = t.layouts;
-                var elementsTDs = t.$el.find('thead td');
+                var elementsTDs = t.$el.find('.dataTables_scroll .dataTables_scrollHead thead th');
                 t.layouts.unfixed = [];
                 $.each(elementsTDs, function(k, td) {
                     if ($(td).attr('elementId') != id) {
@@ -172,15 +186,17 @@ define('js/core/container/util/view/dtPagination', [
 
             //添加dataTable插件
             var table = t.$el.find('#' + t.eleBean.serialNumber + '-table').DataTable({
-                scrollY: "500px",
-                scrollX: true,
-                scrollCollapse: true,
-                paging: false
+                scrollY: t.attributes.scrollY, //垂直滚动，超过500px开始滚动
+                scrollX: t.attributes.scrollX, //水平滚动
+                scrollCollapse: t.attributes.scrollCollapse, //开启上下滚动条
+                paging: t.attributes.paging, //是否开启分页功能
+                searching: t.attributes.searching, //是否启动过滤、搜索功能
+                info: t.attributes.info, //页脚的提示信息
             });
             new $.fn.dataTable.FixedColumns(table, {
-                leftColumns: 2 //这里左边固定列可以设置
+                leftColumns: t.attributes.leftColumns, //这里左边固定列可以设置
+                rightColumns: t.attributes.rightColumns //右边固定列
             });
-
 
             return this;
         },
@@ -212,6 +228,7 @@ define('js/core/container/util/view/dtPagination', [
                     if (t.editAble) {
                         t.bindDrag();
                     }
+
                 }, t.config);
             }
         },
@@ -408,7 +425,7 @@ define('js/core/container/util/view/dtPagination', [
                     $(event.target).parent().attr('elementId', elementId);
 
                     var layouts = t.layouts;
-                    var elementsTDs = t.$el.find('thead td');
+                    var elementsTDs = t.$el.find('.dataTables_scroll .dataTables_scrollHead thead th');
                     t.layouts.unfixed = [];
                     $.each(elementsTDs, function(k, td) {
                         t.layouts.unfixed.push($(td).attr('elementId'));

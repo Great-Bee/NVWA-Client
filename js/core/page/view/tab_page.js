@@ -53,6 +53,7 @@ define('js/core/page/view/tab_page', [
             if (idname) {
                 t.currentTab = idname.replace("#", "");
                 event.preventDefault(); //阻止a链接的跳转行为 
+                event.stopPropagation(); //阻止冒泡
                 //    $(idname).tab('show'); //显示当前选中的链接及关联的content 
                 t.$el.find('.nav-tabs').find('[role="presentation"]').removeClass('active');
                 t.$el.find('[idname="' + idname + '"]').parent().addClass("active");
@@ -62,6 +63,23 @@ define('js/core/page/view/tab_page', [
                 if (t.editAble) {
                     //显示设置标题的属性
                     t._setTabTitleAttribute();
+                }
+                var containerType = t.$el.find('#' + t.currentTab).find('[container]').attr("container");
+                _log(containerType);
+                if (containerType == 'dt_grid') {
+                    var dtGridAlias;
+                    for (var i = 1; i < t.layouts.length; i++) {
+                        if (t.layouts[i][0][0] == t.currentTab) {
+                            dtGridAlias = t.layouts[i][2][0];
+                            break;
+                        }
+                    }
+                    var data = {
+                        alias: dtGridAlias,
+                        type: 'dt_grid'
+                    };
+                    t.$el.find('#' + t.currentTab).find('.def-grid-bar').html('');
+                    t._containerSelection(t.$el.find('#' + t.currentTab).find('.def-grid-bar'), data);
                 }
                 //清除之前的数据再渲染
                 //     t.$el.find('#' + t.currentTab).find('.def-grid-bar').html('');
@@ -532,6 +550,7 @@ define('js/core/page/view/tab_page', [
                                 //渲染top
                                 t._renderTab(t.layouts[i]);
                                 //添加单个页面的监听
+                                debugger;
                                 t._initTopBarListener(t.layouts[i][0][0]);
                                 //默认显示第一个tab
                                 if (i == 1) {
@@ -588,6 +607,9 @@ define('js/core/page/view/tab_page', [
                                 conditions: [{
                                     fieldName: 'type',
                                     fieldValue: 'grid'
+                                }, {
+                                    fieldName: 'type',
+                                    fieldValue: 'dt_grid'
                                 }]
                             });
                             t.containerSelectionView.container.on('selectedContainer', function(e, data) {
@@ -846,6 +868,11 @@ define('js/core/page/view/tab_page', [
                 //    t.layouts[2] = [data['alias']];
                 t._chooiceTab(null, data['alias']);
             }
+            //因为传过来的参数data  type是固定的，而grid和dt_grid所执行的逻辑是一样的，所以不用下面的判断
+            /* else if (data['type'] == 'dt_grid') {
+                //    t.layouts[2] = [data['alias']];
+                t._chooiceTab(null, data['alias']);
+            }*/
             t._saveLayout();
         },
         //通过tabTitle选择t.layouts中对应的位置,并设置值
@@ -891,22 +918,28 @@ define('js/core/page/view/tab_page', [
                             alert('没有相关容器信息');
                             return;
                         }
-                        if (data['type'] == 'form') {
+                        if (containerView['container']['type'] == 'form') {
                             t._renderSearchForm(el,
                                 containerView['container'],
                                 containerView['containerClientAttribute'],
                                 containerView['clientEvents'],
                                 containerView['elementViews'],
                                 containerView['elementLayout'], false);
-                        } else if (data['type'] == 'grid') {
+                        } else if (containerView['container']['type'] == 'grid') {
                             t._renderGrid(el,
                                 containerView['container'],
                                 containerView['containerClientAttribute'],
                                 containerView['clientEvents'],
                                 containerView['elementViews'],
                                 containerView['elementLayout'], false);
+                        } else if (containerView['container']['type'] == 'dt_grid') {
+                            t._renderDtGrid(el,
+                                containerView['container'],
+                                containerView['containerClientAttribute'],
+                                containerView['clientEvents'],
+                                containerView['elementViews'],
+                                containerView['elementLayout'], false);
                         }
-
                     } else {
                         _log(response['message']);
                     }
@@ -944,6 +977,21 @@ define('js/core/page/view/tab_page', [
                     elementViews,
                     elementLayout, false);
                 BasePageView.prototype.setContainer.apply(t, [t.gridView]);
+            });
+        },
+        //render grid
+        _renderDtGrid: function(el, containerBean, containerClientAttribute, clientEvents, elementViews, elementLayout) {
+            var t = this;
+            requirejs(["js/core/container/view/dt_grid"], function(DtGridView) {
+                t.dtGridView = new DtGridView({
+                        el: el
+                    },
+                    containerBean,
+                    containerClientAttribute,
+                    clientEvents,
+                    elementViews,
+                    elementLayout, false);
+                BasePageView.prototype.setContainer.apply(t, [t.dtGridView]);
             });
         },
         render: function() {
