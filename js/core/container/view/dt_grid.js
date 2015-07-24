@@ -26,6 +26,8 @@ define('js/core/container/view/dt_grid', [
                 style: "primary",
             };
             BaseContainerView.prototype.initialize.apply(this, arguments);
+            debugger;
+            t.attributes = $.extend(t.defaultClientAttribute, attributes);
             t.elementLayout = elementLayout;
             t.options = options;
             t.$el = options.el;
@@ -235,9 +237,10 @@ define('js/core/container/view/dt_grid', [
         initLayout: function() {
             var t = this;
             var gridContainer = this.$el.find('.panel-body');
+            gridContainer.html('');
             t.paginationView = new DtPaginationView(
                 gridContainer,
-                t.containerBean, {}, //attributes
+                t.containerBean, t.attributes, //attributes
                 {}, //event name array
                 t.elements, //elements object array
                 eval("(" + t.elementLayout.layouts + ")"), //layout object
@@ -372,6 +375,30 @@ define('js/core/container/view/dt_grid', [
                 case 'style':
                     t.$el.children('div').attr('class', 'panel panel-' + attributeValue);
                     break;
+                case 'paging':
+                    t.attributes[attributeName] = (attributeValue == 'true');
+                    t.initLayout();
+                    break;
+                case 'searchingAble':
+                    t.attributes[attributeName] = (attributeValue == 'true');
+                    t.initLayout();
+                    break;
+                case 'infoAble':
+                    t.attributes[attributeName] = (attributeValue == 'true');
+                    t.initLayout();
+                    break;
+                case 'dtScrollY':
+                    t.attributes[attributeName] = attributeValue + 'px';
+                    t.initLayout();
+                    break;
+                case 'leftColumns':
+                    t.attributes[attributeName] = attributeValue;
+                    t.initLayout();
+                    break;
+                case 'rightColumns':
+                    t.attributes[attributeName] = attributeValue;
+                    t.initLayout();
+                    break;
                 default:
                     return;
             }
@@ -419,7 +446,7 @@ define('js/core/container/view/dt_grid', [
             }
         },
         supportAttribute: function() {
-            return ['width', 'title', 'style'];
+            return ['width', 'title', 'style', 'paging', 'searchingAble', 'infoAble', 'dtScrollY', 'leftColumns', 'rightColumns'];
         },
         supportServerAttribute: function() {
             return ['pageSize', 'gridType', 'orderBy', 'orderByRule', 'groupBy'];

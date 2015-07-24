@@ -110,6 +110,25 @@ define('js/producer/view/editorContainerAttribute', [
                     __updateClientAttribute('style', value);
                 }
             });
+            //pageing
+            t.containerPagingEnable.setEvent({
+                onSelect: function(value) {
+                    __updateClientAttribute('paging', value);
+                }
+            });
+            //searching
+            t.containerSearchingAbleEnable.setEvent({
+                onSelect: function(value) {
+                    __updateClientAttribute('searchingAble', value);
+                }
+            });
+            //searching
+            t.containerInfoAbleEnable.setEvent({
+                onSelect: function(value) {
+                    __updateClientAttribute('infoAble', value);
+                }
+            });
+
             //button enable setting change event listening           
             //create button
             t.containerCreateBtnEnable.setEvent({
@@ -218,6 +237,20 @@ define('js/producer/view/editorContainerAttribute', [
             t.containerStyle = new SelectView({
                 el: t.$el.find('.styleContainer')
             }, {}, colorAttr);
+
+            //是否前端分页
+            t.containerPagingEnable = new SelectView({
+                el: t.$el.find('.pagingContainer')
+            }, {}, btnEnableAttr);
+            //是否搜索过滤
+            t.containerSearchingAbleEnable = new SelectView({
+                el: t.$el.find('.searchingAbleContainer')
+            }, {}, btnEnableAttr);
+            //是否页脚信息
+            t.containerInfoAbleEnable = new SelectView({
+                el: t.$el.find('.infoAbleContainer')
+            }, {}, btnEnableAttr);
+
             //create button enable
             t.containerCreateBtnEnable = new SelectView({
                 el: t.$el.find('.createBtnContainer')
@@ -328,6 +361,15 @@ define('js/producer/view/editorContainerAttribute', [
             switch (fieldName) {
                 case 'style':
                     t.containerStyle.setValue(value);
+                    break;
+                case 'paging':
+                    t.containerPagingEnable.setValue(value);
+                    break;
+                case 'searchingAble':
+                    t.containerSearchingAbleEnable.setValue(value);
+                    break;
+                case 'infoAble':
+                    t.containerInfoAbleEnable.setValue(value);
                     break;
                 case 'createAble':
                     t.containerCreateBtnEnable.setValue(value);

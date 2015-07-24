@@ -528,8 +528,12 @@ define('js/core/page/view/tab_page', [
                                 var newLayout = eval("(" + newLayoutJson + ")");
                                 //渲染top
                                 t._renderTab(newLayout);
-                                //新增tab
-                                t.layouts.push(newLayout);
+                                if (t.layouts && t.layouts[1] && t.layouts[1][0] && t.layouts[1][0].length > 0) {
+                                    //新增tab
+                                    t.layouts.push(newLayout);
+                                } else {
+                                    t.layouts[1] = newLayout;
+                                }
                                 //保存布局
                                 t._saveLayout();
 
@@ -550,7 +554,6 @@ define('js/core/page/view/tab_page', [
                                 //渲染top
                                 t._renderTab(t.layouts[i]);
                                 //添加单个页面的监听
-                                debugger;
                                 t._initTopBarListener(t.layouts[i][0][0]);
                                 //默认显示第一个tab
                                 if (i == 1) {
@@ -867,12 +870,9 @@ define('js/core/page/view/tab_page', [
             } else if (data['type'] == 'grid') {
                 //    t.layouts[2] = [data['alias']];
                 t._chooiceTab(null, data['alias']);
-            }
-            //因为传过来的参数data  type是固定的，而grid和dt_grid所执行的逻辑是一样的，所以不用下面的判断
-            /* else if (data['type'] == 'dt_grid') {
-                //    t.layouts[2] = [data['alias']];
+            } else if (data['type'] == 'dt_grid') {
                 t._chooiceTab(null, data['alias']);
-            }*/
+            }
             t._saveLayout();
         },
         //通过tabTitle选择t.layouts中对应的位置,并设置值

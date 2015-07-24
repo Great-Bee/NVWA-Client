@@ -395,6 +395,9 @@ define('js/core/page/view/tradition_page', [
                                     conditions: [{
                                         fieldName: 'type',
                                         fieldValue: 'grid'
+                                    }, {
+                                        fieldName: 'type',
+                                        fieldValue: 'dt_grid'
                                     }]
                                 });
                                 t.containerSelectionView.container.on('selectedContainer', function(e, data) {
@@ -533,6 +536,8 @@ define('js/core/page/view/tradition_page', [
                 t.layouts[0] = [data['alias']];
             } else if (data['type'] == 'grid') {
                 t.layouts[2] = [data['alias']];
+            } else if (data['type'] == 'dt_grid') {
+                t.layouts[2] = [data['alias']];
             }
             t._saveLayout();
         },
@@ -553,15 +558,22 @@ define('js/core/page/view/tradition_page', [
                             alert('没有相关容器信息');
                             return;
                         }
-                        if (data['type'] == 'form') {
+                        if (containerView['container']['type'] == 'form') {
                             t._renderSearchForm(el,
                                 containerView['container'],
                                 containerView['containerClientAttribute'],
                                 containerView['clientEvents'],
                                 containerView['elementViews'],
                                 containerView['elementLayout'], false);
-                        } else if (data['type'] == 'grid') {
+                        } else if (containerView['container']['type'] == 'grid') {
                             t._renderGrid(el,
+                                containerView['container'],
+                                containerView['containerClientAttribute'],
+                                containerView['clientEvents'],
+                                containerView['elementViews'],
+                                containerView['elementLayout'], false);
+                        } else if (containerView['container']['type'] == 'dt_grid') {
+                            t._renderDtGrid(el,
                                 containerView['container'],
                                 containerView['containerClientAttribute'],
                                 containerView['clientEvents'],
@@ -606,6 +618,21 @@ define('js/core/page/view/tradition_page', [
                     elementViews,
                     elementLayout, false);
                 BasePageView.prototype.setContainer.apply(t, [t.gridView]);
+            });
+        },
+        //render grid
+        _renderDtGrid: function(el, containerBean, containerClientAttribute, clientEvents, elementViews, elementLayout) {
+            var t = this;
+            requirejs(["js/core/container/view/dt_grid"], function(DtGridView) {
+                t.dtGridView = new DtGridView({
+                        el: el
+                    },
+                    containerBean,
+                    containerClientAttribute,
+                    clientEvents,
+                    elementViews,
+                    elementLayout, false);
+                BasePageView.prototype.setContainer.apply(t, [t.dtGridView]);
             });
         },
         render: function() {

@@ -132,6 +132,13 @@ define('js/core/page/view/simple_page', [
                                     containerView['clientEvents'],
                                     containerView['elementViews'],
                                     containerView['elementLayout'], false);
+                            } else if (containerType == 'dt_grid') {
+                                t._renderDtGrid(el,
+                                    containerView['container'],
+                                    containerView['containerClientAttribute'],
+                                    containerView['clientEvents'],
+                                    containerView['elementViews'],
+                                    containerView['elementLayout'], false);
                             }
                         }
                     } else {
@@ -171,6 +178,23 @@ define('js/core/page/view/simple_page', [
                         elementViews,
                         elementLayout, false);
                     BasePageView.prototype.setContainer.apply(t, [t.gridView]);
+                });
+            }
+        },
+        //render grid
+        _renderDtGrid: function(el, containerBean, containerClientAttribute, clientEvents, elementViews, elementLayout) {
+            var t = this;
+            if (el && containerBean && containerBean.id && $nvwa.string.isVerify(containerBean.alias)) {
+                requirejs(["js/core/container/view/dt_grid"], function(DtGridView) {
+                    t.dtGridView = new DtGridView({
+                            el: el
+                        },
+                        containerBean,
+                        containerClientAttribute,
+                        clientEvents,
+                        elementViews,
+                        elementLayout, false);
+                    BasePageView.prototype.setContainer.apply(t, [t.dtGridView]);
                 });
             }
         },

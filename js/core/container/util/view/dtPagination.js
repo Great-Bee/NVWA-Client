@@ -62,13 +62,13 @@ define('js/core/container/util/view/dtPagination', [
                 //Feedback
                 feedback: null,
 
-                //========dt grid   dataTable 属性=========
-                scrollY: '300px', //垂直滚动，
-                scrollX: true, //水平滚动
+                //========dt grid   dataTable 默认属性=========
+                dtScrollY: '500px', //垂直滚动，
+                dtScrollX: true, //水平滚动
                 scrollCollapse: true, //开启上下滚动条
                 paging: false, //是否开启分页功能
-                searching: false, //是否启动过滤、搜索功能
-                info: false, //页脚的提示信息
+                searchingAble: false, //是否启动过滤、搜索功能
+                infoAble: false, //页脚的提示信息
                 leftColumns: 1, //这里左边固定列可以设置固定一列
                 rightColumns: 0, //右边固定列0列
                 //========dt grid   dataTable 属性=========
@@ -94,7 +94,8 @@ define('js/core/container/util/view/dtPagination', [
             //可编辑
             this.editAble = editAble;
             //载入数据
-            this.loadData(this.defaultAttributes);
+            //    this.loadData(this.defaultAttributes);
+            this.loadData(this.attributes);
             //绑定事件
             // this.bindEvents();
             if (this.editAble) {
@@ -186,12 +187,12 @@ define('js/core/container/util/view/dtPagination', [
 
             //添加dataTable插件
             var table = t.$el.find('#' + t.eleBean.serialNumber + '-table').DataTable({
-                scrollY: t.attributes.scrollY, //垂直滚动，超过500px开始滚动
-                scrollX: t.attributes.scrollX, //水平滚动
+                scrollY: t.attributes.dtScrollY || '500px', //垂直滚动，超过500px开始滚动
+                scrollX: t.attributes.dtScrollX, //水平滚动
                 scrollCollapse: t.attributes.scrollCollapse, //开启上下滚动条
                 paging: t.attributes.paging, //是否开启分页功能
-                searching: t.attributes.searching, //是否启动过滤、搜索功能
-                info: t.attributes.info, //页脚的提示信息
+                searching: t.attributes.searchingAble, //是否启动过滤、搜索功能
+                info: t.attributes.infoAble, //页脚的提示信息
             });
             new $.fn.dataTable.FixedColumns(table, {
                 leftColumns: t.attributes.leftColumns, //这里左边固定列可以设置
