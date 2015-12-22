@@ -1,11 +1,13 @@
 <#
   var cards=dataSource.cards;
   if($nvwa.array.isVerify(cards)){
-    $.each(cards,function(i,row){
-      #><div class="row" rowIndex="<#=i#>"><#
+    for(var i=0;i<cards.length;i++){
+       #><div class="row" rowIndex="<#=i#>"><#
+       var row=cards[i];
        if($nvwa.array.isVerify(row)){
-         $.each(row,function(k,item){
-            if(item){
+         for(var k=0;k<row.length;k++){
+          var item=row[k];
+          if(item){
               var link=item.link;
               var title=item.title;
               var subTitle=item.subTitle;
@@ -35,9 +37,9 @@
                 </div>
               </div><#
             }
-         });
+         }         
        }
       #></div><#
-    });
+    }    
   }
 #>
